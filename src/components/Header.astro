@@ -15,10 +15,18 @@ console.log("base", base)
         <a href={base} class="logo">LeapIn</a>
         
         <nav class="nav">
-          <a href={`${base}platform`} class={`nav-link ${currentPath.includes('/platform') ? 'active' : ''}`} data-i18n="header.platform"></a>
-          <a href={`${base}solutions`} class={`nav-link ${currentPath.includes('/solutions') ? 'active' : ''}`} data-i18n="header.solutions"></a>
-          <a href={`${base}industries`} class={`nav-link ${currentPath.includes('/industries') ? 'active' : ''}`} data-i18n="header.industries"></a>
-          <a href={`${base}about`} class={`nav-link ${currentPath.includes('/about') ? 'active' : ''}`} data-i18n="header.about"></a>
+          <div class={`nav-link ${currentPath.includes('/platform') ? 'active' : ''}`}>
+            <a href={`${base}platform`} data-i18n="header.platform"></a>
+          </div>
+          <div class={`nav-link ${currentPath.includes('/solutions') ? 'active' : ''}`}>
+            <a href={`${base}solutions`} data-i18n="header.solutions"></a>
+          </div>
+          <div class={`nav-link ${currentPath.includes('/industries') ? 'active' : ''}`}>
+            <a href={`${base}industries`} data-i18n="header.industries"></a>
+          </div>
+          <div class={`nav-link ${currentPath.includes('/about') ? 'active' : ''}`}>
+            <a href={`${base}about`} data-i18n="header.about"></a>
+          </div>
         </nav>
       </div>
 
@@ -36,7 +44,7 @@ console.log("base", base)
     <!-- 移动端菜单下拉 -->
     <div class="mobile-menu" id="mobile-menu">
       <nav class="mobile-nav">
-        <a href={`${base}`} class={`mobile-nav-link ${currentPath === '/' ? 'active' : ''}`} data-i18n="header.platform"></a>
+        <a href={`${base}`} class={`mobile-nav-link ${currentPath === '/' ? 'active' : ''}`} data-i18n="header.home"></a>
         <a href={`${base}platform`} class={`mobile-nav-link ${currentPath.includes('/platform') ? 'active' : ''}`} data-i18n="header.platform"></a>
         <a href={`${base}solutions`} class={`mobile-nav-link ${currentPath.includes('/solutions') ? 'active' : ''}`} data-i18n="header.solutions"></a>
         <a href={`${base}industries`} class={`mobile-nav-link ${currentPath.includes('/industries') ? 'active' : ''}`} data-i18n="header.industries"></a>
@@ -118,6 +126,9 @@ console.log("base", base)
   }
 
   .nav-link {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    border-radius: 8px;
     color: var(--color-text);
     text-decoration: none;
     font-size: 0.95rem;
@@ -130,6 +141,10 @@ console.log("base", base)
   }
 
   .nav-link.active {
+    border: 1px solid #fff;
+    background: var(--Neutrals-White-20, rgba(255, 255, 255, 0.60));
+  }
+  .nav-link.active a {
     background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
     background-clip: text;
     -webkit-background-clip: text;
