@@ -6,6 +6,7 @@ import product1Mobile from '../assets/index/product/product1mobile.png';
 import product2Mobile from '../assets/index/product/product2mobile.png';
 import product3Mobile from '../assets/index/product/product3mobile.png';
 import bgDot from '../assets/index/product/bg_dot.png';
+import Button from './Button.astro';
 
 const products = [
   { image: product1, mobileImage: product1Mobile, number: '01' },
@@ -52,7 +53,7 @@ const products = [
           ))}
         </div>
       </div>
-      <button class="cta-button" data-i18n="homepage.product.cta">预约平台演示</button>
+      <Button text="homepage.product.cta" type="primary" />
     </div>
   </div>
 </section>

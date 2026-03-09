@@ -2,6 +2,7 @@
 import bgBottom from '../assets/index/bg_linear.png';
 import bgBottom1 from '../assets/index/bg_linear_1.png';
 import bgBottom2 from '../assets/index/bg_linear_2.png';
+import Button from './Button.astro';
 ---
 
 <section class="hero">
@@ -18,7 +19,7 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
       <h6 class="hero-subtitle" data-i18n="homepage.hero.subtitle">预测技能，匹配人才，打造企业级未来团队</h6>
       <p class="hero-description" data-i18n="homepage.hero.description">LeapIn 作为 AI 人才智能平台，赋能《财富》500 强企业，在整个人才生命周期内实现更智能招聘、 更快速发展，并留住顶尖人才。</p>
       <div class="hero-actions">
-        <button class="btn-primary" data-i18n="header.requestDemo">请求试用</button>
+      <Button text="header.requestDemo" type="primary" />
       </div>
     </div>
   </div>

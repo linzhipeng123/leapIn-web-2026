@@ -1,0 +1,130 @@
+---
+interface Props {
+	type: 'nav' | 'primary' | 'secondary';
+    text: string;
+    class?: string;
+}
+const { type, text } = Astro.props;
+---
+
+<div class={`button button-${type}`}>
+    <span class="button-text" data-i18n={text}></span>
+    {
+        type === "primary" ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <mask id="mask0_1924_21398" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                    <rect width="24" height="24" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_1924_21398)">
+                    <path d="M18.175 12.9998H3C2.71667 12.9998 2.47917 12.904 2.2875 12.7123C2.09583 12.5206 2 12.2831 2 11.9998C2 11.7165 2.09583 11.479 2.2875 11.2873C2.47917 11.0956 2.71667 10.9998 3 10.9998H18.175L14.3 7.0998C14.1167 6.91647 14.0208 6.6873 14.0125 6.4123C14.0042 6.1373 14.1 5.8998 14.3 5.6998C14.4833 5.51647 14.7167 5.4248 15 5.4248C15.2833 5.4248 15.5167 5.51647 15.7 5.6998L21.3 11.2998C21.4 11.3998 21.4708 11.5081 21.5125 11.6248C21.5542 11.7415 21.575 11.8665 21.575 11.9998C21.575 12.1331 21.5542 12.2581 21.5125 12.3748C21.4708 12.4915 21.4 12.5998 21.3 12.6998L15.7 18.2998C15.5167 18.4831 15.2875 18.5748 15.0125 18.5748C14.7375 18.5748 14.5 18.4831 14.3 18.2998C14.1 18.0998 14 17.8623 14 17.5873C14 17.3123 14.1 17.0748 14.3 16.8748L18.175 12.9998Z" fill="white"/>
+                </g>
+            </svg>
+        ) : null
+    }
+    {
+        type === "secondary" ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <mask id="mask0_1924_21413" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                    <rect width="24" height="24" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_1924_21413)">
+                    <path d="M18.175 12.9998H3C2.71667 12.9998 2.47917 12.904 2.2875 12.7123C2.09583 12.5206 2 12.2831 2 11.9998C2 11.7165 2.09583 11.479 2.2875 11.2873C2.47917 11.0956 2.71667 10.9998 3 10.9998H18.175L14.3 7.0998C14.1167 6.91647 14.0208 6.6873 14.0125 6.4123C14.0042 6.1373 14.1 5.8998 14.3 5.6998C14.4833 5.51647 14.7167 5.4248 15 5.4248C15.2833 5.4248 15.5167 5.51647 15.7 5.6998L21.3 11.2998C21.4 11.3998 21.4708 11.5081 21.5125 11.6248C21.5542 11.7415 21.575 11.8665 21.575 11.9998C21.575 12.1331 21.5542 12.2581 21.5125 12.3748C21.4708 12.4915 21.4 12.5998 21.3 12.6998L15.7 18.2998C15.5167 18.4831 15.2875 18.5748 15.0125 18.5748C14.7375 18.5748 14.5 18.4831 14.3 18.2998C14.1 18.0998 14 17.8623 14 17.5873C14 17.3123 14.1 17.0748 14.3 16.8748L18.175 12.9998Z" fill="url(#paint0_linear_1924_21413)"/>
+                </g>
+                <defs>
+                    <linearGradient id="paint0_linear_1924_21413" x1="2.88679" y1="7.47949" x2="13.9302" y2="21.5283" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#5386FA"/>
+                    <stop offset="1" stop-color="#8B5CF6"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        ) : null
+    }
+</div>
+
+<script>
+	import { loadTranslations } from '../scripts/i18n-loader';
+	loadTranslations();
+</script>
+
+<style>
+    .button {
+        text-align: center;
+        display: flex;
+        gap: 0.5rem;
+        transition: all 0.3s;
+    }
+
+    .button-nav {
+        padding: 0.375rem 1rem;
+        border-radius: 0.5rem;
+        background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+    }
+
+    .button-nav:hover {
+        border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+        background: linear-gradient(131deg, #8B5CF6 9.64%, #5386FA 89.29%);
+
+        /* Elevation - Shadow Light */
+        box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(10px);
+    }
+
+    .button-secondary,
+    .button-primary {
+        padding: 0.5625rem 1rem;
+        border-radius: 0.75rem;
+        display: flex;
+        min-width: 13.375rem;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        gap: 0rem;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+    }
+
+    .button-secondary {
+        border: 2px solid #5386FA;
+        background: var(--Neutrals-White-10, rgba(255, 255, 255, 0.75));    
+    }
+    .button-secondary:hover {
+        border: 2px solid #8B5CF6;
+        background: var(--Neutrals-White-10, rgba(255, 255, 255, 0.75));
+    }
+    .button-secondary .button-text {
+        background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .button-primary:hover {
+        border: 1px solid var(--Neutrals-White-10, rgba(255, 255, 255, 0.75));
+        background: linear-gradient(131deg, #8B5CF6 9.64%, #5386FA 89.29%);
+        box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.90) inset;
+    }
+
+    svg {
+        width: 0;
+        transition: all 05s;
+    }
+
+    .button-secondary:hover,
+    .button-primary:hover {
+        gap: 0.5rem;
+    }
+
+    .button-secondary:hover svg,
+    .button-primary:hover svg {
+        width: fit-content;
+    }
+
+    .button-text {
+        color: var(--Neutrals-White-00, #FFF);
+        /* CN/PC/Body text/01 medium */
+        font-family: "PingFang SC";
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 24px */
+    }
+</style>

@@ -1,5 +1,6 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import Button from './Button.astro';
 
 // 获取当前路径
 const currentPath = Astro.url.pathname;
@@ -31,7 +32,7 @@ console.log("base", base)
       </div>
 
       <div class="header-actions">
-        <button class="btn-primary" data-i18n="header.requestDemo"></button>
+        <Button text="header.requestDemo" type="nav" />
         <LanguageSwitcher />
         <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
           <span></span>
@@ -133,17 +134,17 @@ console.log("base", base)
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
-    transition: color 0.3s;
+    border: 1px solid transparent;
+    transition: all 0.3s;
   }
 
-  .nav-link:hover {
-    color: #6366f1;
-  }
-
+  .nav-link:hover,
   .nav-link.active {
     border: 1px solid #fff;
     background: var(--Neutrals-White-20, rgba(255, 255, 255, 0.60));
+    box-sizing: border-box;
   }
+  .nav-link:hover a,
   .nav-link.active a {
     background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
     background-clip: text;

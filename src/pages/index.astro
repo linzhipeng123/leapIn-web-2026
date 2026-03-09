@@ -79,6 +79,9 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script>
+	import { loadTranslations } from '../scripts/i18n-loader';
+	loadTranslations();
+
 	// 检测是否为 PC 端
 	const isDesktop = window.innerWidth > 768;
 
