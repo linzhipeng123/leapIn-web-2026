@@ -126,8 +126,55 @@
       "description": "服务于全球 8 大主要行业的领先组织"
     },
     "coreFeatures": {
-      "title": "核心功能",
-      "description": "通过AI技术实现智能匹配，为企业提供精准的人才推荐服务"
+      "title": "平台核心支柱",
+      "Acquisition": {
+        "title": "AI 人才招聘",
+        "description": "AI Talent Acquisition",
+        "content": {
+          "title": "在招聘前的预判能力。",
+          "description": "LeapIn 利用行为 AI 预判候选人的能力、潜力与适配度，助力企业在规模化招聘中做出更快速、更公平、更精准的决策。"
+        },
+        "result": {
+          "title": "关键成果",
+          "list": [
+            { "label": "缩短招聘周期" },
+            { "label": "降低招聘偏见" },
+            { "label": "提升招聘质量" }
+          ]
+        }
+      },
+      "Marketplace": {
+        "title": "AI 人才市场",
+        "description": "AI Talent Marketplace",
+        "content": {
+          "title": "将隐藏人才转化为战略优势。",
+          "description": "LeapIn 持续将员工的能力与潜力匹配到内部岗位、项目及继任需求中。"
+        },
+        "result": {
+          "title": "关键成果",
+          "list": [
+            { "label": "提升内部人才流动率" },
+            { "label": "强化继任人才梯队" },
+            { "label": "提升员工留存率" }
+          ]
+        }
+      },
+      "Development": {
+        "title": "AI 人才发展",
+        "description": "AI Talent Development",
+        "content": {
+          "title": "将人才成长与业务战略对齐。",
+          "description": "LeapIn 识别能力缺口，并提供与业务重点对齐的个性化发展路径。"
+        },
+        "result": {
+          "title": "关键成果",
+          "list": [
+            { "label": "更坚实的领导人才梯队" },
+            { "label": "面向未来的员工队伍" },
+            { "label": "持续的能力提升" }
+          ]
+        }
+      }
     },
     "aiMatching": {
       "title": "AI智能匹配",

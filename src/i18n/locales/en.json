@@ -127,8 +127,52 @@
       "description": "Serving leading organizations across 8 major industries worldwide."
     },
     "coreFeatures": {
-      "title": "Core Features",
-      "description": "Achieve intelligent matching through AI technology, providing precise talent recommendation services for enterprises"
+      "title": "Core Platform Pillars",
+      "Acquisition": {
+        "title": "AI Talent\nAcquisition",
+        "content": {
+          "title": "Predict skills before you hire.",
+          "description": "LeapIn predicts skills, potential, and fit using behavioral AI — enabling faster, fairer, and more accurate hiring decisions at scale."
+        },
+        "result": {
+          "title": "Key Outcomes",
+          "list": [
+            { "label": "Faster time-to-hire" },
+            { "label": "Reduced bias" },
+            { "label": "Higher quality of hire" }
+          ]
+        }
+      },
+      "Marketplace": {
+        "title": "AI Talent\nMarketplace",
+        "content": {
+          "title": "Turn hidden talent into strategic advantage.",
+          "description": "LeapIn continuously maps skills and potential to internal roles, projects, and succession needs."
+        },
+        "result": {
+          "title": "Key Outcomes",
+          "list": [
+            { "label": "Higher internal mobility" },
+            { "label": "Stronger succession pipelines" },
+            { "label": "Improved retention" }
+          ]
+        }
+      },
+      "Development": {
+        "title": "AI Talent\nDevelopment",
+        "content": {
+          "title": "Align people growth with business strategy.",
+          "description": "LeapIn identifies skill gaps and delivers personalized development pathways aligned to business priorities."
+        },
+        "result": {
+          "title": "Key Outcomes",
+          "list": [
+            { "label": "Stronger leadership pipelines" },
+            { "label": "Future-ready workforce" },
+            { "label": "Continuous upskilling" }
+          ]
+        }
+      }
     },
     "aiMatching": {
       "title": "AI Smart Matching",

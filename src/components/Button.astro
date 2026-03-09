@@ -2,12 +2,12 @@
 interface Props {
 	type: 'nav' | 'primary' | 'secondary';
     text: string;
-    class?: string;
+    className?: string;
 }
-const { type, text } = Astro.props;
+const { type, text, className } = Astro.props;
 ---
 
-<div class={`button button-${type}`}>
+<div class={`button button-${type} ${className || ''}`}>
     <span class="button-text" data-i18n={text}></span>
     {
         type === "primary" ? (
