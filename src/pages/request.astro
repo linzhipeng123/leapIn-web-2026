@@ -42,7 +42,7 @@ const logos = [
 		<section class="request-content">
 			<div class="container">
 				<div class="request-left">
-                    <h1 class="request-title" data-i18n="request.title"></h1>
+                    <h1 class="request-title pc" data-i18n="request.title"></h1>
                     <div class="request-logos">
                         {logos.map(({ src, width }, index) => (
                             <div class="partner-item">
@@ -55,88 +55,91 @@ const logos = [
                         ))}
                     </div>
                 </div>
-				<div class="request-right">
-                    <h3 class="request-form-title" data-i18n="request.form.title">预约免费演示</h3>
-                    <form class="request-form" id="requestForm">
-                        <div class="form-group">
-                            <label for="name">
-                                <span data-i18n="request.form.name">姓名</span>
-                                <span class="required">*</span>
-                            </label>
-                            <input type="text" id="name" name="name" required />
-                        </div>
-
-                        <div class="form-row">
+                <div class="request-right-wrap">
+                    <h1 class="request-title mobile" data-i18n="request.title"></h1>
+                    <div class="request-right">
+                        <h3 class="request-form-title" data-i18n="request.form.title">预约免费演示</h3>
+                        <form class="request-form" id="requestForm">
                             <div class="form-group">
-                                <label for="email">
-                                    <span data-i18n="request.form.email">工作邮箱</span>
+                                <label for="name">
+                                    <span data-i18n="request.form.name">姓名</span>
                                     <span class="required">*</span>
                                 </label>
-                                <input type="email" id="email" name="email" required />
+                                <input type="text" id="name" name="name" required />
                             </div>
 
-                            <div class="form-group">
-                                <label for="phone">
-                                    <span data-i18n="request.form.phone">电话</span>
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="phone-input">
-                                    <select id="countryCode" name="countryCode">
-                                        <option value="+86">+86</option>
-                                        <option value="+1">+1</option>
-                                        <option value="+44">+44</option>
-                                        <option value="+81">+81</option>
-                                        <option value="+82">+82</option>
-                                    </select>
-                                    <input type="tel" id="phone" name="phone" required />
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">
+                                        <span data-i18n="request.form.email">工作邮箱</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="email" id="email" name="email" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">
+                                        <span data-i18n="request.form.phone">电话</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="phone-input">
+                                        <select id="countryCode" name="countryCode">
+                                            <option value="+86">+86</option>
+                                            <option value="+1">+1</option>
+                                            <option value="+44">+44</option>
+                                            <option value="+81">+81</option>
+                                            <option value="+82">+82</option>
+                                        </select>
+                                        <input type="tel" id="phone" name="phone" required />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="company">
-                                <span data-i18n="request.form.company">公司</span>
-                                <span class="required">*</span>
-                            </label>
-                            <input type="text" id="company" name="company" required />
-                        </div>
-
-                        <div class="form-row">
                             <div class="form-group">
-                                <label for="position">
-                                    <span data-i18n="request.form.position">职位</span>
+                                <label for="company">
+                                    <span data-i18n="request.form.company">公司</span>
                                     <span class="required">*</span>
                                 </label>
-                                <input type="text" id="position" name="position" required />
+                                <input type="text" id="company" name="company" required />
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="position">
+                                        <span data-i18n="request.form.position">职位</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="text" id="position" name="position" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="companySize">
+                                        <span data-i18n="request.form.companySize">公司规模</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="companySize" name="companySize" required>
+                                        <option value="" data-i18n="request.form.pleaseSelect">请选择</option>
+                                        <option value="1-50" data-i18n="request.form.size1">1-50人</option>
+                                        <option value="51-200" data-i18n="request.form.size2">51-200人</option>
+                                        <option value="201-500" data-i18n="request.form.size3">201-500人</option>
+                                        <option value="501-1000" data-i18n="request.form.size4">501-1000人</option>
+                                        <option value="1000+" data-i18n="request.form.size5">1000+人</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="companySize">
-                                    <span data-i18n="request.form.companySize">公司规模</span>
+                                <label for="message">
+                                    <span data-i18n="request.form.message">留言</span>
                                     <span class="required">*</span>
                                 </label>
-                                <select id="companySize" name="companySize" required>
-                                    <option value="" data-i18n="request.form.pleaseSelect">请选择</option>
-                                    <option value="1-50" data-i18n="request.form.size1">1-50人</option>
-                                    <option value="51-200" data-i18n="request.form.size2">51-200人</option>
-                                    <option value="201-500" data-i18n="request.form.size3">201-500人</option>
-                                    <option value="501-1000" data-i18n="request.form.size4">501-1000人</option>
-                                    <option value="1000+" data-i18n="request.form.size5">1000+人</option>
-                                </select>
+                                <textarea id="message" name="message" rows="4" required></textarea>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="message">
-                                <span data-i18n="request.form.message">留言</span>
-                                <span class="required">*</span>
-                            </label>
-                            <textarea id="message" name="message" rows="4" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-submit" data-i18n="request.form.submit">提交信息</button>
-                        <div class="form-message" id="formMessage"></div>
-                    </form>
+                            <button type="submit" class="btn-submit" data-i18n="request.form.submit">提交信息</button>
+                            <div class="form-message" id="formMessage"></div>
+                        </form>
+                    </div>
                 </div>
 			</div>
 		</section>
@@ -227,18 +230,20 @@ const logos = [
 
     .request-hero {
         padding-top: 0 !important;
+        position: absolute;
+        width: 100%;
     }
 
 	.request-content {
-		padding: 6.625rem 0;
-        position: absolute;
+		padding: 6.625rem 0 0;
+        position: relative;
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
 	}
     
-    .request-left {
+    .request-title {
         font-size: 3.125rem;
         font-weight: 600;
         line-height: 120%;
@@ -248,9 +253,7 @@ const logos = [
         -webkit-text-fill-color: transparent;
         display: flex;
         align-items: center;
-        flex-direction: column;
-        max-width: 25rem;
-        gap: 5.1875rem;
+        margin-bottom: 5.1875rem;
     }
 
     .request-logos {
@@ -262,6 +265,13 @@ const logos = [
         justify-content: space-between;
     }
 
+    .mobile {
+        display: none;
+    }
+
+    .request-right-wrap {
+        z-index: 1;
+    }
     .request-right {
         display: flex;
         width: 31.25rem;
@@ -277,10 +287,17 @@ const logos = [
     }
 
     .request-form-title {
+        color: var(--grey-gray-60-base, #111827);
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-family: "PingFang SC";
         font-size: 1.5rem;
+        font-style: normal;
         font-weight: 600;
-        color: var(--color-text);
-        margin: 0;
+        line-height: 24px; /* 100% */
+        letter-spacing: 0.15px;
+        text-transform: capitalize;
+        text-align: center;
+        width: 100%;
     }
 
     .request-form {
@@ -309,6 +326,7 @@ const logos = [
         display: flex;
         align-items: center;
         gap: 0.25rem;
+        line-height: 150%;
     }
 
     .required {
@@ -319,7 +337,7 @@ const logos = [
     .form-group select,
     .form-group textarea {
         width: 100%;
-        padding: 0.75rem;
+        padding: 0.5rem 0.75rem;
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
         font-size: 0.875rem;
@@ -408,17 +426,44 @@ const logos = [
 
 	@media (max-width: 768px) {
         .container {
-            gap: 2rem;
+            gap: 1rem;
             padding: 1rem;
+            flex-direction: column-reverse;
         }
 
         .request-content {
-            padding: 3rem 0;
+            /* padding: 3rem 0; */
+        }
+
+
+        .request-right-wrap {
+            width: 100%;
+        }
+
+        .request-title {
+            font-size: 2rem;
+            line-height: 100%;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-bg {
+            height: 22rem;
+        }
+
+        .hero-bg-bottom-1 {
+            height: 22rem;
+            background: linear-gradient(90deg, #FBE5CF 0%, #AFC9FF 100%);
+            filter: blur(50px);
+            animation: none;
+        }
+
+        .hero-bg-bottom-2 {
+            display: none;
         }
 
         .request-left {
-            max-width: 100%;
             font-size: 2rem;
+            max-width: 25rem;
         }
 
         .request-logos {
@@ -426,10 +471,22 @@ const logos = [
             gap: 1.5rem;
         }
 
+        .pc {
+            display: none;
+        }
+
+        .mobile {
+            display: block;
+        }
+
         .request-right {
             width: 100%;
             max-width: 100%;
             padding: 1.5rem 1rem;
+        }
+        
+        .request-form-title {
+            font-size: 1.25rem;
         }
 
         .form-row {
