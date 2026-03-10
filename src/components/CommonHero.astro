@@ -151,11 +151,12 @@ const orbConf = orbConfig || defaultOrbConfig;
 	<div class="container">
 		<div class="hero-content">
 			<div class="hero-title-container">
-				<h1 class="hero-title" data-i18n={`${pageName}.hero.title`}>面向全球企业的 AI人才智能平台</h1>
-				<div class="hero-title-suffix">
-					<h1 class="hero-title" data-i18n={`${pageName}.hero.titleSuffix`}></h1>
-					<h1 class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}>预测技能，匹配人才，打造企业级未来团队</h1>
-				</div>
+				<span class="hero-title" data-i18n={`${pageName}.hero.title`}></span>
+				{['industries', 'about'].includes(pageName) ? <span class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}></span> : null}
+				<span class="hero-title" data-i18n={`${pageName}.hero.titleSuffix`}></span>
+				{
+					!['industries', 'about'].includes(pageName) ? <span class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}></span> : null
+				}
 			</div>
 			<p class="hero-description" data-i18n={`${pageName}.hero.description`}>LeapIn 作为 AI 人才智能平台，赋能《财富》500 强企业，在整个人才生命周期内实现更智能招聘、 更快速发展，并留住顶尖人才。</p>
 			{
@@ -226,23 +227,20 @@ const orbConf = orbConfig || defaultOrbConfig;
 		font-size: 3rem;
 		font-style: normal;
 		font-weight: 400;
-		line-height: 120%;
+		line-height: 136%;
 		margin-bottom: 0.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0rem;
+		gap: 0.75rem;
 		overflow: hidden;
 		flex-wrap: wrap;
+		white-space: normal; 
+		word-wrap: break-word; 
 	}
 
 	.hero-title {
-		white-space: pre-wrap;
-	}
-
-	.hero-title-suffix {
-		display: flex;
-		gap: 0.5rem;
+		display: inline;
 	}
 
 	.hero-subtitle {
@@ -250,6 +248,10 @@ const orbConf = orbConfig || defaultOrbConfig;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		display: inline;
+		font-weight: 600;
+		font-family: "Source Han Serif SC";
+		/* margin: 0 0.75rem; */
 	}
 
 	@keyframes scrollUpFirst {
@@ -371,10 +373,9 @@ const orbConf = orbConfig || defaultOrbConfig;
 		}
 
 		.hero-title-container {
-			flex-direction: column;
-			align-items: flex-start;
 			margin-bottom: 1.5rem;
 			text-align: left;
+			display: block;
 		}
 
 		.hero-title, 

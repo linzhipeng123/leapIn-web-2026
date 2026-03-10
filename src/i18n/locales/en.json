@@ -241,8 +241,8 @@
   },
   "industries": {
     "hero": {
-      "title": "Real-World Accuracy.",
-      "titleSuffix": "Industry-Specific",
+      "title": "Industry-Specific",
+      "titleSuffix": "Real-World Accuracy.",
       "subtitle": "Intelligence. ",
       "description": "LeapIn’s AI models are tailored to the unique talent challenges of each industry."
     },
@@ -280,8 +280,8 @@
   },
   "about": {
     "hero": {
-      "title": "How the World Understands Talent",
       "subtitle": "Reinventing",
+      "titleSuffix": "How the World Understands Talent",
       "description": "LeapIn was founded on a simple belief: Talent decisions should be intelligent, fair, and future-focused.",
       "mission": {
         "title": "Our Mission",

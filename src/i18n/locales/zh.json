@@ -243,8 +243,8 @@
   },
   "industries": {
     "hero": {
-      "title": "真实场景下的精准度",
-      "titleSuffix": "行业专属",
+      "title": "行业专属",
+      "titleSuffix": "真实场景下的精准度",
       "subtitle": "智能. ",
       "description": "LeapIn 的 AI 模型专为各行业独特的人才挑战量身定制"
     },
@@ -282,8 +282,8 @@
   },
   "about": {
     "hero": {
-      "title": "全球人才认知方式",
       "subtitle": "重塑",
+      "titleSuffix": "全球人才认知方式",
       "description": "LeapIn 的创立源于一个朴素的信念：人才决策应兼具智能、公平与前瞻性。",
       "mission": {
         "title": "我们的使命",
