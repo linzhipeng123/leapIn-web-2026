@@ -3,6 +3,7 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
 ---
 
 <div class="platform-feature-container" id="platform-feature-container">
+  <h2 class="feature-card-title" id="feature-card-title" data-i18n="platform.coreFeatures.title"></h2>
     <div class="feature-card-wrapper" data-index="0" data-active="false">
         <PlatformFeatureCard type='Acquisition' />
     </div>
@@ -29,11 +30,40 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     pointer-events: none;
+    z-index: 1;
+  }
+  
+  .feature-card-title {
+    color: var(--grey-gray-60-base, #111827);
+    text-align: center;
+    font-family: "DM Serif Display";
+    font-size: 2rem;
+    font-style: normal;
+    line-height: 120%; /* 38.4px */
+    letter-spacing: -0.352px;
+    top: -30vh;
+    position: relative;
+    transition: all 0.8s;
+    z-index: 0;
+  }
+
+  .platform-feature-container[data-in-viewport="true"] .feature-card-title {
+    color: var(--Neutrals-White-00, #FFF);
+    text-align: center;
+    font-family: "DM Serif Display";
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 124%; /* 124px */
+    letter-spacing: -1.1px;
+    top: 45vh;
+    opacity: 0.1;
+    position: relative;
   }
 
   /* Initial state - Card 0 (Acquisition) */
   .feature-card-wrapper[data-index="0"] {
-    top: -20vh;
+    top: -15vh;
     transform: rotate(-45deg);
     opacity: 1;
   }
@@ -52,7 +82,7 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
 
   /* Active state - all cards centered and straight */
   .feature-card-wrapper[data-active="true"] {
-    top: 30vh !important;
+    top: 25vh !important;
     transform: rotate(0deg) !important;
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -86,6 +116,29 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
       pointer-events: auto !important;
       top: 0 !important;
     }
+
+    .feature-card-title {
+      top: 0 !important;
+      color: var(--Neutrals-White-00, #FFF);
+      text-align: center;
+      /* title-mobile */
+      font-family: "DM Serif Display";
+      font-size: 1.5rem !important;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 120%; /* 28.8px */
+      opacity: 1;
+      margin-bottom: 0.5rem;
+    }
+
+  .platform-feature-container[data-in-viewport="true"] .feature-card-wrapper[data-active="false"] {
+    opacity: 1 !important;
+  }
+
+  /* When NOT in viewport, only non-card-0 inactive cards are hidden (card 0 stays as preview) */
+  .platform-feature-container:not([data-in-viewport="true"]) .feature-card-wrapper[data-active="false"]:not([data-index="0"]) {
+    opacity: 1 !important;
+  }
   }
 </style>
 
@@ -95,9 +148,11 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
 
   const container = document.getElementById('platform-feature-container');
   const scrollSection = document.querySelector('.scroll-section.features-dark');
+  const title = document.getElementById('feature-card-title');
+  // feature-card-title
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  if (container && scrollSection && !isMobile) {
+  if (title && container && scrollSection && !isMobile) {
     let currentIndex = -1;
     const cards = container.querySelectorAll('.feature-card-wrapper');
     const totalCards = cards.length;
@@ -129,6 +184,7 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
         isInViewport = entry.isIntersecting;
 
         if (isInViewport && !wasInViewport) {
+          title.setAttribute('data-in-viewport', 'true');
           container.setAttribute('data-in-viewport', 'true');
 
           if (scrollDirection === 'down') {
@@ -137,6 +193,7 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
             updateCards(totalCards - 1);
           }
         } else if (!isInViewport && wasInViewport) {
+          title.setAttribute('data-in-viewport', 'true');
           container.setAttribute('data-in-viewport', 'false');
           currentIndex = -1;
           cards.forEach(card => {
