@@ -152,10 +152,18 @@ const orbConf = orbConfig || defaultOrbConfig;
 		<div class="hero-content">
 			<div class="hero-title-container">
 				<span class="hero-title" data-i18n={`${pageName}.hero.title`}></span>
-				{['industries', 'about'].includes(pageName) ? <span class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}></span> : null}
+				{['industries', 'about'].includes(pageName) ? (
+					<span class="hero-subtitle-wrapper">
+						<span class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}></span>
+					</span>
+				) : null}
 				<span class="hero-title" data-i18n={`${pageName}.hero.titleSuffix`}></span>
 				{
-					!['industries', 'about'].includes(pageName) ? <span class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}></span> : null
+					!['industries', 'about'].includes(pageName) ? (
+						<span class="hero-subtitle-wrapper">
+							<span class="hero-subtitle" data-i18n={`${pageName}.hero.subtitle`}></span>
+						</span>
+					) : null
 				}
 			</div>
 			<p class="hero-description" data-i18n={`${pageName}.hero.description`}>LeapIn 作为 AI 人才智能平台，赋能《财富》500 强企业，在整个人才生命周期内实现更智能招聘、 更快速发展，并留住顶尖人才。</p>
@@ -248,10 +256,19 @@ const orbConf = orbConfig || defaultOrbConfig;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
-		display: inline;
+		display: inline-block;
 		font-weight: 600;
 		font-family: "Source Han Serif SC";
 		/* margin: 0 0.75rem; */
+	}
+
+	.hero-subtitle-wrapper {
+		overflow: hidden;
+		vertical-align: bottom;
+		height: 4.1125rem; /* Match line-height of hero-title-container (136% * font-size) */
+        display: inline-flex;
+        /* align-items: start; */
+        vertical-align: initial;
 	}
 
 	@keyframes scrollUpFirst {
@@ -378,10 +395,15 @@ const orbConf = orbConfig || defaultOrbConfig;
 			display: block;
 		}
 
+		.hero-subtitle-wrapper {
+			height: 2.875rem; /* Adjust for mobile font-size (2rem * 1.5 line-height) */
+		}
+
+		.hero-title-container,
 		.hero-title, 
 		.hero-subtitle {
 			font-size: 2rem;
-			line-height: 1.5;
+			line-height: 1.2;
 		}
 
 		.hero-description {
