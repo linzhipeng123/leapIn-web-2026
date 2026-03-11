@@ -60,9 +60,25 @@ import AICoachUI from '../assets/platform/AppliedAIAgents/AICoachUI.png';
     margin: auto auto;
 		width: 542px;
     height: 542px;
-    border-radius: 542px;
+    border-radius: 50%;
     background: var(--AI-Gradient-Sky-Aurora-Medium, linear-gradient(90deg, #FBE5CF 0%, #AFC9FF 100%));
     filter: blur(18.149999618530273px);
+    transition: width 0.5s ease, height 0.5s ease;
+  }
+
+  .applied-ai-agents[data-slide="0"]::after {
+    width: 542px;
+    height: 542px;
+  }
+
+  .applied-ai-agents[data-slide="1"]::after {
+    width: 862px;
+    height: 862px;
+  }
+
+  .applied-ai-agents[data-slide="2"]::after {
+    width: 1216px;
+    height: 1216px;
   }
 
 
@@ -207,10 +223,10 @@ import AICoachUI from '../assets/platform/AppliedAIAgents/AICoachUI.png';
   import { loadTranslations } from '../scripts/i18n-loader';
   loadTranslations();
 
-  const darkBox = document.getElementById('ai-agents-content');
+  const section = document.getElementById('applied-ai-agents');
   const slider = document.getElementById('ai-agents-slider');
   
-  if (darkBox && slider) {
+  if (section && slider) {
     let currentIndex = 0;
     const slides = slider.querySelectorAll('.feature-slide');
     const totalSlides = slides.length;
@@ -219,24 +235,23 @@ import AICoachUI from '../assets/platform/AppliedAIAgents/AICoachUI.png';
       slides.forEach((slide, i) => {
         slide.setAttribute('data-active', i === index ? 'true' : 'false');
       });
+      section.setAttribute('data-slide', index.toString());
     };
 
-    // 初始化第一个
     updateSlide(0);
 
-    // 监听滚动
     let isScrolling = false;
-    darkBox.addEventListener('wheel', (e) => {
+    section.addEventListener('wheel', (e) => {
       if (isScrolling) return;
       
+      console.log('deltaY', e.deltaY, 'currentIndex', currentIndex, (currentIndex + 1) % totalSlides, (currentIndex - 1 + totalSlides) % totalSlides);
       e.preventDefault();
+      e.stopPropagation();
       isScrolling = true;
 
       if (e.deltaY > 0) {
-        // 向下滚动
         currentIndex = (currentIndex + 1) % totalSlides;
       } else {
-        // 向上滚动
         currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
       }
 
