@@ -174,16 +174,8 @@
         }
       }
     },
-    "aiMatching": {
-      "title": "AI Smart Matching",
-      "description": "Based on big data and machine learning algorithms, precisely match enterprise needs with talent skills"
-    },
-    "globalTalent": {
-      "title": "Global Talent Pool",
-      "description": "Covering quality talent resources from 200+ countries and regions, meeting diverse enterprise needs"
-    },
     "platformFeatures": {
-      "title": "Platform Features",
+      "title": "Applied AI Agents",
       "features": [
         "Intelligent recommendation algorithm",
         "Real-time data analysis",

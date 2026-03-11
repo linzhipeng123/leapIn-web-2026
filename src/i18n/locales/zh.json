@@ -176,16 +176,8 @@
         }
       }
     },
-    "aiMatching": {
-      "title": "AI智能匹配",
-      "description": "基于大数据和机器学习算法，精准匹配企业需求与人才技能"
-    },
-    "globalTalent": {
-      "title": "全球人才库",
-      "description": "覆盖全球200+国家和地区的优质人才资源，满足企业多元化需求"
-    },
     "platformFeatures": {
-      "title": "平台特色",
+      "title": "应用型 AI 智能体",
       "features": [
         "智能推荐算法",
         "实时数据分析",
