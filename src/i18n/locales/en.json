@@ -176,12 +176,17 @@
     },
     "platformFeatures": {
       "title": "Applied AI Agents",
-      "features": [
-        "Intelligent recommendation algorithm",
-        "Real-time data analysis",
-        "Multi-dimensional evaluation system",
-        "Secure and reliable data protection"
-      ]
+      "salesCoach": {
+        "title": "AI Sales Coach",
+        "subtitle": "Scale winning sales behavior — faster.",
+        "description": "Powered by LeapIn’s behavioral intelligence, AI Sales Coach helps sales teams ramp faster and perform consistently.",
+        "outcomes": "Outcomes",
+        "items": [
+          { "description": "Up to 50% faster ramp time" },
+          { "description": "Consistent performance at scale" },
+          { "description": "Improved win rates" }
+        ]
+      }
     },
     "cta": {
       "title": "Experience AI Talent Intelligence Platform",

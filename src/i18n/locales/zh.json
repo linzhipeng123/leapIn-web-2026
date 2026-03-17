@@ -178,12 +178,17 @@
     },
     "platformFeatures": {
       "title": "应用型 AI 智能体",
-      "features": [
-        "智能推荐算法",
-        "实时数据分析",
-        "多维度评估体系",
-        "安全可靠的数据保护"
-      ]
+      "salesCoach": {
+        "title": "AI 销售教练",
+        "subtitle": "更快地规模化复制成功的销售行为。",
+        "description": "依托 LeapIn 的行为智能技术，AI 销售教练助力销售团队更快上手，并实现稳定高效的业绩表现。",
+        "outcomes": "成果",
+        "items": [
+          { "description": "上手时间最高缩短 50%" },
+          { "description": "规模化场景下保持稳定业绩" },
+          { "description": "提升成单率" }
+        ]
+      }
     },
     "cta": {
       "title": "立即体验AI人才智能平台",
