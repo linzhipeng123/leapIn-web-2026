@@ -7,6 +7,7 @@ import bgDot from '../assets/index/product/bg_dot.png';
 
 import PlatformFeature from '../components/platform/PlatformFeature.astro';
 import AppliedAIAgents from '../components/platform/AppliedAIAgents.astro';
+import CTA from '../components/CTA.astro';
 ---
 
 <Layout>
@@ -32,13 +33,7 @@ import AppliedAIAgents from '../components/platform/AppliedAIAgents.astro';
 
 		<!-- CTA Section -->
 		<section class="scroll-section platform-cta">
-			<div class="container">
-				<div class="cta-content">
-					<h2 data-i18n="platform.cta.title"></h2>
-					<p data-i18n="platform.cta.subtitle"></p>
-					<button class="btn-primary" data-i18n="platform.cta.button"></button>
-				</div>
-			</div>
+			<CTA />
 		</section>
 	</main>
 
@@ -58,7 +53,8 @@ import AppliedAIAgents from '../components/platform/AppliedAIAgents.astro';
 	.platform-page {
 		/* padding-top: 80px; */
 	}
-	.footer-section {
+	.footer-section,
+	.platform-cta {
 		min-height: auto;
 	}
 
@@ -234,7 +230,6 @@ import AppliedAIAgents from '../components/platform/AppliedAIAgents.astro';
 
 	/* CTA Section */
 	.platform-cta {
-		padding: 6rem 0;
 	}
 
 	.platform-cta::before {

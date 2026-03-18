@@ -1,0 +1,95 @@
+---
+import SquareLayer from '../assets/platform/cta/square-layer.png';
+import Button from './Button.astro';
+
+const layers = [
+    {img: SquareLayer, opacity: 0.2},
+    {img: SquareLayer, opacity: 0.4},
+    {img: SquareLayer, opacity: 0.6},
+    {img: SquareLayer, opacity: 1},
+]
+---
+
+<section class="cta-section">
+    <div class="cta-bg">
+        {layers.map(({ img, opacity }, index) => (
+            <div class="partner-item">
+                <img 
+                    src={img.src} 
+                    alt={`Partner ${index + 1}`}
+                    style={{ opacity }}
+                />
+            </div>
+        ))}
+    </div>
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title" data-i18n="platform.cta.title"></h2>
+            <p class="cta-subtitle" data-i18n="platform.cta.subtitle"></p>
+            <Button type="primary" text="platform.cta.button" className="cta-btn" />
+        </div>
+    </div>
+</section>
+
+<script>
+	import { loadTranslations } from '../scripts/i18n-loader';
+	loadTranslations();
+</script>
+
+<style>
+    .cta-section {
+        min-height: 100vh;
+        position: relative;
+        padding-top: 4.75rem;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cta-bg {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 4.75rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4.75rem;
+        z-index: -1;
+    }
+
+    .container {
+    }
+
+    .cta-content {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        max-width: 41rem;
+        margin: 0 auto;
+    }
+
+    .cta-title {
+        color: var(--grey-gray-60-base, #111827);
+        text-align: center;
+        font-size: 2.5rem;
+        line-height: 124%; /* 49.6px */
+        letter-spacing: -0.44px;
+        margin-bottom: 0.5rem;
+    }
+
+    .cta-subtitle {
+        color: var(--grey-gray-60-base, #111827);
+        text-align: center;
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-family: Inter;
+        font-size: 1rem;
+        line-height: 120%; /* 19.2px */
+        margin-bottom: 3.75rem;
+    }
+
+    .cta-btn {
+        margin: 0 auto;
+    }
+</style>
