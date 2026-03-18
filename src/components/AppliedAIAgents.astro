@@ -269,11 +269,16 @@ import cnAICoachUI from '../assets/platform/AppliedAIAgents/cn/ai-coach.png';
   @media (max-width: 768px) {
     .container {
       padding: 0 1rem;
+      min-height: auto;
     }
 
     .applied-ai-agents {
-      padding: 1.5rem 0;
+      padding: 2.25rem 0;
       height: fit-content;
+    }
+    .applied-ai-agents::after {
+      width: 1216px;
+      height: 1216px;
     }
 
     .section-title {
@@ -294,18 +299,57 @@ import cnAICoachUI from '../assets/platform/AppliedAIAgents/cn/ai-coach.png';
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      flex: auto;
     }
 
     .feature-slide {
       position: static;
       opacity: 1;
       height: auto;
-      background: #111827;
-      border-radius: 1rem;
-      padding: 1rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+    }
+
+    .ai-agents-header {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-ai-sales-coach {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .sales-coach-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 150%;
+    }
+
+    .sales-coach-subtitle {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 150%;
+    }
+
+    .sales-coach-description,
+    .item-description {
+      font-size: 0.8125rem;
+      line-height: 150%;
+    }
+
+
+    .feature-slide[data-index="0"] .feature-ai-coach,
+    .feature-slide[data-index="1"] .feature-ai-coach,
+    .feature-slide[data-index="2"] .feature-ai-coach,
+    .feature-slide[data-index="0"] .feature-ai-sales-coach,
+    .feature-slide[data-index="1"] .feature-ai-sales-coach,
+    .feature-slide[data-index="2"] .feature-ai-sales-coach {
+      display: block !important;
+      transform: translateX(0) rotate(0);
+      animation: none;
     }
 
     .feature-slide[data-active="false"] {
@@ -331,7 +375,8 @@ import cnAICoachUI from '../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     if (src) featureAICoach.setAttribute('src', src);
   }
   
-  if (section && slider) {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (section && slider && !isMobile) {
     let currentIndex = 0;
     const slides = slider.querySelectorAll('.feature-slide');
     const totalSlides = 3;
@@ -350,7 +395,6 @@ import cnAICoachUI from '../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     section.addEventListener('wheel', (e) => {
       if (isScrolling) return;
       
-      console.log('deltaY', e.deltaY, 'currentIndex', currentIndex, (currentIndex + 1) % totalSlides, (currentIndex - 1 + totalSlides) % totalSlides);
       e.preventDefault();
       e.stopPropagation();
       isScrolling = true;

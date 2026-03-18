@@ -42,7 +42,9 @@ import AppliedAIAgents from '../components/AppliedAIAgents.astro';
 		</section>
 	</main>
 
-	<Footer />
+	<section class="scroll-section footer-section">
+		<Footer />
+	</section>
 </Layout>
 
 <script>
@@ -55,6 +57,9 @@ import AppliedAIAgents from '../components/AppliedAIAgents.astro';
 }}>
 	.platform-page {
 		/* padding-top: 80px; */
+	}
+	.footer-section {
+		min-height: auto;
 	}
 
 	.container {
@@ -230,7 +235,18 @@ import AppliedAIAgents from '../components/AppliedAIAgents.astro';
 	/* CTA Section */
 	.platform-cta {
 		padding: 6rem 0;
-		background: linear-gradient(135deg, #f8f9ff 0%, #e0e7ff 100%);
+	}
+
+	.platform-cta::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		background: var(--AI-Gradient-Sky-Aurora-Medium, linear-gradient(90deg, #FBE5CF 0%, #AFC9FF 100%));
+		filter: blur(18.149999618530273px);
+		z-index: -1;
 	}
 
 	.cta-content {
