@@ -10,8 +10,8 @@ const layers = [
 ]
 ---
 
-<section class="cta-section">
-    <div class="cta-bg">
+<section class="cta-section" id="cta-section">
+    <div class="cta-bg" id="cta-bg">
         {layers.map(({ img, opacity }, index) => (
             <img 
                 class="partner-item"
@@ -34,6 +34,63 @@ const layers = [
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
 	loadTranslations();
+
+	// 监听 footer-section 的滚动
+	if (typeof window !== 'undefined') {
+		const isMobile = () => window.innerWidth <= 768;
+		
+		if (!isMobile()) {
+			const footerSection = document.querySelector('.footer-section');
+			const ctaSection = document.getElementById('cta-section');
+			const ctaBg = document.getElementById('cta-bg');
+			const partnerItems = document.querySelectorAll('.partner-item');
+			
+			let hasScrolledDown = false;
+
+			const observerCallback = (entries: IntersectionObserverEntry[]) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting && !hasScrolledDown) {
+						hasScrolledDown = true;
+						
+						// 修改样式
+						if (ctaSection) {
+							// 先临时设置为 auto 来获取真实内容高度
+							const originalMinHeight = ctaSection.style.minHeight;
+							ctaSection.style.minHeight = 'auto';
+							ctaSection.style.padding = '6rem 0';
+							const contentHeight = ctaSection.offsetHeight;
+							// 恢复原始值以便触发过渡
+							ctaSection.style.minHeight = originalMinHeight || '100vh';
+							
+							// 使用 requestAnimationFrame 确保过渡生效
+							requestAnimationFrame(() => {
+								if (ctaSection) {
+									ctaSection.style.minHeight = `${contentHeight}px`;
+								}
+							});
+						}
+						
+						if (ctaBg) {
+							ctaBg.style.gap = '2.875rem';
+						}
+						
+						partnerItems.forEach(item => {
+							(item as HTMLElement).style.maxWidth = '39.75rem';
+						});
+					}
+				});
+			};
+
+			const observer = new IntersectionObserver(observerCallback, {
+				threshold: 0.1,
+				rootMargin: '0px'
+			});
+
+			if (footerSection) {
+				observer.observe(footerSection);
+			}
+		}
+	}
 </script>
 
 <style>
@@ -46,6 +103,7 @@ const layers = [
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        transition: min-height 0.6s ease;
     }
     .cta-bg {
         position: absolute;
@@ -57,11 +115,12 @@ const layers = [
         flex-direction: column;
         z-index: -1;
         gap: 4.75rem;
+        transition: gap 0.6s ease;
     }
 
     .partner-item {
         max-width: 65.375rem;
-        transition: all;
+        transition: all 0.6s ease, max-width 0.6s ease;
         animation: float 16s infinite, gap 16s infinite;
         position: relative;
     }
