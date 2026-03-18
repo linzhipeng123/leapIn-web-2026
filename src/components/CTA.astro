@@ -44,20 +44,16 @@ const layers = [
 			const ctaSection = document.getElementById('cta-section');
 			const ctaBg = document.getElementById('cta-bg');
 			const partnerItems = document.querySelectorAll('.partner-item');
-			
-			let hasScrolledDown = false;
 
 			const observerCallback = (entries: IntersectionObserverEntry[]) => {
 				entries.forEach(entry => {
-					if (entry.isIntersecting && !hasScrolledDown) {
-						hasScrolledDown = true;
-						
-						// 修改样式
+					if (entry.isIntersecting) {
+						// 滚动到 footer，收缩 CTA
 						if (ctaSection) {
 							// 先临时设置为 auto 来获取真实内容高度
 							const originalMinHeight = ctaSection.style.minHeight;
 							ctaSection.style.minHeight = 'auto';
-							ctaSection.style.padding = '6rem 0';
+                            ctaSection.style.padding = '6rem 0';
 							const contentHeight = ctaSection.offsetHeight;
 							// 恢复原始值以便触发过渡
 							ctaSection.style.minHeight = originalMinHeight || '100vh';
@@ -76,6 +72,19 @@ const layers = [
 						
 						partnerItems.forEach(item => {
 							(item as HTMLElement).style.maxWidth = '39.75rem';
+						});
+					} else {
+						// 离开 footer，恢复 CTA 原始状态
+						if (ctaSection) {
+							ctaSection.style.minHeight = '100vh';
+						}
+						
+						if (ctaBg) {
+							ctaBg.style.gap = '4.75rem';
+						}
+						
+						partnerItems.forEach(item => {
+							(item as HTMLElement).style.maxWidth = '65.375rem';
 						});
 					}
 				});
