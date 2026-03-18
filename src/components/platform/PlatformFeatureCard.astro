@@ -37,6 +37,11 @@ const { type, className } = Astro.props;
     </div>
 </div>
 
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+</script>
+
 <style>
     .platform-feature-card {
         display: inline-flex;

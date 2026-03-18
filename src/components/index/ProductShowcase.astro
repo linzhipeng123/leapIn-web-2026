@@ -1,16 +1,16 @@
 ---
-import product1 from '../assets/index/product/product1.png';
-import product2 from '../assets/index/product/product2.png';
-import product3 from '../assets/index/product/product3.png';
-import product2Cn from '../assets/index/product/product2-cn.png';
-import product3Cn from '../assets/index/product/product3-cn.png';
-import product1Mobile from '../assets/index/product/product1mobile.png';
-import product2Mobile from '../assets/index/product/product2mobile.png';
-import product3Mobile from '../assets/index/product/product3mobile.png';
-import product2MobileCn from '../assets/index/product/product2mobile-cn.png';
-import product3MobileCn from '../assets/index/product/product3mobile-cn.png';
-import bgDot from '../assets/index/product/bg_dot.png';
-import Button from './Button.astro';
+import product1 from '../../assets/index/product/product1.png';
+import product2 from '../../assets/index/product/product2.png';
+import product3 from '../../assets/index/product/product3.png';
+import product2Cn from '../../assets/index/product/product2-cn.png';
+import product3Cn from '../../assets/index/product/product3-cn.png';
+import product1Mobile from '../../assets/index/product/product1mobile.png';
+import product2Mobile from '../../assets/index/product/product2mobile.png';
+import product3Mobile from '../../assets/index/product/product3mobile.png';
+import product2MobileCn from '../../assets/index/product/product2mobile-cn.png';
+import product3MobileCn from '../../assets/index/product/product3mobile-cn.png';
+import bgDot from '../../assets/index/product/bg_dot.png';
+import Button from '../Button.astro';
 
 const products = [
   { image: product1, mobileImage: product1Mobile, number: '01' },
@@ -375,7 +375,7 @@ const products = [
 </style>
 
 <script>
-  import { loadTranslations } from '../scripts/i18n-loader';
+  import { loadTranslations } from '../../scripts/i18n-loader';
   loadTranslations();
 
   const currentLang = localStorage.getItem('language') || 'en';

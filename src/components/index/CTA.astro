@@ -1,11 +1,11 @@
 ---
-import { pxToRem } from '../utils/index';
-import png1 from '../assets/index/enterprises/1.png';
-import png2 from '../assets/index/enterprises/2.png';
-import png3 from '../assets/index/enterprises/3.png';
-import png4 from '../assets/index/enterprises/4.png';
-import png5 from '../assets/index/enterprises/5.png';
-import Button from './Button.astro';
+import { pxToRem } from '../../utils/index';
+import png1 from '../../assets/index/enterprises/1.png';
+import png2 from '../../assets/index/enterprises/2.png';
+import png3 from '../../assets/index/enterprises/3.png';
+import png4 from '../../assets/index/enterprises/4.png';
+import png5 from '../../assets/index/enterprises/5.png';
+import Button from '../Button.astro';
 
 const enterprises = [png1, png2, png3, png4, png5];
 
@@ -57,7 +57,7 @@ const fontSize = {
 </section>
 
 <script>
-  import { loadTranslations } from '../scripts/i18n-loader';
+  import { loadTranslations } from '../../scripts/i18n-loader';
   loadTranslations();
 </script>
 

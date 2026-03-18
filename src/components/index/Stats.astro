@@ -1,7 +1,6 @@
 ---
-import { pxToRem } from '../utils/index';
-import bgDot from '../assets/index/product/bg_dot.png';
-import { nullable } from 'astro:schema';
+import { pxToRem } from '../../utils/index';
+import bgDot from '../../assets/index/product/bg_dot.png';
 
 // Pre-compute rem values
 const fontSize = {
@@ -53,7 +52,7 @@ const stats = [
 </section>
 
 <script>
-  import { loadTranslations } from '../scripts/i18n-loader';
+  import { loadTranslations } from '../../scripts/i18n-loader';
   loadTranslations();
 </script>
 
