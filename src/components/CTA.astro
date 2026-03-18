@@ -2,6 +2,12 @@
 import SquareLayer from '../assets/platform/cta/square-layer.png';
 import Button from './Button.astro';
 
+interface Props {
+	pageName: 'platform' | 'solutions' | 'industries';
+}
+
+const { pageName } = Astro.props;
+
 const layers = [
     {img: SquareLayer, opacity: 0.2},
     {img: SquareLayer, opacity: 0.4},
@@ -24,9 +30,9 @@ const layers = [
     </div>
     <div class="container">
         <div class="cta-content">
-            <h2 class="cta-title" data-i18n="platform.cta.title"></h2>
-            <p class="cta-subtitle" data-i18n="platform.cta.subtitle"></p>
-            <Button type="primary" text="platform.cta.button" className="cta-btn" />
+            <h2 class="cta-title" data-i18n={`${pageName}.cta.title`}></h2>
+            <p class="cta-subtitle" data-i18n={`${pageName}.cta.subtitle`}></p>
+            <Button type="primary" text={`${pageName}.cta.button`} className="cta-btn" />
         </div>
     </div>
 </section>
