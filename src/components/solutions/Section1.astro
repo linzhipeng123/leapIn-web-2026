@@ -1,0 +1,63 @@
+---
+import Card from './Card.astro';
+import Avatar from '../../assets/solutions/section/section1-avatar.png';
+import Score from '../../assets/solutions/section/section1-score.png';
+---
+
+<section class="section-container">
+    <div class="container">
+        <div class="section-avatar">
+            <img src={Avatar.src} alt="">
+        </div>
+        <div class="section-score">
+            <img src={Score.src} alt="">
+        </div>
+        <Card index={1} itemLength={5} className="card-section1"></Card>
+    </div>
+</section>
+
+<style>
+    .section-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        margin-top: 4.75rem;
+    }
+
+    .section-avatar {
+        position: absolute;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(7.5px);
+    }
+
+    .section-avatar img {
+        width: 25.875rem;
+        aspect-ratio: 46/33;
+    }
+
+    .section-score {
+        position: absolute;
+        width: 36.5rem;
+        padding: 1rem;
+        /* flex-direction: column; */
+        /* justify-content: center; */
+        align-items: center;
+        aspect-ratio: 73/40;
+        border-radius: 0.75rem;
+        border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(7.5px);
+        position: relative;
+        transform: translateX(14rem) translateY(12rem);
+        z-index: 1;
+    }
+</style>

@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
 import CTA from '../components/CTA.astro';
+import Section1 from '../components/solutions/Section1.astro';
+import Section2 from '../components/solutions/Section2.astro';
 ---
 
 <Layout>
@@ -17,79 +19,11 @@ import CTA from '../components/CTA.astro';
 
 		<!-- Talent Sourcing Section - Dark -->
 		<section class="scroll-section solution-dark">
-			<div class="container">
-				<div class="solution-content">
-					<div class="solution-visual">
-						<div class="visual-card">
-							<div class="card-grid">
-								<div class="profile-card">
-									<div class="profile-avatar">👤</div>
-									<div class="profile-info">
-										<div class="profile-name"></div>
-										<div class="profile-role"></div>
-									</div>
-								</div>
-								<div class="profile-card">
-									<div class="profile-avatar">👤</div>
-									<div class="profile-info">
-										<div class="profile-name"></div>
-										<div class="profile-role"></div>
-									</div>
-								</div>
-								<div class="profile-card">
-									<div class="profile-avatar">👤</div>
-									<div class="profile-info">
-										<div class="profile-name"></div>
-										<div class="profile-role"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="solution-text">
-						<h2 data-i18n="solutions.talentSourcing.title"></h2>
-						<h3 data-i18n="solutions.talentSourcing.subtitle"></h3>
-						<p data-i18n="solutions.talentSourcing.description"></p>
-						<ul class="feature-list" data-i18n-list="solutions.talentSourcing.features"></ul>
-					</div>
-				</div>
-			</div>
+			<Section1 />
 		</section>
 
-		<!-- Talent Assessment Section - Dark -->
 		<section class="scroll-section solution-dark">
-			<div class="container">
-				<div class="solution-content reverse">
-					<div class="solution-text">
-						<h2 data-i18n="solutions.talentAssessment.title"></h2>
-						<h3 data-i18n="solutions.talentAssessment.subtitle"></h3>
-						<p data-i18n="solutions.talentAssessment.description"></p>
-						<ul class="feature-list" data-i18n-list="solutions.talentAssessment.features"></ul>
-					</div>
-					<div class="solution-visual">
-						<div class="visual-card assessment">
-							<div class="assessment-chart">
-								<div class="chart-circle">
-									<div class="chart-percentage">85%</div>
-								</div>
-								<div class="chart-label">匹配度</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Onboarding Section - Light -->
-		<section class="scroll-section solution-light">
-			<div class="container">
-				<div class="solution-content-center">
-					<h2 data-i18n="solutions.onboarding.title"></h2>
-					<h3 data-i18n="solutions.onboarding.subtitle"></h3>
-					<p data-i18n="solutions.onboarding.description"></p>
-					<button class="btn-primary" data-i18n="solutions.onboarding.button"></button>
-				</div>
-			</div>
+			<Section2 />
 		</section>
 
 		<!-- Development Section - Light -->

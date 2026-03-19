@@ -201,15 +201,24 @@
       "subtitle": "Solutions",
       "description": "LeapIn helps enterprises solve their most critical workforce challenges with intelligence — not intuition."
     },
-    "talentSourcing": {
-      "title": "Talent Sourcing",
-      "subtitle": "",
-      "description": "Quickly locate and screen quality candidates through AI technology, significantly improving recruitment efficiency",
-      "features": [
-        "Intelligent resume parsing",
-        "Multi-channel talent search",
-        "Precise matching recommendations",
-        "Candidate profile analysis"
+    "section1": {
+      "title": "Hire Smarter",
+      "description": "Predict skills, potential, and fit with AI — faster and fairer.",
+      "items": [
+        "87% Recruitment time saved ",
+        "67% Labor cost saved",
+        "43% DEI and diversity improvement",
+        "88% Prediction accuracy improvement",
+        "Performance and turnover rate prediction"
+      ]
+    },
+    "section2": {
+      "title": "Mobilize Talent",
+      "description": "Unlock internal mobility and reduce external hiring dependency.",
+      "items": [
+        "Cut Costs & Boost Efficiency",
+        "Unleash Talent Mobility",
+        "Precise Role-Talent Fit"
       ]
     },
     "talentAssessment": {
