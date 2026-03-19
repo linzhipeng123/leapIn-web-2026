@@ -2,6 +2,7 @@
 import Card from './Card.astro';
 import Avatar from '../../assets/solutions/section/section2-avatar.png';
 import Score from '../../assets/solutions/section/section2-score.png';
+import ScoreMobile from '../../assets/solutions/section/section2-score-mobile.png';
 ---
 
 <section class="section-container">
@@ -24,7 +25,6 @@ import Score from '../../assets/solutions/section/section2-score.png';
     }
     .container {
         display: flex;
-        align-items: center;
         justify-content: space-between;
         position: relative;
         margin-top: 4.75rem;
@@ -60,4 +60,29 @@ import Score from '../../assets/solutions/section/section2-score.png';
         transform: translateX(-12.5rem) translateY(12rem);
         z-index: 1;
     }
+
+	@media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            margin: 0;
+            padding: 0 1rem;
+        }
+        .section-avatar,
+        .section-score {
+            padding: 0.375rem;
+        }
+		.section-avatar {
+            width: calc(100% - 2rem);
+			position: relative;
+            transform: translateX(6rem) translateY(170%);
+            z-index: 1;
+		}
+
+        .section-score {
+            position: relative;
+            width: calc(100% - 3.75rem);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+	}
 </style>

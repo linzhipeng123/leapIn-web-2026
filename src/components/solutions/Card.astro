@@ -157,4 +157,38 @@ const { index, itemLength, className } = Astro.props;
         font-size: 0.875rem;
         line-height: 128.571%; /* 128.571% */
     }
+
+	@media (max-width: 768px) {
+        .card {
+            width: 100%;
+            margin: 0 auto;
+            margin-bottom: 3.125rem;
+        }
+
+        .card.card-section1::before,
+        .card.card-section2::before {
+            width: calc(100% - 2rem);
+            height: 1rem;
+            border-radius: 0 0 1.25rem 1.25rem;
+            border-top: none;
+            left: 0;
+            right: 0;
+            top: auto;
+            bottom: -1rem;
+            margin: 0 auto;
+        }
+
+        .card.card-section1::after,
+        .card.card-section2::after {
+            width: calc(100% - 4rem);
+            height: 1rem;
+            border-radius: 0 0 1.25rem 1.25rem;
+            border-top: none;
+            left: 0;
+            right: 0;
+            top: auto;
+            bottom: -2rem;
+            margin: 0 auto;
+        }
+    }
 </style>
