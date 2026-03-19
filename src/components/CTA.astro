@@ -1,6 +1,8 @@
 ---
 import SquareLayer from '../assets/platform/cta/square-layer.png';
+import solutionsBg from '../assets/solutions/cta/bg_data.png';
 import Button from './Button.astro';
+
 
 interface Props {
 	pageName: 'platform' | 'solutions' | 'industries';
@@ -16,18 +18,18 @@ const layers = [
 ]
 ---
 
-<section class="cta-section" id="cta-section">
-    <div class="cta-bg" id="cta-bg">
+<section class={`cta-section cta-${pageName}`} id="cta-section">
+    {pageName === 'platform' ? <div class="cta-bg" id="cta-bg">
         {layers.map(({ img, opacity }, index) => (
             <img 
                 class="partner-item"
                 data-index={index}
-                src={img.src} 
+                src={img.src}
                 alt={`Partner ${index + 1}`}
                 style={{ opacity }}
             />
         ))}
-    </div>
+    </div> : null}
     <div class="container">
         <div class="cta-content">
             <h2 class="cta-title" data-i18n={`${pageName}.cta.title`}></h2>
@@ -60,14 +62,13 @@ const layers = [
 							const originalMinHeight = ctaSection.style.minHeight;
 							ctaSection.style.minHeight = 'auto';
                             ctaSection.style.padding = '6rem 0';
-							const contentHeight = ctaSection.offsetHeight;
 							// 恢复原始值以便触发过渡
 							ctaSection.style.minHeight = originalMinHeight || '100vh';
 							
 							// 使用 requestAnimationFrame 确保过渡生效
 							requestAnimationFrame(() => {
 								if (ctaSection) {
-									ctaSection.style.minHeight = `${contentHeight}px`;
+									ctaSection.style.minHeight = "calc(100vh - 25.25rem)";
 								}
 							});
 						}
@@ -108,7 +109,9 @@ const layers = [
 	}
 </script>
 
-<style>
+<style define:vars={{ 
+  solutionsBg: `url(${solutionsBg.src})`,
+}}>
     .cta-section {
         min-height: 100vh;
         position: relative;
@@ -120,6 +123,24 @@ const layers = [
         overflow: hidden;
         transition: min-height 0.6s ease;
     }
+    .cta-section.cta-solutions {
+		background-image: var(--solutionsBg);
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-size: cover;
+    }
+
+	.cta-section.cta-solutions::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		background: var(--AI-Gradient-Sky-Aurora-Medium, linear-gradient(90deg, #FBE5CF 0%, #AFC9FF 100%));
+		filter: blur(18.149999618530273px);
+		z-index: -1;
+	}
     .cta-bg {
         position: absolute;
         width: 100%;

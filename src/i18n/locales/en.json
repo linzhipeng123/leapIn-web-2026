@@ -229,11 +229,10 @@
       "description": "Optimize new employee onboarding experience and accelerate team integration",
       "button": "Learn More"
     },
-    "development": {
-      "title": "Development",
-      "subtitle": "",
-      "description": "Personalized career development planning to support employee growth",
-      "button": "Learn More"
+    "cta": {
+      "title": "Develop Faster",
+      "subtitle": "Build future-ready capabilities with precision and purpose.",
+      "button": "Explore the Platform"
     }
   },
   "industries": {

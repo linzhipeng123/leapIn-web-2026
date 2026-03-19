@@ -3,17 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
+import CTA from '../components/CTA.astro';
 ---
 
 <Layout>
 	<Header />
 	
-	<main class="solutions-page">
+	<main class="solutions-page scroll-container">
 		<!-- Hero Section -->
-		<CommonHero pageName="solutions" />
+		<section class="scroll-section" data-section="hero">
+			<CommonHero pageName="solutions" />
+		</section>
 
 		<!-- Talent Sourcing Section - Dark -->
-		<section class="solution-dark">
+		<section class="scroll-section solution-dark">
 			<div class="container">
 				<div class="solution-content">
 					<div class="solution-visual">
@@ -54,7 +57,7 @@ import CommonHero from '../components/hero/CommonHero.astro';
 		</section>
 
 		<!-- Talent Assessment Section - Dark -->
-		<section class="solution-dark">
+		<section class="scroll-section solution-dark">
 			<div class="container">
 				<div class="solution-content reverse">
 					<div class="solution-text">
@@ -78,7 +81,7 @@ import CommonHero from '../components/hero/CommonHero.astro';
 		</section>
 
 		<!-- Onboarding Section - Light -->
-		<section class="solution-light">
+		<section class="scroll-section solution-light">
 			<div class="container">
 				<div class="solution-content-center">
 					<h2 data-i18n="solutions.onboarding.title"></h2>
@@ -90,19 +93,17 @@ import CommonHero from '../components/hero/CommonHero.astro';
 		</section>
 
 		<!-- Development Section - Light -->
-		<section class="solution-light alt">
-			<div class="container">
-				<div class="solution-content-center">
-					<h2 data-i18n="solutions.development.title"></h2>
-					<h3 data-i18n="solutions.development.subtitle"></h3>
-					<p data-i18n="solutions.development.description"></p>
-					<button class="btn-primary" data-i18n="solutions.development.button"></button>
-				</div>
-			</div>
+		<section class="scroll-section solutions-cta alt">
+			<CTA pageName='solutions' />
+		</section>
+
+		<section class="scroll-section footer-section" data-section="footer">
+			<Footer />
 		</section>
 	</main>
-
-	<Footer />
+	<!-- <section class="scroll-section footer-section">
+		<Footer />
+	</section> -->
 </Layout>
 
 <script>
@@ -111,6 +112,11 @@ import CommonHero from '../components/hero/CommonHero.astro';
 </script>
 
 <style>
+	.footer-section,
+	.solutions-cta {
+		min-height: auto;
+	}
+
 	.container {
 		max-width: var(--max-width);
 		margin: 0 auto;
@@ -278,8 +284,6 @@ import CommonHero from '../components/hero/CommonHero.astro';
 
 	/* Light Solution Sections */
 	.solution-light {
-		padding: 6rem 0;
-		background: linear-gradient(135deg, #f8f9ff 0%, #e0e7ff 100%);
 	}
 
 	.solution-light.alt {

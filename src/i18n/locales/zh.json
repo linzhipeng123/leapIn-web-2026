@@ -231,11 +231,10 @@
       "description": "优化新员工入职体验，加速融入团队",
       "button": "了解更多"
     },
-    "development": {
-      "title": "Development",
-      "subtitle": "员工发展",
-      "description": "个性化职业发展规划，助力员工成长",
-      "button": "了解更多"
+    "cta": {
+      "title": "加速发展",
+      "subtitle": "精准且有目标地构建面向未来的能力",
+      "button": "预约平台演示"
     }
   },
   "industries": {
