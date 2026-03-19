@@ -18,11 +18,11 @@ import Section2 from '../components/solutions/Section2.astro';
 		</section>
 
 		<!-- Talent Sourcing Section - Dark -->
-		<section class="scroll-section solution-dark">
+		<section class="scroll-section solution-dark solution-section1">
 			<Section1 />
 		</section>
 
-		<section class="scroll-section solution-dark">
+		<section class="scroll-section solution-dark solution-section2">
 			<Section2 />
 		</section>
 
@@ -43,6 +43,45 @@ import Section2 from '../components/solutions/Section2.astro';
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
 	loadTranslations();
+
+	// PC端监听 solution-section1 可见性
+	if (typeof window !== 'undefined') {
+		const isMobile = () => window.innerWidth <= 768;
+		
+		if (!isMobile()) {
+			const section1 = document.querySelector('.solution-section1');
+			const cardSection1 = document.querySelector('.card-section1');
+			const avatarSection1 = document.querySelector('.section-avatar');
+			const scoreSection1 = document.querySelector('.section-score');
+
+			if (section1 && cardSection1) {
+				const observerCallback = (entries: IntersectionObserverEntry[]) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							// 在可视区域内，恢复原始状态
+							(cardSection1 as HTMLElement).style.transform = 'translateY(0) rotate(0)';
+							(cardSection1 as HTMLElement).style.left = ' -4rem';
+							(avatarSection1 as HTMLElement).style.transform = 'rotate(0)';
+							(scoreSection1 as HTMLElement).style.transform = 'translateX(14rem) translateY(12rem) rotate(0)';
+						} else {
+							// 不在可视区域，应用变换
+							(cardSection1 as HTMLElement).style.transform = 'translateY(-400px) rotate(-45deg)';
+							(cardSection1 as HTMLElement).style.left = '-30%';
+							(avatarSection1 as HTMLElement).style.transform = 'rotate(29.655deg)';
+							(scoreSection1 as HTMLElement).style.transform = 'rotate(-40.218deg)';
+						}
+					});
+				};
+
+				const observer = new IntersectionObserver(observerCallback, {
+					threshold: 0.1,
+					rootMargin: '0px'
+				});
+
+				observer.observe(section1);
+			}
+		}
+	}
 </script>
 
 <style>
@@ -60,7 +99,6 @@ import Section2 from '../components/solutions/Section2.astro';
 	/* Dark Solution Sections */
 	.solution-dark {
 		padding: 2rem 0;
-		overflow: hidden;
 		background: var(--grey-gray-60-base, #111827);
 		border: none;
 		display: flex;
