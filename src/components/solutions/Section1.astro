@@ -2,19 +2,50 @@
 import Card from './Card.astro';
 import Avatar from '../../assets/solutions/section/section1-avatar.png';
 import Score from '../../assets/solutions/section/section1-score.png';
+import cnAvatar from '../../assets/solutions/section/cn/section1-avatar.png';
+import cnScore from '../../assets/solutions/section/cn/section1-score.png';
 ---
 
 <section class="section-container">
     <div class="container">
         <div class="section-avatar">
-            <img src={Avatar.src} alt="">
+            <picture>
+                <img src={Avatar.src} alt="" data-en-src={Avatar.src} data-cn-src={cnAvatar.src} class="lang-image">
+            </picture>
         </div>
         <div class="section-score">
-            <img src={Score.src} alt="">
+            <picture>
+                <img src={Score.src} alt="" data-en-src={Score.src} data-cn-src={cnScore.src} class="lang-image">
+            </picture>
         </div>
         <Card index={1} itemLength={5} className="card-section1"></Card>
     </div>
 </section>
+
+<script>
+    // 根据语言切换图片
+    const updateImages = () => {
+        const currentLang = localStorage.getItem('language') || 'en';
+        const images = document.querySelectorAll('.lang-image');
+        
+        images.forEach((img) => {
+            const enSrc = img.getAttribute('data-en-src');
+            const cnSrc = img.getAttribute('data-cn-src');
+            
+            if (currentLang === 'zh' && cnSrc) {
+                img.setAttribute('src', cnSrc);
+            } else if (enSrc) {
+                img.setAttribute('src', enSrc);
+            }
+        });
+    };
+
+    // 页面加载时更新
+    updateImages();
+
+    // 监听语言切换事件
+    window.addEventListener('languageChanged', updateImages);
+</script>
 
 <style>
     .section-container {
@@ -26,7 +57,6 @@ import Score from '../../assets/solutions/section/section1-score.png';
         display: flex;
         justify-content: space-between;
         position: relative;
-        margin-top: 4.75rem;
     }
 
     .section-avatar {
@@ -42,11 +72,11 @@ import Score from '../../assets/solutions/section/section1-score.png';
     .section-score {
         position: absolute;
         width: 36.5rem;
+        height: fit-content;
         padding: 1rem;
         /* flex-direction: column; */
         /* justify-content: center; */
         align-items: center;
-        aspect-ratio: 73/40;
         border-radius: 0.75rem;
         border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
         background: rgba(255, 255, 255, 0.05);
