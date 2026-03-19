@@ -3,11 +3,15 @@ interface Props {
 	type: 'nav' | 'primary' | 'secondary';
     text: string;
     className?: string;
+    href?: string;
 }
-const { type, text, className } = Astro.props;
+const { type, text, className, href } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const Element = href ? 'a' : 'div';
+const elementProps = href ? { href: `${base}${href}` } : {};
 ---
 
-<div class={`button button-${type} ${className || ''}`}>
+<Element class={`button button-${type} ${className || ''}`} {...elementProps}>
     <span class="button-text" data-i18n={text}></span>
     {
         type === "primary" ? (
@@ -39,7 +43,7 @@ const { type, text, className } = Astro.props;
             </svg>
         ) : null
     }
-</div>
+</Element>
 
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
@@ -52,6 +56,8 @@ const { type, text, className } = Astro.props;
         display: flex;
         gap: 0.5rem;
         transition: all 0.3s;
+        text-decoration: none;
+        cursor: pointer;
     }
 
     .button-nav {

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
+import Button from '../components/Button.astro';
 ---
 
 <Layout>
@@ -26,7 +27,7 @@ import CommonHero from '../components/hero/CommonHero.astro';
 				<div class="cta-content">
 					<h2 data-i18n="industries.cta.title"></h2>
 					<p data-i18n="industries.cta.subtitle"></p>
-					<button class="btn-primary" data-i18n="industries.cta.button"></button>
+            		<Button type="primary" text={`industries.cta.button`} className="cta-btn" href="request" />
 				</div>
 			</div>
 		</section>
