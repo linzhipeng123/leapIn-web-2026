@@ -52,7 +52,6 @@ import CTA from '../components/CTA.astro';
 					entries.forEach(entry => {
 						const currentIndex = parseInt(featureSlide.getAttribute('data-index') || '0');
 						
-				console.log("featureSlide", entry.isIntersecting, currentIndex)
 						if (!entry.isIntersecting && currentIndex === 0) {
 							// 不在可视区域内，且 data-index 为 0
 							featureSlide.setAttribute('class', 'feature-slide feature-slide-pre')
