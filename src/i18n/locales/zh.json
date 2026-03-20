@@ -253,8 +253,8 @@
       "subtitle": "智能. ",
       "description": "LeapIn 的 AI 模型专为各行业独特的人才挑战量身定制"
     },
-    
     "covered": {
+      "title": "覆盖行业",
       "FinancialServices": "- 金融服务 -",
       "Technology": "- 科技行业 -",
       "Manufacturing": "- 制造业 -",
@@ -264,9 +264,9 @@
       "ProfessionalServices": "- 专业服务 -"
     },
     "cta": {
-      "title": "了解更多行业解决方案",
-      "subtitle": "联系我们，获取定制化的行业解决方案",
-      "button": "联系我们"
+      "title": "为何行业专属 AI 至关重要",
+      "subtitle": "每个行业都有独特的能力需求、人才风险与监管现实。\nLeapIn 通过适配其模型，确保方案的相关性、精准度与实际价值。",
+      "button": "预约平台演示"
     }
   },
   "about": {

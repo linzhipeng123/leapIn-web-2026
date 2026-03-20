@@ -235,6 +235,7 @@
       "description": "LeapIn’s AI models are tailored to the unique talent challenges of each industry."
     },
     "covered": {
+      "title": "Industries Covered",
       "FinancialServices": "- Financial Services -",
       "Technology": "- Technology -",
       "Manufacturing": "- Manufacturing -",
@@ -244,9 +245,9 @@
       "ProfessionalServices": "- Professional Services -"
     },
     "cta": {
-      "title": "Learn More About Industry Solutions",
-      "subtitle": "Contact us for customized industry solutions",
-      "button": "Contact Us"
+      "title": "Why Industry-Specific AI Matters",
+      "subtitle": "Each industry has distinct skill demands, talent risks, and regulatory realities.\nLeapIn adapts its models to ensure relevance, accuracy, and impact.",
+      "button": "Explore the Platform"
     }
   },
   "about": {

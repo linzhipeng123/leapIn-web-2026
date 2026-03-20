@@ -20,16 +20,18 @@ const imgs = [
 
 <section class="section-container covered-section" id="covered-section">
     <div class="container" id="covered-section-container">
-        <h2 class="covered-title" data-i18n="industries.covered.title"></h2>
         <div class="feature-slide" data-index={0}>
-            {
-                imgs.map(({img, text},index) => (
-                    <div class="covered-item" data-index={index}>
-                        <div class="covered-item-title" data-i18n={`industries.covered.${text}`}></div>
-                        <img class="covered-item-img" src={img.src} alt="" />
-                    </div>
-                ))
-            }
+            <h2 class="covered-title" data-i18n="industries.covered.title"></h2>
+            <div class="feature-slider-content">
+                {
+                    imgs.map(({img, text},index) => (
+                        <div class="covered-item" data-index={index}>
+                            <div class="covered-item-title" data-i18n={`industries.covered.${text}`}></div>
+                            <img class="covered-item-img" src={img.src} alt="" />
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </section>
@@ -40,13 +42,14 @@ const imgs = [
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: calc(100vh - 4.75rem);
     }
 
     .container {
         max-width: var(--max-width);
         margin: 0 auto;
         padding: 0 1rem;
-        min-height: 100vh;
+        min-height: calc(100vh - 4.75rem);
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -64,40 +67,52 @@ const imgs = [
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 2.625rem;
+        gap: 1.375rem;
         width: 100%;
         flex: 1;
         flex-wrap: wrap;
         position: relative;
     }
 
+    .feature-slider-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        gap: 1.375rem;
+        flex-wrap: wrap;
+        position: relative;
+    }
     .covered-title {
         color: var(--grey-gray-60-base, #111827);
         text-align: center;
-        font-size: 2rem;
+        font-size: 2.5rem;
         line-height: 124%; /* 39.68px */
         letter-spacing: -0.352px;
         width: 100%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin: 0 auto;
         transition: all 0.8s ease;
-        z-index: 10;
+        position: absolute;
     }
 
+    .feature-slide-pre.feature-slide[data-index="0"] .covered-title {
+        transform: translateY(-80vh);
+    }
+    .feature-slide[data-index="0"] .covered-title {
+        transform: translateY(0);
+    }
     .feature-slide[data-index="4"] .covered-title {
         position: relative;
         top: auto;
         left: auto;
         transform: none;
-        margin-bottom: 2rem;
     }
 
     .covered-item {
         display: flex;
-        width: 14.5rem;
-        padding: 1.5rem 0;
+        max-width: 16.5rem;
+        /* width: 14.5rem; */
+        padding: 1.5rem;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -126,7 +141,6 @@ const imgs = [
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
-        margin-bottom: 1rem;
     }
     /* pre */
     .feature-slide-pre.feature-slide[data-index="0"] .covered-item[data-index="0"] {
@@ -135,7 +149,7 @@ const imgs = [
         right: 0;
         margin: 0 auto;
         top: 0;
-        transform: translateY(-70vh) rotate(-45deg);
+        transform: translateY(-60vh) rotate(-45deg);
     }
 
     .feature-slide-pre.feature-slide[data-index="0"] .covered-item[data-index="1"] {
@@ -218,7 +232,7 @@ const imgs = [
     .feature-slide[data-index="1"] .covered-item[data-index="3"] {
         position: absolute;
         margin: 0 auto;
-        transform: translateY(10vh) rotate(-24.259deg);
+        transform: translateY(0) rotate(-24.259deg);
     }
 
     .feature-slide[data-index="1"] .covered-item[data-index="4"],
@@ -258,7 +272,7 @@ const imgs = [
 
     .feature-slide[data-index="2"] .covered-item[data-index="3"] {
         position: absolute;
-        transform: translateY(-30vh) rotate(0deg);
+        transform: translateY(-40vh) rotate(0deg);
     }
 
     .feature-slide[data-index="2"] .covered-item[data-index="4"] {
@@ -282,18 +296,18 @@ const imgs = [
     .feature-slide[data-index="3"] .covered-item[data-index="4"] {
         position: absolute;
         left: 4rem;
-        transform: translateY(10vh) rotate(0deg);;
+        transform: translateY(5vh) rotate(0deg);;
     }
 
     .feature-slide[data-index="3"] .covered-item[data-index="5"] {
         position: absolute;
         right: 4rem;
-        transform: translateY(-20vh) rotate(0);
+        transform: translateY(-25vh) rotate(0);
     }
 
     .feature-slide[data-index="3"] .covered-item[data-index="6"] {
         position: absolute;
-        transform: translateY(30vh) rotate(0deg);
+        transform: translateY(25vh) rotate(0deg);
     }
 
     /* data-index="4" - 最终状态，所有卡片回正并显示 */
@@ -304,13 +318,24 @@ const imgs = [
 
     .feature-slide[data-index="4"] .covered-title {
         width: 100%;
-        order: -1;
+        position: relative;
+        transform: translateY(0) rotate(0deg);
     }
     
     @media (max-width: 768px) {
         .feature-slide {
+            gap: 1.5rem;
+        }
+
+        .covered-title {
+            position: relative;
+            text-align: left;
+            font-size: 1.5rem;
+            line-height: 120%;
+        }
+        .feature-slider-content {
             gap: 0.25rem;
-            justify-content: left;
+            justify-content: left !important;
         }
 		.covered-item {
 			transform: none !important;
@@ -320,7 +345,15 @@ const imgs = [
             position: relative !important;
             margin: 0 !important;
             width: calc(50% - 0.125rem);
+            padding: 1.125rem;
+            gap: 0.75rem;
 		}
+
+        .covered-item-title {
+            font-size: 0.8125rem;
+            line-height: 133.333%;
+            margin-bottom: 0;
+        }
 	}
 </style>
 
