@@ -4,21 +4,24 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
 import Button from '../components/Button.astro';
+import IndustriesCovered from '../components/industries/IndustriesCovered.astro';
 ---
 
 <Layout>
 	<Header />
 	
-	<main class="industries-page">
+	<main class="industries-page scroll-container">
 		<!-- Hero Section -->
-		<CommonHero pageName="industries" />
+		<section class="scroll-section" data-section="hero">
+			<CommonHero pageName="industries" />
+		</section>
 
 		<!-- Industries Grid -->
-		<section class="industries-grid-section">
-			<div class="container">
-				<div class="industries-grid" data-i18n-array="industries.list" data-i18n-template='<div class="industry-card"><div class="industry-icon">{{icon}}</div><h3>{{title}}</h3><p>{{description}}</p></div>'>
+		<section class="scroll-section industries-covered" data-section="industries-covered">
+			<!-- <div class="industries-grid" data-i18n-array="industries.list" data-i18n-template='<div class="industry-card"><div class="industry-icon">{{icon}}</div><h3>{{title}}</h3><p>{{description}}</p></div>'>
 				</div>
-			</div>
+			</div> -->
+			<IndustriesCovered />
 		</section>
 
 		<!-- CTA Section -->
@@ -31,21 +34,37 @@ import Button from '../components/Button.astro';
 				</div>
 			</div>
 		</section>
-	</main>
 
-	<Footer />
+		<section class="scroll-section footer-section" data-section="footer">
+			<Footer />
+		</section>
+	</main>
 </Layout>
 
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
 	loadTranslations();
+
+
+
+	// PC端监听 solution-section1 可见性
+	if (typeof window !== 'undefined') {
+		const isMobile = () => window.innerWidth <= 768;
+		
+		if (!isMobile()) {
+			const section1 = document.querySelector('.industries-covered');
+			const featureSlider = document.querySelector('.feature-slide');
+		}
+	}
 </script>
 
 <style>
 	.container {
-		max-width: var(--max-width);
-		margin: 0 auto;
-		padding: 0 2rem;
+		width: 100%;
+	}
+	.footer-section,
+	.industries-cta {
+		min-height: auto;
 	}
 
 	/* Industries Grid */

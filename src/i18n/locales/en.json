@@ -221,23 +221,6 @@
         "Precise Role-Talent Fit"
       ]
     },
-    "talentAssessment": {
-      "title": "Talent Assessment",
-      "subtitle": "",
-      "description": "Multi-dimensional evaluation system for scientific assessment of candidate capabilities and potential",
-      "features": [
-        "Skills assessment system",
-        "Personality trait analysis",
-        "Cultural fit evaluation",
-        "Comprehensive capability reports"
-      ]
-    },
-    "onboarding": {
-      "title": "Onboarding",
-      "subtitle": "",
-      "description": "Optimize new employee onboarding experience and accelerate team integration",
-      "button": "Learn More"
-    },
     "cta": {
       "title": "Develop Faster",
       "subtitle": "Build future-ready capabilities with precision and purpose.",
@@ -251,32 +234,15 @@
       "subtitle": "Intelligence. ",
       "description": "LeapIn’s AI models are tailored to the unique talent challenges of each industry."
     },
-    "list": [
-      {
-        "title": "Technology",
-        "description": "Professional technical talent recruitment and management services for tech companies"
-      },
-      {
-        "title": "Healthcare",
-        "description": "Precise matching and management of healthcare industry professionals"
-      },
-      {
-        "title": "Financial Services",
-        "description": "High-end talent recruitment and development solutions for the financial industry"
-      },
-      {
-        "title": "Manufacturing",
-        "description": "Full lifecycle management services for manufacturing talent"
-      },
-      {
-        "title": "Retail & E-commerce",
-        "description": "Talent recruitment and training for retail and e-commerce industries"
-      },
-      {
-        "title": "Education",
-        "description": "Professional talent recruitment and development for the education industry"
-      }
-    ],
+    "covered": {
+      "FinancialServices": "- Financial Services -",
+      "Technology": "- Technology -",
+      "Manufacturing": "- Manufacturing -",
+      "Healthcare": "- Healthcare -",
+      "Retail": "- Retail -",
+      "Energy": "- Energy -",
+      "ProfessionalServices": "- Professional Services -"
+    },
     "cta": {
       "title": "Learn More About Industry Solutions",
       "subtitle": "Contact us for customized industry solutions",

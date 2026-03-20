@@ -253,32 +253,16 @@
       "subtitle": "智能. ",
       "description": "LeapIn 的 AI 模型专为各行业独特的人才挑战量身定制"
     },
-    "list": [
-      {
-        "title": "科技行业",
-        "description": "为科技企业提供专业的技术人才招聘和管理服务"
-      },
-      {
-        "title": "医疗健康",
-        "description": "医疗行业专业人才的精准匹配和管理"
-      },
-      {
-        "title": "金融服务",
-        "description": "金融行业高端人才的招聘和发展解决方案"
-      },
-      {
-        "title": "制造业",
-        "description": "制造业人才的全生命周期管理服务"
-      },
-      {
-        "title": "零售电商",
-        "description": "零售和电商行业的人才招聘和培训"
-      },
-      {
-        "title": "教育培训",
-        "description": "教育行业专业人才的招聘和发展"
-      }
-    ],
+    
+    "covered": {
+      "FinancialServices": "- 金融服务 -",
+      "Technology": "- 科技行业 -",
+      "Manufacturing": "- 制造业 -",
+      "Healthcare": "- 医疗健康 -",
+      "Retail": "- 零售行业 -",
+      "Energy": "- 能源行业 -",
+      "ProfessionalServices": "- 专业服务 -"
+    },
     "cta": {
       "title": "了解更多行业解决方案",
       "subtitle": "联系我们，获取定制化的行业解决方案",

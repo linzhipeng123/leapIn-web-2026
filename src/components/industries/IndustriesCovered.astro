@@ -1,0 +1,183 @@
+---
+import FinancialServices from '../../assets/industries/FinancialServices.png';
+import Manufacturing from '../../assets/industries/Manufacturing.png';
+import Technology from '../../assets/industries/Technology.png';
+import Healthcare from '../../assets/industries/Healthcare.png';
+import Retail from '../../assets/industries/Retail.png';
+import Energy from '../../assets/industries/Energy.png';
+import ProfessionalServices from '../../assets/industries/ProfessionalServices.png';
+
+const imgs = [
+    {img: FinancialServices, text: 'FinancialServices'},
+    {img: Manufacturing, text: 'Manufacturing'},
+    {img: Technology, text: 'Technology'},
+    {img: Healthcare, text: 'Healthcare'},
+    {img: Retail, text: 'Retail'},
+    {img: Energy, text: 'Energy'},
+    {img: ProfessionalServices, text: 'ProfessionalServices'}
+];
+---
+
+<section class="section-container covered-section" id="covered-section">
+    <div class="container" id="covered-section-container">
+        <div class="feature-slide" data-index={0}>
+            <h2 class="covered-title" data-i18n="industries.covered.title"></h2>
+            {
+                imgs.map(({img, text},index) => (
+                    <div class="covered-item" data-index={index}>
+                        <div class="covered-item-title" data-i18n={`industries.covered.${text}`}></div>
+                        <img class="covered-item-img" src={img.src} alt="" />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .section-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        z-index: 1;
+    }
+
+    .feature-slide {
+        /* display: flex; */
+        /* align-items: center; */
+        /* justify-content: center; */
+        gap: 2.625rem;
+        width: 100%;
+        flex: 1;
+        /* flex-wrap: wrap; */
+        position: relative;
+    }
+
+    .covered-title {
+        color: var(--grey-gray-60-base, #111827);
+        text-align: center;
+        font-size: 2rem;
+        line-height: 124%; /* 39.68px */
+        letter-spacing: -0.352px;
+    }
+
+    .covered-item {
+        width: 14.5rem;
+        padding: 1.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 12px;
+        border: 1px solid var(--Neutrals-White-00, #FFF);
+        background: var(--Grey-Gray-10, rgba(17, 24, 39, 0.05));
+        backdrop-filter: blur(7.5px);
+        transition: all 0.8s;
+    }
+
+    .covered-item-img {
+        width: 11.375rem;
+    }
+
+    .covered-item-title {
+        font-feature-settings: 'liga' off, 'clig' off;
+        /* Body Text/00 Semibold */
+        font-family: Inter;
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 133.333% ; /* 133.333% */
+        background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .feature-slide[data-index="0"] .covered-item[data-index="0"] {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 2rem;
+        transform: rotate(-45deg);
+    }
+
+    .feature-slide[data-index="0"] .covered-item[data-index="1"] {
+        position: absolute;
+        left: 5rem;
+        margin: 0 auto;
+        top: 50vh;
+        transform: rotate(15deg);
+    }
+
+    .feature-slide[data-index="0"] .covered-item[data-index="2"] {
+        position: absolute;
+        right: 5rem;
+        margin: 0 auto;
+        top: 30vh;
+        transform: rotate(-15deg);
+    }
+</style>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+
+  const section = document.getElementById('covered-section');
+  const slider = document.getElementById('covered-section-container');
+  
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    console.log("section", section)
+    console.log("slider", slider)
+    console.log("isMobile", isMobile)
+  if (section && slider && !isMobile) {
+    let currentIndex = 0;
+    const slides = slider.querySelectorAll('.feature-slide');
+    const totalSlides = 5;
+
+    const updateSlide = (index: number) => {
+      slides.forEach((slide, i) => {
+        slide.setAttribute('data-active', 'true');
+        slide.setAttribute('data-index', index.toString());
+      });
+      section.setAttribute('data-slide', index.toString());
+    };
+
+    updateSlide(0);
+
+    let isScrolling = false;
+    section.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+      
+      e.preventDefault();
+      e.stopPropagation();
+      isScrolling = true;
+
+      if (e.deltaY > 0) {
+        currentIndex = (currentIndex + 1) % totalSlides;
+      } else {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      }
+
+      updateSlide(currentIndex);
+
+      setTimeout(() => {
+        isScrolling = false;
+      }, 500);
+    }, { passive: false });
+  }
+</script>
