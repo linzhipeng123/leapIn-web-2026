@@ -7,6 +7,7 @@ import Features from '../components/index/Features.astro';
 import ProductShowcase from '../components/index/ProductShowcase.astro';
 import Stats from '../components/index/Stats.astro';
 import CTA from '../components/index/CTA.astro';
+import CommonCTA from '../components/cta/CommonCAT.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -30,6 +31,9 @@ import Footer from '../components/Footer.astro';
 		</section>
 		<section class="scroll-section cta-section" data-section="cta">
 			<CTA />
+		</section>
+		<section class="scroll-section cta-section" data-section="cta">
+			<CommonCTA pageName='homepage' />
 		</section>
 		<section class="scroll-section footer-section" data-section="footer">
 			<Footer />

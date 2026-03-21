@@ -110,7 +110,8 @@
           {"label" : "行业专属模型(覆盖 8 大领域)"},
           {"label" : "安全、可扩展、合规"}
         ]
-      }
+      },
+      "button": "预约试用"
     }
   },
   "platform": {
@@ -223,23 +224,6 @@
         "实现岗位与人才的精准匹配"
       ]
     },
-    "talentAssessment": {
-      "title": "Talent Assessment",
-      "subtitle": "人才评估",
-      "description": "多维度评估体系，科学评价候选人能力和潜力",
-      "features": [
-        "技能测评系统",
-        "性格特质分析",
-        "文化匹配度评估",
-        "综合能力报告"
-      ]
-    },
-    "onboarding": {
-      "title": "Onboarding",
-      "subtitle": "入职管理",
-      "description": "优化新员工入职体验，加速融入团队",
-      "button": "了解更多"
-    },
     "cta": {
       "title": "加速发展",
       "subtitle": "精准且有目标地构建面向未来的能力",
@@ -293,28 +277,10 @@
       "subtitle": "我们的使命",
       "description": "通过创新的AI技术和全球化的服务网络，帮助企业高效管理海外人才，助力企业实现全球化战略目标。"
     },
-    "ourValues": {
-      "title": "Our Values",
-      "subtitle": "我们的价值观",
-      "description": "创新、诚信、卓越、全球化 - 这是我们始终坚持的核心价值观。我们相信通过持续创新和优质服务，能够为客户创造更大价值。",
-      "button": "了解更多"
-    },
-    "ourTeam": {
-      "title": "Our Team",
-      "subtitle": "我们的团队",
-      "description": "来自全球的专业团队，拥有丰富的人力资源和技术经验"
-    },
-    "joinUs": {
-      "title": "Join Us",
-      "subtitle": "加入我们",
-      "description": "我们正在寻找充满激情的人才加入我们的团队",
-      "features": [
-        "灵活的工作方式",
-        "有竞争力的薪酬",
-        "完善的福利体系",
-        "广阔的发展空间"
-      ],
-      "button": "查看职位"
+    "cta": {
+      "title": "与 LeapIn 一起，开启业务增长新征程",
+      "subtitle": "",
+      "button": "预约平台演示"
     }
   },
   "legal": {

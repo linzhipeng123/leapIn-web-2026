@@ -111,7 +111,8 @@
           {"label" : "Industry-specific\nmodels (8 sectors)"},
           {"label" : "Secure, scalable, compliantI"}
         ]
-      }
+      },
+      "button": "Request a Demo"
     }
   },
   "platform": {
@@ -274,28 +275,10 @@
       "subtitle": "",
       "description": "Through innovative AI technology and a global service network, we help enterprises efficiently manage overseas talent and achieve their globalization strategic goals."
     },
-    "ourValues": {
-      "title": "Our Values",
+    "cta": {
+      "title": "Start growing your business today",
       "subtitle": "",
-      "description": "Innovation, Integrity, Excellence, Globalization - these are the core values we always uphold. We believe that through continuous innovation and quality service, we can create greater value for our clients.",
-      "button": "Learn More"
-    },
-    "ourTeam": {
-      "title": "Our Team",
-      "subtitle": "",
-      "description": "A global professional team with extensive HR and technical experience"
-    },
-    "joinUs": {
-      "title": "Join Us",
-      "subtitle": "",
-      "description": "We're looking for passionate talent to join our team",
-      "features": [
-        "Flexible work arrangements",
-        "Competitive compensation",
-        "Comprehensive benefits",
-        "Growth opportunities"
-      ],
-      "button": "View Positions"
+      "button": "Explore the Platform"
     }
   },
   "legal": {
