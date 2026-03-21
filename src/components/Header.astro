@@ -32,7 +32,9 @@ console.log("base", base)
       </div>
 
       <div class="header-actions">
-        <Button text="header.requestDemo" type="nav" href="request" />
+        <div class="header-btn">
+          <Button text="header.requestDemo" type="nav" href="request" />
+        </div>
         <LanguageSwitcher />
         <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
           <span></span>
@@ -287,7 +289,7 @@ console.log("base", base)
       padding: 0 1rem;
     }
 
-    .header-actions .btn-primary {
+    .header-actions .header-btn {
       display: none;
     }
 
