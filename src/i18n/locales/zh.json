@@ -277,6 +277,45 @@
       "subtitle": "我们的使命",
       "description": "通过创新的AI技术和全球化的服务网络，帮助企业高效管理海外人才，助力企业实现全球化战略目标。"
     },
+    "values": {
+      "title": "我们的价值观",
+      "items": [
+        {
+          "title": "团队协作",
+          "subtitle": "Teamwork",
+          "Respect": "尊重",
+          "RespectInfo": "LeapIn 利用行为 AI 预判候选人的能力、潜力与适配度，助力企业在规模化招聘中做出更快速、更公平、更精准的决策。",
+          "Empathy": "共情",
+          "EmpathyInfo": "我们致力于构建一个人人都有机会预见自身才能的世界。我们支持所有形式的多元化，包括文化、性别、观点与种族，而共情是这一切的核心。",
+          "ContinuousGrowth": "持续成长",
+          "ContinuousGrowthInfo": "在 LeapIn，我们鼓励创新并包容错误。我们深知人无完人，但关键在于如何快速从错误中学习并持续成长。"
+        },
+        {
+          "title": "高效执行",
+          "subtitle": "Get Things Done",
+          "CustomerFirst": "客户至上",
+          "CustomerFirstInfo": "客户满意是我们工作的最大回报。我们将客户需求放在首位，助力他们实现最大成功。",
+          "PromptResponse": "快速响应",
+          "PromptResponseInfo": "在瞬息万变、节奏飞快的社会中，时间是最大的成本。我们始终坚持即时响应的原则，无论是同事还是客户的需求，我们都做到 “现在就办，办就办好”。",
+          "StriveForPerfection": "追求卓越",
+          "StriveForPerfectionInfo": "工匠精神是我们所推崇的，我们在产品与服务上始终不懈追求卓越。"
+        },
+        {
+          "title": "AI向善",
+          "subtitle": "Al for Good",
+          "AlForGood": "AI for Good：若要构建公平公正的社会，人工智能必须根植于人权理念。我们在产品设计中始终关注性别不平等、种族偏见与族裔 profiling 等问题。\n\nLeapIn 及全体工程师支持《北京人工智能原则》，该原则强调人工智能的发展关乎全社会、全人类及环境的未来。",
+          "btn": "查看完整原则"
+        },
+        {
+          "title": "乐享工作",
+          "subtitle": "Have Fun",
+          "Passion": "热爱",
+          "PassionInfo": "“热爱” 将来自世界各地的 LeapIn 人凝聚在一起。我们热爱自己的事业，每天带着 “将积极影响他人人生” 的信念投入工作，备受鼓舞。",
+          "BeBold": "无畏",
+          "BeBoldInfo": "我们年轻，敢于大胆设想、勇于行动。我们不断追求个人成长，为社会创造价值。"
+        }
+      ]
+    }, 
     "cta": {
       "title": "与 LeapIn 一起，开启业务增长新征程",
       "subtitle": "",

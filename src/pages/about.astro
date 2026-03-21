@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
+import Values from '../components/about/Values.astro';
 import CTA from '../components/cta/CommonCAT.astro';
 ---
 
@@ -11,8 +12,11 @@ import CTA from '../components/cta/CommonCAT.astro';
 	
 	<main class="scroll-container">
 		<!-- Hero Section -->
-		<section class="scroll-section cta-section" data-section="cta">
+		<section class="scroll-section hero-section" data-section="hero">
 			<CommonHero pageName="about" />
+		</section>
+		<section class="scroll-section values-section" data-section="values">
+			<Values />
 		</section>
 		<section class="scroll-section cta-section" data-section="cta">
 			<CTA pageName='about' />
@@ -26,6 +30,38 @@ import CTA from '../components/cta/CommonCAT.astro';
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
 	loadTranslations();
+
+	// PC端监听 industries-covered 可见性
+	if (typeof window !== 'undefined') {
+		const isMobile = () => window.innerWidth <= 768;
+		
+		if (!isMobile()) {
+			const valuesSection = document.querySelector('.values-section');
+			const featureSlide = document.querySelector('.feature-slide');
+
+			if (valuesSection && featureSlide) {
+				const observerCallback = (entries: IntersectionObserverEntry[]) => {
+					entries.forEach(entry => {
+						const currentIndex = parseInt(featureSlide.getAttribute('data-index') || '0');
+						
+						if (!entry.isIntersecting && currentIndex === 0) {
+							// 不在可视区域内，且 data-index 为 0
+							featureSlide.setAttribute('class', 'feature-slide feature-slide-pre')
+						} else {
+							featureSlide.setAttribute('class', 'feature-slide feature-slide-inner')
+						}
+					});
+				};
+
+				const observer = new IntersectionObserver(observerCallback, {
+					threshold: 0.1,
+					rootMargin: '0px'
+				});
+
+				observer.observe(valuesSection);
+			}
+		}
+	}
 </script>
 
 <style>

@@ -4,11 +4,12 @@ interface Props {
     text: string;
     className?: string;
     href?: string;
+    target?: string;
 }
-const { type, text, className, href } = Astro.props;
+const { type, text, className, href, target } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const Element = href ? 'a' : 'div';
-const elementProps = href ? { href: `${base}${href}` } : {};
+const elementProps = { href: href ? (href.includes('http') ? href :`${base}${href}`) : '', target };
 ---
 
 <Element class={`button button-${type} ${className || ''}`} {...elementProps}>
@@ -133,5 +134,9 @@ const elementProps = href ? { href: `${base}${href}` } : {};
         font-weight: 500;
         line-height: 150%; /* 24px */
         white-space: nowrap;
+    }
+
+    .cta-btn {
+        margin: 0 auto;
     }
 </style>

@@ -1,0 +1,287 @@
+---
+import ValuesCard from './ValuesCard.astro';
+import bgDot from '../../assets/bg_dot_dark.png';
+
+const cards = [
+    {
+        detailList: [
+            { title: "Respect", info: "RespectInfo" },
+            { title: "Empathy", info: "EmpathyInfo" },
+            { title: "ContinuousGrowth", info: "ContinuousGrowthInfo" },
+        ]
+    },
+    {
+        detailList: [
+            { title: "CustomerFirst", info: "CustomerFirstInfo" },
+            { title: "PromptResponse", info: "PromptResponseInfo" },
+            { title: "StriveForPerfection", info: "StriveForPerfectionInfo" },
+        ]
+    },
+    {
+        detailList: [
+            { info: "AlForGood" },
+        ],
+        btn: {
+            text: "btn", href: "https://www.baai.ac.cn/"
+        }
+    },
+    {
+        detailList: [
+            { title: "Passion", info: "PassionInfo" },
+            { title: "BeBold", info: "BeBoldInfo" },
+        ]
+    },
+];
+---
+
+<section class="section-container covered-section" id="covered-section">
+    <!-- <div class="bg-earth"> -->
+    <div class="container" id="covered-section-container">
+        <div class="feature-slide" data-index={0}>
+            <h2 class="covered-title" data-i18n="industries.covered.title"></h2>
+            <div class="feature-slider-content">
+                {
+                    cards.map((cardItem,index) => (
+                        <div class="values-card-wrap" data-index={index}>
+                            <ValuesCard {...cardItem} cardIndex={index} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style define:vars={{ 
+  bgDot: `url(${bgDot.src})`,
+}}>
+    .section-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height:100vh;
+        position: relative;
+        background: var(--grey-gray-60-base, #111827);
+        overflow: hidden;
+    }
+
+    .covered-section::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-image: var(--bgDot);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        transition: all 0.8s ease;
+        z-index: 0;
+    }
+
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        max-height: calc(100vh - 4.75rem);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        z-index: 1;
+    }
+
+    .covered-section[active-slider="1"],
+    .covered-section[active-slider="2"],
+    .covered-section[active-slider="3"],
+    .covered-section[active-slider="4"] {
+        overflow: hidden;
+    }
+
+    .feature-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.375rem;
+        width: 100%;
+        flex: 1;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .feature-slider-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        gap: 1.375rem 5.1875rem;
+        flex-wrap: wrap;
+        position: relative;
+        max-width: 81.25rem;
+        min-height: calc(100vh - 4.75rem);
+    }
+    .covered-title {
+        color: var(--grey-gray-60-base, #111827);
+        text-align: center;
+        font-size: 6.25rem;
+        line-height: 124%;
+        width: 100%;
+        margin: 0 auto;
+        transition: all 0.8s ease;
+        position: absolute;
+        color: var(--Neutrals-White-00, #FFF);
+        font-weight: 600;
+        letter-spacing: -1.1px;
+        opacity: 0.1;
+    }
+
+    .values-card-wrap {
+        transition: all 0.8s ease;
+        position: absolute;
+    }
+
+    /* pre */
+    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="0"] {
+        transform: translateX(1000px) translateY(30vh) rotate(30deg);
+    }
+
+    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="1"],
+    .feature-slide[data-index="0"] .values-card-wrap[data-index="1"] {
+        transform: translateX(1000px) translateY(40vh) rotate(30deg);
+    }
+
+    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="2"],
+    .feature-slide[data-index="0"] .values-card-wrap[data-index="2"],
+    .feature-slide[data-index="1"] .values-card-wrap[data-index="2"]{
+        transform: translateX(1000px) translateY(50vh) rotate(45deg);
+    }
+
+    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="3"],
+    .feature-slide[data-index="0"] .values-card-wrap[data-index="3"],
+    .feature-slide[data-index="1"] .values-card-wrap[data-index="3"],
+    .feature-slide[data-index="2"] .values-card-wrap[data-index="3"] {
+        transform: translateX(1000px) translateY(60vh) rotate(45deg);
+    }
+    /* pre */
+
+
+    /* data-index="0" - 初始状态 */
+    .feature-slide[data-index="0"] .values-card-wrap[data-index="0"],
+    .feature-slide[data-index="1"] .values-card-wrap[data-index="1"],
+    .feature-slide[data-index="2"] .values-card-wrap[data-index="2"],
+    .feature-slide[data-index="3"] .values-card-wrap[data-index="3"] {
+        margin: 0 auto;
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+
+    .feature-slide[data-index="1"] .values-card-wrap[data-index="0"],
+    .feature-slide[data-index="2"] .values-card-wrap[data-index="0"],
+    .feature-slide[data-index="3"] .values-card-wrap[data-index="2"] {
+        margin: 0;
+        transform: translateX(-150%) translateY(0) rotate(0deg);
+    }
+    .feature-slide[data-index="3"] .values-card-wrap[data-index="0"] {
+        margin: 0;
+        transform: translateX(-1500px) translateY(0) rotate(0deg);
+    }
+
+    .feature-slide[data-index="2"] .values-card-wrap[data-index="1"],
+    .feature-slide[data-index="3"] .values-card-wrap[data-index="1"] {
+        margin: 0;
+        transform: translateX(150%) translateY(0) rotate(0deg);
+    }
+    
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+        }
+        .feature-slide {
+            gap: 1.5rem;
+        }
+
+        .covered-title {
+            position: relative;
+            font-size: 1.5rem;
+            line-height: 120%;
+            color: var(--Neutrals-White-00, #FFF);
+            text-align: center;
+            font-weight: 600;
+        }
+        .feature-slider-content {
+            gap: 0.25rem;
+            flex-direction: column;
+            padding: 0;
+        }
+		.values-card-wrap {
+			transform: none !important;
+            left: 0 !important;
+            top: 0 !important;
+            right: 0 !important;
+            position: relative !important;
+            margin: 0 !important;
+            width: 100%;
+            gap: 0.75rem;
+		}
+
+        .values-card-wrap-title {
+            font-size: 0.8125rem;
+            line-height: 133.333%;
+            margin-bottom: 0;
+            transform: none;
+        }
+	}
+</style>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+
+  const section = document.getElementById('covered-section');
+  const slider = document.getElementById('covered-section-container');
+  
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (section && slider && !isMobile) {
+    let currentIndex = 0;
+    const slides = slider.querySelectorAll('.feature-slide');
+    const totalSlides = 4; // 0-3 共4个状态
+
+    const updateSlide = (index: number) => {
+        section.setAttribute('active-slider', index.toString())
+      slides.forEach((slide) => {
+        slide.setAttribute('data-active', 'true');
+        slide.setAttribute('data-index', index.toString());
+      });
+    };
+
+    updateSlide(0);
+
+    let isScrolling = false;
+    section.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+      
+      e.preventDefault();
+      e.stopPropagation();
+      isScrolling = true;
+
+      if (e.deltaY > 0) {
+        // 向下滚动
+        if (currentIndex < totalSlides - 1) {
+          currentIndex++;
+        }
+      } else {
+        // 向上滚动
+        if (currentIndex > 0) {
+          currentIndex--;
+        }
+      }
+
+      updateSlide(currentIndex);
+
+      setTimeout(() => {
+        isScrolling = false;
+      }, 800);
+    }, { passive: false });
+  }
+</script>

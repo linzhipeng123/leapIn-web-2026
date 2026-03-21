@@ -1,0 +1,88 @@
+---
+import Button from '../Button.astro';
+
+interface Props {
+    cardIndex: number;
+    detailList: {
+        title?: string;
+        info: string;
+    }[],
+    btn?: {
+        text: string;
+        href: string;
+    }
+}
+
+const { cardIndex, detailList, btn } = Astro.props;
+---
+
+<div class="values-card">
+    <div>
+        <h3 class="values-card-title" data-i18n={`about.values.items.${cardIndex}.title`}></h3>
+        <div class="values-card-subtitle" data-i18n={`about.values.items.${cardIndex}.subtitle`}></div>
+    </div>
+    <div>
+        {
+            detailList.map(item => (
+                <>
+                    {item?.title ? <div class="list-title" data-i18n={`about.values.items.${cardIndex}.${item.title}`}></div> : null}
+                    <div class="list-info" data-i18n={`about.values.items.${cardIndex}.${item.info}`}></div>
+                </>
+            ))
+        }
+        {
+            btn ? (
+                <Button type="primary" text={`about.values.items.${cardIndex}.${btn.text}`} className="cta-btn" href={btn.href} target='_blank' />
+            ) : null
+        }
+    </div>
+</div>
+
+<style>
+    .values-card {
+        display: flex;
+        max-width: 28.375rem;
+        padding: 5rem 1.5rem 2.25rem 1.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 0.75rem;
+        border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(7.5px);
+        gap: 3.125rem;
+    }
+
+    .values-card-title {
+        font-size: 2.25rem;
+        line-height: 150%; /* 54px */
+        line-height: 150%;
+    }
+    .values-card-subtitle {
+        font-size: 1.25rem;
+        font-style: italic;
+        line-height: 150%;
+    }
+    .values-card-title,
+    .values-card-subtitle,
+    .list-title {
+        background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .list-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 120%; /* 21.6px */
+        margin-bottom: 0.5rem;
+    }
+
+    .list-info {
+        color: var(--Neutrals-White-00, #FFF);
+        font-size: 0.875rem;
+        line-height: 150%; /* 21px */
+        margin-bottom: 1rem;
+    }
+</style>

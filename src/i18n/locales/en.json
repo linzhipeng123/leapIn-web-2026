@@ -275,6 +275,41 @@
       "subtitle": "",
       "description": "Through innovative AI technology and a global service network, we help enterprises efficiently manage overseas talent and achieve their globalization strategic goals."
     },
+    "values": {
+      "title": "Our Vaules",
+      "items": [
+        {
+          "title": "Teamwork",
+          "Respect": "尊重Respect",
+          "RespectInfo": "LeapIn predicts skills, potential, and fit using behavioral AI — enabling faster, fairer, and more accurate hiring decisions at scale.",
+          "Empathy": "Empathy",
+          "EmpathyInfo": "We believe in building a world where EVERYONE has the opportunity to foresee their talent. We stand for all forms of diversity, including: culture, gender, opinion and race,and empathy is the core.",
+          "ContinuousGrowth": "Continuous Growth",
+          "ContinuousGrowthInfo": "In Leapln, we encourage innovation and accept mistakes.We know that no one is perfect, but the key is how we learn from mistakes quickly and keep growing."
+        },
+        {
+          "title": "Get Things Done",
+          "CustomerFirst": "Customer First",
+          "CustomerFirstInfo": "Customer satisfaction is the greatest return to our work.We put customers’ needs first and help them to achieve the greatest success.",
+          "PromptResponse": "Prompt Response",
+          "PromptResponseInfo": "In a rapidly changing and high-tempo society, time is the biggest cost, We always adhere to the principle of immediate response regardless of the needs of colleagues or customers, We do it now and do it fast.",
+          "StriveForPerfection": "Strive for Perfection",
+          "StriveForPerfectionInfo": "The spirit of craftsmanship is what we admire, and we are constantly pursuing excellence both in products and services."
+        },
+        {
+          "title": "Al for Good",
+          "AlForGood": "Al for Good: Al must be embedded in human rights if we aim to build a fair and equitable society. We are being mindful of gender inequality, racial bias, and ethnic profiling with design of our products.\n\nLeapln and all our engineers support the Beijing AlPrinciples that the development of artificial intelligence(Al) concerns the future of whole of society, all humankind, and the environment.",
+          "btn": "Read the full set of principles"
+        },
+        {
+          "title": "Have Fun",
+          "Passion": "Passion",
+          "PassionInfo": "'Passion' brings all Leaplner together from all over the world. We love what we do, and we come to work each day inspired by knowing that we will positively impact another person's life.",
+          "BeBold": "Be Bold",
+          "BeBoldInfo": "We are young, we dare to think big and take action. We are constantly pursuing personal development and bringing value to society."
+        }
+      ]
+    }, 
     "cta": {
       "title": "Start growing your business today",
       "subtitle": "",
