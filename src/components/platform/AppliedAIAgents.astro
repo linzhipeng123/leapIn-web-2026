@@ -171,13 +171,13 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     position: relative;
     border-radius: 0.75rem;
     border: 1px solid var(--Neutrals-White-00, #FFF);
+    transition: all 0.5s;
     /* background: var(--Neutrals-White-30, rgba(255, 255, 255, 0.30)); */
     /* backdrop-filter: blur(7.5px); */
   }
 
   .feature-ai-sales-coach {
-    transition: all 0.5s;
-    display: none !important;
+    transition: all 0.5s ease;
     border-radius: 0.75rem;
     border: 1px solid var(--Neutrals-White-00, #FFF);
     background: var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
@@ -187,19 +187,24 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 21rem;
+    width: 21rem;
+    transform: translateX(1000px) rotate(-180deg);
+    opacity: 0;
   }
-  .feature-slide[data-index="1"] .feature-ai-coach,
+  .feature-slide[data-index="1"] .feature-ai-coach {
+    transform: translateX(30%) rotate(0);
+  }
   .feature-slide[data-index="2"] .feature-ai-coach {
     transform: translateX(0) rotate(0);
   }
   .feature-slide[data-index="0"] .feature-ai-sales-coach,
   .feature-slide[data-index="1"] .feature-ai-sales-coach {
     transform: translateX(1000px) rotate(-180deg);
+    opacity: 0;
   }
   .feature-slide[data-index="2"] .feature-ai-sales-coach {
-    display: block !important;
-    animation: float 0.5s ease;
+    transform: translateX(0) rotate(0);
+    opacity: 1;
   }
 
   .sales-coach-title {
@@ -253,11 +258,7 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     font-weight: 400;
     line-height: 18px; /* 128.571% */
   }
-  @keyframes float {
-    0% { display: none !important; transform: translateX(1000px) rotate(-180deg); }
-    50% { display: block !important; transform: translateX(1000px) rotate(-180deg); }
-    100% { display: block !important; transform: translateX(0) rotate(0); }
-  }
+
 
   @keyframes fadeIn {
     from {
@@ -353,7 +354,7 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     .feature-slide[data-index="2"] .feature-ai-sales-coach {
       display: block !important;
       transform: translateX(0) rotate(0);
-      animation: none;
+      opacity: 1;
     }
 
     .feature-slide[data-active="false"] {
