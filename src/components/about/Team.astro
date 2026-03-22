@@ -15,7 +15,7 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
 <section class="section-container team-section-inner" id="team-section-inner">
     <!-- <div class="bg-earth"> -->
     <div class="container" id="team-section-inner-container">
-        <div class="team-slider" data-index={0}>
+        <div class="team-slider">
             <h2 class="team-title" data-i18n="about.team.title"></h2>
             <h2 class="team-card-title" data-i18n="about.team.card.title"></h2>
             <div class="team-slider-content">
@@ -124,7 +124,7 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
         flex: 1;
         flex-wrap: wrap;
         position: absolute;
-        max-width: 81.25rem;
+        width: 81.25rem;
         min-height: 100vh;
         padding-top: 4.75rem;
         transition: all 0.5s ease;
@@ -358,6 +358,7 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
             opacity: 1;
             color: var(--grey-gray-60-base, #111827);
             word-break: keep-all;
+            transform: none !important;
         }
 
         .team-card-title {
@@ -407,6 +408,8 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
 
         .team-card-wrap[data-index="1"] {
             margin: 0;
+            right: 0;
+            transform: none;
         }
 
         .team-card-wrap[data-index="2"] {
@@ -418,16 +421,19 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
         }
 
         .team-card-wrap[data-index="4"] {
+            left: 0;
+            bottom: none;
             position: absolute;
-            transform: translateX(-5%) translateY(150%) !important;
+            transform: translateX(0%) translateY(150%) !important;
         }
-
+        
         .team-card-wrap[data-index="5"] {
-            transform: translateX(60%) translateY(-20%) !important;
+            right: 0;
+            transform: translateX(50%) translateY(-20%) !important;
         }
 
         .team-card-wrap[data-index="6"] {
-            transform: translateX(-15%) translateY(-90%) !important;
+            transform: translateX(-20%) translateY(-90%) !important;
         }
 
         .team-card-wrap[data-index="7"] {
