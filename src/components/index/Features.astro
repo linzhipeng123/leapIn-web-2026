@@ -2,6 +2,8 @@
 import { pxToRem } from '../../utils/index';
 import bgPreview from '../../assets/index/features/bg.png';
 import bgPreviewCn from '../../assets/index/features/bg-cn.png';
+import bgPreviewMobile from '../../assets/index/features/bg-mobile.png';
+import bgPreviewMobileCn from '../../assets/index/features/bg-cn-mobile.png';
 import slow1 from '../../assets/index/features/slow1.png';
 import slow2 from '../../assets/index/features/slow2.png';
 import slow3 from '../../assets/index/features/slow3.png';
@@ -79,7 +81,10 @@ const fontSize = {
 
       <!-- Right: Preview Image -->
       <div class="features-preview" id="featuresPreview">
-        <img src={bgPreview.src} data-en-src={bgPreview.src} data-cn-src={bgPreviewCn.src} alt="Features Preview" id="featuresPreviewImg" />
+        <picture>
+          <source media="(max-width: 768px)" srcset={bgPreviewMobile.src} data-en-srcset={bgPreviewMobile.src} data-cn-srcset={bgPreviewMobileCn.src} />
+          <img src={bgPreview.src} data-en-src={bgPreview.src} data-cn-src={bgPreviewCn.src} alt="Features Preview" id="featuresPreviewImg" />
+        </picture>
       </div>
     </div>
   </div>
@@ -92,6 +97,7 @@ const fontSize = {
   // 切换预览图片语言
   const currentLang = localStorage.getItem('language') || 'en';
   const previewImg = document.getElementById('featuresPreviewImg') as HTMLImageElement;
+  const sources = document.querySelectorAll('.features-preview picture source');
   
   if (previewImg) {
     const enSrc = previewImg.getAttribute('data-en-src');
@@ -102,6 +108,16 @@ const fontSize = {
       previewImg.setAttribute('src', enSrc);
     }
   }
+
+  sources.forEach((source) => {
+    const enSrcset = source.getAttribute('data-en-srcset');
+    const cnSrcset = source.getAttribute('data-cn-srcset');
+    if (currentLang === 'zh' && cnSrcset) {
+      source.setAttribute('srcset', cnSrcset);
+    } else if (enSrcset) {
+      source.setAttribute('srcset', enSrcset);
+    }
+  });
 
   // Intersection Observer 监听 features 是否在可视区域内
   if (typeof window !== 'undefined') {
@@ -407,6 +423,14 @@ const fontSize = {
   
 
   @media (max-width: 768px) {
+    .container {
+      padding: 0;
+    }
+    .features-header,
+    .features-list {
+      padding: 0 1rem;
+    }
+
     .features {
       padding: 4rem 0;
     }
@@ -440,7 +464,7 @@ const fontSize = {
     .feature-item {
       display: flex;
       flex-direction: column;
-      max-width: calc(50% - 0.5rem);
+      max-width: calc(50% - 0.25rem);
       transform: none;
     }
 
