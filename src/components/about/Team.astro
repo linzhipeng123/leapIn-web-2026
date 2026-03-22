@@ -340,6 +340,11 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
             background: none;
         }
 
+        .section-container::before {
+            background-size: 200%;
+            background-position: top right;
+        }
+
         .section-container[active-slider="0"]::after {
             background: var(--AI-Gradient-Sky-Aurora-Medium, linear-gradient(90deg, #FBE5CF 0%, #AFC9FF 100%));
         }
