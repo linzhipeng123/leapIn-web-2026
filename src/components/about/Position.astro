@@ -20,62 +20,88 @@ import position from '../../assets/about/position.png';
   import { loadTranslations } from '../../scripts/i18n-loader';
   loadTranslations();
 
-  // 临时模拟数据，后续替换为接口调用
-  const mockPositions = [
-    { id: 1, name: '高级销售经理', nameEn: 'Senior Sales Manager' },
-    { id: 2, name: '高级产品经理', nameEn: 'Senior Product Manager' },
-    { id: 3, name: '区域销售总监(亚太地区)', nameEn: 'Regional Sales Director (APAC)' },
-    { id: 4, name: '国际业务发展助理', nameEn: 'International Business Development Assistant' },
-    { id: 5, name: '创始人助理', nameEn: 'Founder Assistant' }
-  ];
+  // 获取职位列表
+  async function fetchPositions() {
+    try {
+      // 使用本地 API 路由避免 CORS 问题
+      const base = import.meta.env.BASE_URL || '';
+      const url = `${base}api/positions`;
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // 根据实际接口返回的数据结构: { code: 0, data: { pageData: [...] } }
+      if (data.code === 0 && data.data && data.data.pageData) {
+        return data.data.pageData;
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('Failed to fetch positions:', error);
+      // 返回空数组，避免页面崩溃
+      return [];
+    }
+  }
 
-  // TODO: 替换为实际接口调用
-  // async function fetchPositions() {
-  //   try {
-  //     const response = await fetch('/api/positions');
-  //     const data = await response.json();
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Failed to fetch positions:', error);
-  //     return [];
-  //   }
-  // }
-
-  function renderPositions(positions: typeof mockPositions) {
+  function renderPositions(positions: any[]) {
     const positionList = document.querySelector('.position-list');
     if (!positionList) return;
 
     const currentLang = localStorage.getItem('language') || 'en';
-    const base = import.meta.env.BASE_URL || '';
     
-    positionList.innerHTML = positions.map(position => `
-      <div class="position-item">
-        <div class="position-name">${currentLang === 'zh' ? position.name : position.nameEn}</div>
-        <a href="${base}request" class="button button-primary position-apply-btn">
-          <span class="button-text" data-i18n="about.position.apply">申请</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <mask id="mask0_apply_${position.id}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-              <rect width="24" height="24" fill="#D9D9D9"/>
-            </mask>
-            <g mask="url(#mask0_apply_${position.id})">
-              <path d="M18.175 12.9998H3C2.71667 12.9998 2.47917 12.904 2.2875 12.7123C2.09583 12.5206 2 12.2831 2 11.9998C2 11.7165 2.09583 11.479 2.2875 11.2873C2.47917 11.0956 2.71667 10.9998 3 10.9998H18.175L14.3 7.0998C14.1167 6.91647 14.0208 6.6873 14.0125 6.4123C14.0042 6.1373 14.1 5.8998 14.3 5.6998C14.4833 5.51647 14.7167 5.4248 15 5.4248C15.2833 5.4248 15.5167 5.51647 15.7 5.6998L21.3 11.2998C21.4 11.3998 21.4708 11.5081 21.5125 11.6248C21.5542 11.7415 21.575 11.8665 21.575 11.9998C21.575 12.1331 21.5542 12.2581 21.5125 12.3748C21.4708 12.4915 21.4 12.5998 21.3 12.6998L15.7 18.2998C15.5167 18.4831 15.2875 18.5748 15.0125 18.5748C14.7375 18.5748 14.5 18.4831 14.3 18.2998C14.1 18.0998 14 17.8623 14 17.5873C14 17.3123 14.1 17.0748 14.3 16.8748L18.175 12.9998Z" fill="white"/>
-            </g>
-          </svg>
-        </a>
-      </div>
-    `).join('');
+    // 如果没有职位数据，显示提示信息
+    if (positions.length === 0) {
+      positionList.innerHTML = `
+        <div style="padding: 2rem; text-align: center; color: #6B7280;">
+          <p data-i18n="about.position.noPositions">暂无职位</p>
+        </div>
+      `;
+      loadTranslations();
+      return;
+    }
+
+    positionList.innerHTML = positions.map(position => {
+      // 接口返回的字段: { id, title, ... }
+      // 目前只有英文标题，中文暂时也使用 title
+      const positionName = position.title;
+      const detailUrl = `https://app.unfolds.ai/company/client/AHIJRH/detail/${position.id}`;
+      
+      return `
+        <div class="position-item">
+          <div class="position-name">${positionName}</div>
+          <a href="${detailUrl}" target="_blank" rel="noopener noreferrer" class="button button-primary position-apply-btn">
+            <span class="button-text" data-i18n="about.position.apply">申请</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <mask id="mask0_apply_${position.id}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                <rect width="24" height="24" fill="#D9D9D9"/>
+              </mask>
+              <g mask="url(#mask0_apply_${position.id})">
+                <path d="M18.175 12.9998H3C2.71667 12.9998 2.47917 12.904 2.2875 12.7123C2.09583 12.5206 2 12.2831 2 11.9998C2 11.7165 2.09583 11.479 2.2875 11.2873C2.47917 11.0956 2.71667 10.9998 3 10.9998H18.175L14.3 7.0998C14.1167 6.91647 14.0208 6.6873 14.0125 6.4123C14.0042 6.1373 14.1 5.8998 14.3 5.6998C14.4833 5.51647 14.7167 5.4248 15 5.4248C15.2833 5.4248 15.5167 5.51647 15.7 5.6998L21.3 11.2998C21.4 11.3998 21.4708 11.5081 21.5125 11.6248C21.5542 11.7415 21.575 11.8665 21.575 11.9998C21.575 12.1331 21.5542 12.2581 21.5125 12.3748C21.4708 12.4915 21.4 12.5998 21.3 12.6998L15.7 18.2998C15.5167 18.4831 15.2875 18.5748 15.0125 18.5748C14.7375 18.5748 14.5 18.4831 14.3 18.2998C14.1 18.0998 14 17.8623 14 17.5873C14 17.3123 14.1 17.0748 14.3 16.8748L18.175 12.9998Z" fill="white"/>
+              </g>
+            </svg>
+          </a>
+        </div>
+      `;
+    }).join('');
 
     // 重新加载翻译
     loadTranslations();
   }
 
-  // 初始化渲染
-  renderPositions(mockPositions);
-
-  // TODO: 使用接口数据
-  // fetchPositions().then(positions => {
-  //   renderPositions(positions);
-  // });
+  // 初始化：从接口获取数据
+  fetchPositions().then(positions => {
+    renderPositions(positions);
+  });
 </script>
 
 <style define:vars={{

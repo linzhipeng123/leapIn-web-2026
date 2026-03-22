@@ -323,7 +323,8 @@
       "title": "Work With Us",
       "subtitle": "LeapIn is always looking for smart and passionate people to join our proud team",
       "OpenPositions": "Open Positions",
-      "apply": "Apply"
+      "apply": "Apply",
+      "noPositions": "No positions available"
     },
     "cta": {
       "title": "Start growing your business today",
