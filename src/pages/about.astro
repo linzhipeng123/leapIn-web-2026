@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
 import Values from '../components/about/Values.astro';
 import Team from '../components/about/Team.astro';
+import Position from '../components/about/Position.astro';
 import CTA from '../components/cta/CommonCAT.astro';
 ---
 
@@ -21,6 +22,9 @@ import CTA from '../components/cta/CommonCAT.astro';
 		</section>
 		<section class="scroll-section team-section" data-section="team">
 			<Team />
+		</section>
+		<section class="scroll-section position-section" data-section="position">
+			<Position />
 		</section>
 		<section class="scroll-section cta-section" data-section="cta">
 			<CTA pageName='about' />
@@ -69,6 +73,7 @@ import CTA from '../components/cta/CommonCAT.astro';
 </script>
 
 <style>
+	.position-section,
 	.cta-section,
 	.footer-section {
 		min-height: auto;

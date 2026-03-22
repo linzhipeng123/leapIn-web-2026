@@ -1,0 +1,97 @@
+---
+import position from '../../assets/about/position.png';
+---
+
+<section class="position">
+  <div class="container">
+    <h2 class="position-title" data-i18n="about.position.title"></h2>
+    <p class="position-subtitle" data-i18n="about.position.subtitle"></p>
+    <div class="position-content">
+        <img class="position-img" src={position.src} alt="">
+        <div class="open-positions">
+            <div class="open-positions-title" data-i18n="about.position.OpenPositions"></div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+</script>
+
+<style define:vars={{
+  position: position.src,
+}}>
+  .position {
+    position: relative;
+    padding: 6rem 0;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .position-title {
+    font-size: 2.5rem;
+    color: var(--grey-gray-60-base, #111827);
+    line-height: 124%; /* 49.6px */
+    letter-spacing: -0.44px;
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .position-subtitle {
+    font-size: 0.875rem;
+    color: var(--grey-gray-60-base, #111827);
+    line-height: 124%; /* 17.36px */
+    letter-spacing: -0.154px;
+    margin-bottom: 2.375rem;
+  }
+
+  .position-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .position-img {
+    max-width: 33.5rem;
+    flex: 1;
+  }
+
+  .open-positions {
+    max-width: 42rem;
+    min-width: 30rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .open-positions-title {
+    padding: 1rem 1.5rem;
+    color: var(--grey-gray-60-base, #111827);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 120%;
+  }
+
+  @media (max-width: 768px) {
+    .position-title {
+      font-size: 1.5rem;
+      line-height: 120%;
+    }
+
+    .position-subtitle {
+      font-size: 0.875rem;
+      line-height: 120%;
+    }
+
+  }
+</style>
