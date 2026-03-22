@@ -8,9 +8,8 @@ import img4 from '../../assets/about/4.png';
 import img5 from '../../assets/about/5.png';
 import img6 from '../../assets/about/6.png';
 import img7 from '../../assets/about/7.png';
-import { pxToRem } from '../../utils/index';
 
-const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
+const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
 ---
 
 <section class="section-container team-section-inner" id="team-section-inner">
@@ -27,6 +26,7 @@ const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
                 {
                     imgs.map((img,index) => (
                         <div class="team-card-wrap" data-index={index + 1}>
+                            {index=== 3 || index === 6 ? <div class={`team-card-info team-card-info-${index}`} data-i18n={`about.team.card.cardInfo${index}`}></div> : null}
                             <img src={img.src} alt="" />
                         </div>
                     ))
@@ -54,7 +54,11 @@ const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
         background: var(--grey-gray-60-base, #111827);
     }
 
-    .team-section-inner[active-slider="0"]::before {
+    .section-container[active-slider="0"]::after {
+        background: none
+    }
+
+    .team-section-inner::before {
         content: '';
         position: absolute;
         left: 0;
@@ -67,10 +71,10 @@ const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        z-index: 0;
+        z-index: 1;
     }
 
-    .team-section-inner::before {
+    .section-container::after {
         content: '';
         position: absolute;
         left: 0;
@@ -83,7 +87,6 @@ const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
         background: var(--AI-Gradient-Sky-Aurora-Medium, linear-gradient(90deg, #FBE5CF 0%, #AFC9FF 100%));
         filter: blur(18.149999618530273px);
         z-index: 0;
-        transition: all 0.8s ease;
     }
 
     .container {
@@ -183,6 +186,26 @@ const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
         transition: all 0.8s ease;
         position: absolute;
     }
+
+    .team-card-info {
+        position: absolute;
+        color: var(--Neutrals-White-10, rgba(255, 255, 255, 0.75));
+        font-weight: 600;
+        line-height: 120%;
+        white-space: pre-wrap;
+    }
+
+    .team-card-info-3 {
+        left: 1.25rem;
+        top: 1.5rem;
+        font-size: 1.125rem;
+    }
+
+    .team-card-info-6 {
+        left: 2rem;
+        top: 2.25rem;
+        font-size: 1.5rem;
+    }
     .team-card-wrap[data-index="1"] {
         width: 21.125rem;
     }
@@ -268,34 +291,38 @@ const imgs = [ img1, img2, img3, img4, img5, img6, img7 ];
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="1"] {
-        transform: translateX(-100%) translateY(-20vh) rotate(0);
+        transform: translateX(-110%) translateY(-25vh) rotate(0);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="2"] {
         left: 0;
-        transform: translateY(0) rotate(0);
+        transform: translateY(-10vh) rotate(0);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="3"] {
         right: 0;
-        transform: translateY(25vh) rotate(0);
+        transform: translateY(8vh) rotate(0);
+        z-index: 1;
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="4"] {
-        transform: translateX(-105%) translateY(25vh) rotate(0);
+        bottom: 3.5rem;
+        transform: translateX(-115%) rotate(0);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="5"] {
-        transform: translateX(180%) translateY(-10vh) rotate(0);
+        transform: translateX(170%) translateY(-20vh) rotate(0);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="6"] {
         bottom: 1rem;
         transform: translateX(100%) translateY(0) rotate(0);
+        z-index: 3;
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="7"] {
-        transform: translateX(20%) translateY(0) rotate(0);
+        transform: translateX(15%) translateY(0) rotate(0);
+        z-index: 2;
     }
     
     @media (max-width: 768px) {
