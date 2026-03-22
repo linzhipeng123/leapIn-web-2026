@@ -34,12 +34,12 @@ const cards = [
 ];
 ---
 
-<section class="section-container covered-section" id="covered-section">
+<section class="section-container values-section-inner" id="values-section-inner">
     <!-- <div class="bg-earth"> -->
-    <div class="container" id="covered-section-container">
-        <div class="feature-slide" data-index={0}>
+    <div class="container" id="values-section-inner-container">
+        <div class="values-slider" data-index={0}>
             <h2 class="covered-title" data-i18n="industries.covered.title"></h2>
-            <div class="feature-slider-content">
+            <div class="values-slider-content">
                 {
                     cards.map((cardItem,index) => (
                         <div class="values-card-wrap" data-index={index}>
@@ -66,7 +66,7 @@ const cards = [
         overflow: hidden;
     }
 
-    .covered-section::before {
+    .values-section-inner::before {
         content: '';
         position: absolute;
         left: 0;
@@ -93,14 +93,14 @@ const cards = [
         z-index: 1;
     }
 
-    .covered-section[active-slider="1"],
-    .covered-section[active-slider="2"],
-    .covered-section[active-slider="3"],
-    .covered-section[active-slider="4"] {
+    .values-section-inner[active-slider="1"],
+    .values-section-inner[active-slider="2"],
+    .values-section-inner[active-slider="3"],
+    .values-section-inner[active-slider="4"] {
         overflow: hidden;
     }
 
-    .feature-slide {
+    .values-slider {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -111,7 +111,7 @@ const cards = [
         position: relative;
     }
 
-    .feature-slider-content {
+    .values-slider-content {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -144,52 +144,52 @@ const cards = [
     }
 
     /* pre */
-    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="0"] {
+    .values-slider-pre.values-slider[data-index="0"] .values-card-wrap[data-index="0"] {
         transform: translateX(1000px) translateY(30vh) rotate(30deg);
     }
 
-    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="1"],
-    .feature-slide[data-index="0"] .values-card-wrap[data-index="1"] {
+    .values-slider-pre.values-slider[data-index="0"] .values-card-wrap[data-index="1"],
+    .values-slider[data-index="0"] .values-card-wrap[data-index="1"] {
         transform: translateX(1000px) translateY(40vh) rotate(30deg);
     }
 
-    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="2"],
-    .feature-slide[data-index="0"] .values-card-wrap[data-index="2"],
-    .feature-slide[data-index="1"] .values-card-wrap[data-index="2"]{
+    .values-slider-pre.values-slider[data-index="0"] .values-card-wrap[data-index="2"],
+    .values-slider[data-index="0"] .values-card-wrap[data-index="2"],
+    .values-slider[data-index="1"] .values-card-wrap[data-index="2"]{
         transform: translateX(1000px) translateY(50vh) rotate(45deg);
     }
 
-    .feature-slide-pre.feature-slide[data-index="0"] .values-card-wrap[data-index="3"],
-    .feature-slide[data-index="0"] .values-card-wrap[data-index="3"],
-    .feature-slide[data-index="1"] .values-card-wrap[data-index="3"],
-    .feature-slide[data-index="2"] .values-card-wrap[data-index="3"] {
+    .values-slider-pre.values-slider[data-index="0"] .values-card-wrap[data-index="3"],
+    .values-slider[data-index="0"] .values-card-wrap[data-index="3"],
+    .values-slider[data-index="1"] .values-card-wrap[data-index="3"],
+    .values-slider[data-index="2"] .values-card-wrap[data-index="3"] {
         transform: translateX(1000px) translateY(60vh) rotate(45deg);
     }
     /* pre */
 
 
     /* data-index="0" - 初始状态 */
-    .feature-slide[data-index="0"] .values-card-wrap[data-index="0"],
-    .feature-slide[data-index="1"] .values-card-wrap[data-index="1"],
-    .feature-slide[data-index="2"] .values-card-wrap[data-index="2"],
-    .feature-slide[data-index="3"] .values-card-wrap[data-index="3"] {
+    .values-slider[data-index="0"] .values-card-wrap[data-index="0"],
+    .values-slider[data-index="1"] .values-card-wrap[data-index="1"],
+    .values-slider[data-index="2"] .values-card-wrap[data-index="2"],
+    .values-slider[data-index="3"] .values-card-wrap[data-index="3"] {
         margin: 0 auto;
         transform: translateX(0) translateY(0) rotate(0deg);
     }
 
-    .feature-slide[data-index="1"] .values-card-wrap[data-index="0"],
-    .feature-slide[data-index="2"] .values-card-wrap[data-index="0"],
-    .feature-slide[data-index="3"] .values-card-wrap[data-index="2"] {
+    .values-slider[data-index="1"] .values-card-wrap[data-index="0"],
+    .values-slider[data-index="2"] .values-card-wrap[data-index="0"],
+    .values-slider[data-index="3"] .values-card-wrap[data-index="2"] {
         margin: 0;
         transform: translateX(-150%) translateY(0) rotate(0deg);
     }
-    .feature-slide[data-index="3"] .values-card-wrap[data-index="0"] {
+    .values-slider[data-index="3"] .values-card-wrap[data-index="0"] {
         margin: 0;
         transform: translateX(-1500px) translateY(0) rotate(0deg);
     }
 
-    .feature-slide[data-index="2"] .values-card-wrap[data-index="1"],
-    .feature-slide[data-index="3"] .values-card-wrap[data-index="1"] {
+    .values-slider[data-index="2"] .values-card-wrap[data-index="1"],
+    .values-slider[data-index="3"] .values-card-wrap[data-index="1"] {
         margin: 0;
         transform: translateX(150%) translateY(0) rotate(0deg);
     }
@@ -201,7 +201,7 @@ const cards = [
         .container {
             padding: 0 1rem;
         }
-        .feature-slide {
+        .values-slider {
             gap: 1.5rem;
         }
 
@@ -213,7 +213,7 @@ const cards = [
             font-weight: 600;
             opacity: 1;
         }
-        .feature-slider-content {
+        .values-slider-content {
             gap: 1rem;
             flex-direction: column;
             padding: 0;
@@ -242,13 +242,13 @@ const cards = [
   import { loadTranslations } from '../../scripts/i18n-loader';
   loadTranslations();
 
-  const section = document.getElementById('covered-section');
-  const slider = document.getElementById('covered-section-container');
+  const section = document.getElementById('values-section-inner');
+  const slider = document.getElementById('values-section-inner-container');
   
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   if (section && slider && !isMobile) {
     let currentIndex = 0;
-    const slides = slider.querySelectorAll('.feature-slide');
+    const slides = slider.querySelectorAll('.values-slider');
     const totalSlides = 4; // 0-3 共4个状态
 
     const updateSlide = (index: number) => {

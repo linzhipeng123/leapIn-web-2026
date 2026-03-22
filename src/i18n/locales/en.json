@@ -310,6 +310,13 @@
         }
       ]
     }, 
+    "team": {
+      "title": "You can’ t build great products without great people",
+      "card": {
+        "title": "THE TEAM",
+        "description": "We're mission-driven, and we're an established, sustainable business in a fast paced industry that is full ofinteresting challenges and opportunities to grow, At Leapin, we believe 'Team Work' 'Get Things Done' 'HaveFun'We also believe in Talent, and everything we do is about Talent.Do meaningful things with us together!"
+      }
+    },
     "cta": {
       "title": "Start growing your business today",
       "subtitle": "",

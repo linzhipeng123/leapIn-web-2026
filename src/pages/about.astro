@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
 import Values from '../components/about/Values.astro';
+import Team from '../components/about/Team.astro';
 import CTA from '../components/cta/CommonCAT.astro';
 ---
 
@@ -17,6 +18,9 @@ import CTA from '../components/cta/CommonCAT.astro';
 		</section>
 		<section class="scroll-section values-section" data-section="values">
 			<Values />
+		</section>
+		<section class="scroll-section team-section" data-section="team">
+			<Team />
 		</section>
 		<section class="scroll-section cta-section" data-section="cta">
 			<CTA pageName='about' />
@@ -37,7 +41,9 @@ import CTA from '../components/cta/CommonCAT.astro';
 		
 		if (!isMobile()) {
 			const valuesSection = document.querySelector('.values-section');
-			const featureSlide = document.querySelector('.feature-slide');
+			const featureSlide = document.querySelector('.values-slider');
+			const teamSection = document.querySelector('.team-section');
+			const teamSlide = document.querySelector('.team-slider');
 
 			if (valuesSection && featureSlide) {
 				const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -46,9 +52,9 @@ import CTA from '../components/cta/CommonCAT.astro';
 						
 						if (!entry.isIntersecting && currentIndex === 0) {
 							// 不在可视区域内，且 data-index 为 0
-							featureSlide.setAttribute('class', 'feature-slide feature-slide-pre')
+							featureSlide.setAttribute('class', 'values-slider values-slider-pre')
 						} else {
-							featureSlide.setAttribute('class', 'feature-slide feature-slide-inner')
+							featureSlide.setAttribute('class', 'values-slider values-slider-inner')
 						}
 					});
 				};
@@ -59,6 +65,28 @@ import CTA from '../components/cta/CommonCAT.astro';
 				});
 
 				observer.observe(valuesSection);
+			}
+
+			if (teamSection && teamSlide) {
+				const observerCallback = (entries: IntersectionObserverEntry[]) => {
+					entries.forEach(entry => {
+						const currentIndex = parseInt(teamSlide.getAttribute('data-index') || '0');
+						
+						if (!entry.isIntersecting && currentIndex === 0) {
+							// 不在可视区域内，且 data-index 为 0
+							teamSlide.setAttribute('class', 'team-slider team-slider-pre')
+						} else {
+							teamSlide.setAttribute('class', 'team-slider team-slider-inner')
+						}
+					});
+				};
+
+				const observer = new IntersectionObserver(observerCallback, {
+					threshold: 0.1,
+					rootMargin: '0px'
+				});
+
+				observer.observe(teamSection);
 			}
 		}
 	}
