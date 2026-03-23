@@ -202,30 +202,70 @@ import PlatformFeatureCard from './PlatformFeatureCard.astro';
 
     observer.observe(scrollSection);
 
+    let scrollAccumulator = 0;
+    let lastScrollDirection = 0;
+    let animationTimeout: number | null = null;
+    const SCROLL_THRESHOLD = 50;
+    const ANIMATION_DURATION = 800;
+
     scrollSection.addEventListener('wheel', (e: WheelEvent) => {
-      if (!isInViewport || isScrolling) return;
+      if (!isInViewport) return;
 
-      const scrollingDown = e.deltaY > 0;
-      const scrollingUp = e.deltaY < 0;
+      const scrollDirection = e.deltaY > 0 ? 1 : -1;
 
-      const shouldHandleDown = scrollingDown && currentIndex < totalCards - 1;
-      const shouldHandleUp = scrollingUp && currentIndex > 0;
+      // 检查是否在边界
+      const atStart = currentIndex === 0 && scrollDirection < 0;
+      const atEnd = currentIndex === totalCards - 1 && scrollDirection > 0;
 
-      if (shouldHandleDown || shouldHandleUp) {
-        e.preventDefault();
-        e.stopPropagation();
-        isScrolling = true;
-
-        if (shouldHandleDown) {
-          updateCards(currentIndex + 1);
-        } else if (shouldHandleUp) {
-          updateCards(currentIndex - 1);
-        }
-
-        setTimeout(() => {
-          isScrolling = false;
-        }, 800);
+      // 在边界时，不阻止默认行为，让滚动传递到父级 scroll-section
+      if (atStart || atEnd) {
+        scrollAccumulator = 0;
+        lastScrollDirection = 0;
+        return;
       }
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      // 检测方向改变
+      if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
+        if (animationTimeout) {
+          clearTimeout(animationTimeout);
+          animationTimeout = null;
+        }
+        isScrolling = false;
+        scrollAccumulator = 0;
+      }
+
+      lastScrollDirection = scrollDirection;
+
+      if (isScrolling) {
+        scrollAccumulator += Math.abs(e.deltaY);
+        if (scrollAccumulator < SCROLL_THRESHOLD) {
+          return;
+        }
+      }
+
+      scrollAccumulator += Math.abs(e.deltaY);
+
+      if (scrollAccumulator < SCROLL_THRESHOLD) {
+        return;
+      }
+
+      scrollAccumulator = 0;
+      isScrolling = true;
+
+      const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
+      updateCards(targetIndex);
+
+      if (animationTimeout) {
+        clearTimeout(animationTimeout);
+      }
+      animationTimeout = window.setTimeout(() => {
+        isScrolling = false;
+        scrollAccumulator = 0;
+        animationTimeout = null;
+      }, ANIMATION_DURATION);
     }, { passive: false });
   }
 </script>

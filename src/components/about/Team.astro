@@ -475,31 +475,67 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
 
     updateSlide(0);
 
-    let isScrolling = false;
+    let isAnimating = false;
+    let scrollAccumulator = 0;
+    let lastScrollDirection = 0;
+    let animationTimeout: number | null = null;
+    const SCROLL_THRESHOLD = 50;
+    const ANIMATION_DURATION = 800;
+
     section.addEventListener('wheel', (e) => {
-      if (isScrolling) return;
-      
+      const scrollDirection = e.deltaY > 0 ? 1 : -1;
+
+      const atStart = currentIndex === 0 && scrollDirection < 0;
+      const atEnd = currentIndex === totalSlides - 1 && scrollDirection > 0;
+
+      if (atStart || atEnd) {
+        scrollAccumulator = 0;
+        lastScrollDirection = 0;
+        return;
+      }
+
       e.preventDefault();
       e.stopPropagation();
-      isScrolling = true;
 
-      if (e.deltaY > 0) {
-        // 向下滚动
-        if (currentIndex < totalSlides - 1) {
-          currentIndex++;
+      if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
+        if (animationTimeout) {
+          clearTimeout(animationTimeout);
+          animationTimeout = null;
         }
-      } else {
-        // 向上滚动
-        if (currentIndex > 0) {
-          currentIndex--;
+        isAnimating = false;
+        scrollAccumulator = 0;
+      }
+
+      lastScrollDirection = scrollDirection;
+
+      if (isAnimating) {
+        scrollAccumulator += Math.abs(e.deltaY);
+        if (scrollAccumulator < SCROLL_THRESHOLD) {
+          return;
         }
       }
 
+      scrollAccumulator += Math.abs(e.deltaY);
+
+      if (scrollAccumulator < SCROLL_THRESHOLD) {
+        return;
+      }
+
+      scrollAccumulator = 0;
+      isAnimating = true;
+
+      const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
+      currentIndex = targetIndex;
       updateSlide(currentIndex);
 
-      setTimeout(() => {
-        isScrolling = false;
-      }, 800);
+      if (animationTimeout) {
+        clearTimeout(animationTimeout);
+      }
+      animationTimeout = window.setTimeout(() => {
+        isAnimating = false;
+        scrollAccumulator = 0;
+        animationTimeout = null;
+      }, ANIMATION_DURATION);
     }, { passive: false });
   }
 </script>
