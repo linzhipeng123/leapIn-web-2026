@@ -2,6 +2,12 @@
 // Chatbot 悬浮按钮和弹窗组件
 import AIIcon1 from '../assets/AIIcons.svg';
 import AIIcon2 from '../assets/AIIcons2.svg';
+import AIAvatar from '../assets/chatbot/AIAvatar.png';
+import UserAvatar from '../assets/chatbot/UserAvatar.png';
+import FullScreenIcon from '../assets/chatbot/fullScreen.svg';
+import ShrinkScreenIcon from '../assets/chatbot/shirnkScreen.svg';
+import SendIcon from '../assets/chatbot/send.svg';
+import SoundIcon from '../assets/chatbot/sound.svg';
 ---
 
 <div class="chatbot-container">
@@ -14,56 +20,54 @@ import AIIcon2 from '../assets/AIIcons2.svg';
   <div class="chatbot-popup" id="chatbot-popup">
     <div class="chatbot-header">
       <div class="chatbot-header-content">
-        <div class="chatbot-avatar">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
-              </linearGradient>
-            </defs>
-            <rect x="20" y="25" width="60" height="50" rx="12" fill="url(#avatarGradient)" />
-            <circle cx="40" cy="45" r="4" fill="white" />
-            <circle cx="60" cy="45" r="4" fill="white" />
-          </svg>
-        </div>
+        <img class="chatbot-avatar" src={AIAvatar.src} alt="AI Avatar" />
         <div class="chatbot-info">
-          <h3>AI Assistant</h3>
-          <p class="status">在线</p>
+          <h3>AI Job Assistant</h3>
         </div>
       </div>
-      <button class="close-button" id="chatbot-close" aria-label="Close chat">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+      <div class="chatbot-header-actions">
+        <button class="icon-button" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+          <img src={FullScreenIcon.src} alt="Fullscreen" id="fullscreen-icon" />
+        </button>
+        <button class="icon-button" id="chatbot-close" aria-label="Close chat">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div class="chatbot-messages" id="chatbot-messages">
       <div class="message bot-message">
-        <div class="message-avatar">🤖</div>
+        <img class="message-avatar" src={AIAvatar.src} alt="AI" />
         <div class="message-content">
-          <p>您好！我是 LeapIn AI 助手。有什么可以帮助您的吗？</p>
+          <p>Hi I'm Elsa, how can i help you today? You can ask me anything about our business, culture, team, and more. Or you can start with a quick action below.</p>
         </div>
+      </div>
+      <div class="quick-actions">
+        <button class="quick-action-btn">LeapIn Introduction</button>
+        <button class="quick-action-btn">Product & Solution</button>
       </div>
     </div>
 
-    <div class="chatbot-input-container">
-      <input 
-        type="text" 
-        class="chatbot-input" 
-        id="chatbot-input"
-        placeholder="输入您的问题..."
-        aria-label="Chat input"
-      />
-      <button class="send-button" id="chatbot-send" aria-label="Send message">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
+    <div class="chatbot-footer">
+      <div class="chatbot-input-container">
+        <input 
+          type="text" 
+          class="chatbot-input" 
+          id="chatbot-input"
+          placeholder="Ask Elsa..."
+          aria-label="Chat input"
+        />
+        <button class="icon-button" id="sound-button" aria-label="Voice input">
+          <img src={SoundIcon.src} alt="Voice" />
+        </button>
+        <button class="icon-button send-button" id="chatbot-send" aria-label="Send message">
+          <img src={SendIcon.src} alt="Send" />
+        </button>
+      </div>
+      <p class="privacy-text">Privacy and terms</p>
     </div>
   </div>
 </div>
@@ -71,7 +75,7 @@ import AIIcon2 from '../assets/AIIcons2.svg';
 <style>
   .chatbot-container {
     position: fixed;
-    bottom: 2rem;
+    bottom: 0.625rem;
     right: 2rem;
     z-index: 9999;
   }
@@ -94,12 +98,19 @@ import AIIcon2 from '../assets/AIIcons2.svg';
   }
 
   .chatbot-button.icon2 {
+    border-radius: 50%;
     background: linear-gradient(142deg, rgba(251, 229, 207, 0.30) 13.69%, rgba(175, 201, 255, 0.30) 87.17%), #FFF;
   }
 
-  .chatbot-button:hover {
+  .chatbot-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+  }
+
+  .chatbot-button:hover:not(.hidden) {
     transform: scale(1.1);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0.75rem 2.5rem 0 rgba(0, 0, 0, 0.08);
   }
 
   .chatbot-icon {
@@ -110,22 +121,32 @@ import AIIcon2 from '../assets/AIIcons2.svg';
 
   /* Chatbot 弹窗 */
   .chatbot-popup {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 380px;
-    height: 600px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    bottom: 0.625rem;
+    right: 1.5rem;;
+    width: 100%;
+    max-width: 25rem;
+    height: auto;
+    max-height: calc(100vh - 5.375rem - 20px);
+    background: #F5F5F5;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.15);
     display: none;
     flex-direction: column;
     overflow: hidden;
     animation: slideUp 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .chatbot-popup.active {
     display: flex;
+  }
+
+  .chatbot-popup.fullscreen {
+    top: 5.375rem;
+    bottom: 0.625rem;
+    max-height: none;
+    height: auto;
   }
 
   @keyframes slideUp {
@@ -141,63 +162,68 @@ import AIIcon2 from '../assets/AIIcons2.svg';
 
   /* Header */
   .chatbot-header {
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    color: white;
+    padding: 1rem 1.5rem;
+    background: #FFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #E5E5E5;
   }
 
   .chatbot-header-content {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .chatbot-avatar {
-    width: 40px;
-    height: 40px;
-    background: white;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-  }
-
-  .chatbot-avatar svg {
-    width: 100%;
-    height: 100%;
+    object-fit: cover;
   }
 
   .chatbot-info h3 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 600;
+    background: linear-gradient(90deg, #A855F7 0%, #6366F1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .status {
-    margin: 0;
-    font-size: 0.85rem;
-    opacity: 0.9;
+  .chatbot-header-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
   }
 
-  .close-button {
+  .icon-button {
     background: none;
     border: none;
-    color: white;
     cursor: pointer;
     padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     transition: background 0.3s;
+    width: 2rem;
+    height: 2rem;
   }
 
-  .close-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+  .icon-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .icon-button img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .icon-button svg {
+    color: #666;
   }
 
   /* Messages */
@@ -208,7 +234,8 @@ import AIIcon2 from '../assets/AIIcons2.svg';
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: #f8f9fa;
+    background: #F5F5F5;
+    min-height: 20rem;
   }
 
   .message {
@@ -229,28 +256,26 @@ import AIIcon2 from '../assets/AIIcons2.svg';
   }
 
   .message-avatar {
-    width: 32px;
-    height: 32px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
     flex-shrink: 0;
+    object-fit: cover;
   }
 
   .message-content {
     flex: 1;
     background: white;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
   }
 
   .message-content p {
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #333;
+    font-size: 0.95rem;
   }
 
   .user-message {
@@ -262,62 +287,98 @@ import AIIcon2 from '../assets/AIIcons2.svg';
     color: white;
   }
 
-  /* Input */
-  .chatbot-input-container {
-    padding: 1rem 1.5rem;
-    background: white;
-    border-top: 1px solid #e5e7eb;
+  /* Quick Actions */
+  .quick-actions {
     display: flex;
     gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .quick-action-btn {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .quick-action-btn:hover {
+    border-color: #A855F7;
+    color: #A855F7;
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.75rem rgba(168, 85, 247, 0.2);
+  }
+
+  /* Footer */
+  .chatbot-footer {
+    padding: 1rem 1.5rem;
+    background: white;
+    border-top: 1px solid #E5E5E5;
+  }
+
+  .chatbot-input-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: #F5F5F5;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
   }
 
   .chatbot-input {
     flex: 1;
-    padding: 0.75rem 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 24px;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
     font-size: 0.95rem;
     outline: none;
-    transition: border-color 0.3s;
   }
 
-  .chatbot-input:focus {
-    border-color: #6366f1;
+  .chatbot-input::placeholder {
+    color: #999;
   }
 
   .send-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
+    border-radius: 50%;
   }
 
   .send-button:hover {
-    transform: scale(1.1);
+    background: linear-gradient(135deg, #5558e3 0%, #7c4de8 100%);
   }
 
-  .send-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .send-button img {
+    filter: brightness(0) invert(1);
+  }
+
+  .privacy-text {
+    margin: 0.75rem 0 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #999;
   }
 
   @media (max-width: 768px) {
     .chatbot-container {
-      bottom: 1rem;
+      bottom: 0.625rem;
       right: 1rem;
     }
 
     .chatbot-popup {
-      width: calc(100vw - 2rem);
-      height: calc(100vh - 120px);
-      max-width: 380px;
+      right: 1rem;
+      left: 1rem;
+      max-width: none;
+    }
+
+    .chatbot-popup.fullscreen {
+      right: 0;
+      left: 0;
+      border-radius: 0;
     }
   }
 </style>
@@ -326,6 +387,8 @@ import AIIcon2 from '../assets/AIIcons2.svg';
   // Chatbot 交互逻辑
   const toggleButton = document.getElementById('chatbot-toggle') as HTMLButtonElement;
   const closeButton = document.getElementById('chatbot-close');
+  const fullscreenToggle = document.getElementById('fullscreen-toggle');
+  const fullscreenIcon = document.getElementById('fullscreen-icon') as HTMLImageElement;
   const popup = document.getElementById('chatbot-popup');
   const input = document.getElementById('chatbot-input') as HTMLInputElement;
   const sendButton = document.getElementById('chatbot-send');
@@ -336,6 +399,11 @@ import AIIcon2 from '../assets/AIIcons2.svg';
   let currentIcon = 1;
   const icon1Src = new URL('../assets/AIIcons.svg', import.meta.url).href;
   const icon2Src = new URL('../assets/AIIcons2.svg', import.meta.url).href;
+  const fullScreenSrc = new URL('../assets/chatbot/fullScreen.svg', import.meta.url).href;
+  const shrinkScreenSrc = new URL('../assets/chatbot/shirnkScreen.svg', import.meta.url).href;
+  const userAvatarSrc = new URL('../assets/chatbot/UserAvatar.png', import.meta.url).href;
+
+  let isFullscreen = false;
 
   const cycleIcon = () => {
     currentIcon = currentIcon === 1 ? 2 : 1;
@@ -350,18 +418,40 @@ import AIIcon2 from '../assets/AIIcons2.svg';
   };
 
   // 每3秒切换一次图标
-  setInterval(cycleIcon, 1500);
+  setInterval(cycleIcon, 3000);
 
   // 切换弹窗显示
   toggleButton?.addEventListener('click', () => {
-    popup?.classList.toggle('active');
-    if (popup?.classList.contains('active')) {
-      input?.focus();
+    popup?.classList.add('active');
+    toggleButton?.classList.add('hidden');
+    input?.focus();
+  });
+
+  // 关闭弹窗
+  closeButton?.addEventListener('click', () => {
+    popup?.classList.remove('active');
+    popup?.classList.remove('fullscreen');
+    toggleButton?.classList.remove('hidden');
+    isFullscreen = false;
+    if (fullscreenIcon) {
+      fullscreenIcon.src = fullScreenSrc;
     }
   });
 
-  closeButton?.addEventListener('click', () => {
-    popup?.classList.remove('active');
+  // 全屏切换
+  fullscreenToggle?.addEventListener('click', () => {
+    isFullscreen = !isFullscreen;
+    if (isFullscreen) {
+      popup?.classList.add('fullscreen');
+      if (fullscreenIcon) {
+        fullscreenIcon.src = shrinkScreenSrc;
+      }
+    } else {
+      popup?.classList.remove('fullscreen');
+      if (fullscreenIcon) {
+        fullscreenIcon.src = fullScreenSrc;
+      }
+    }
   });
 
   // 发送消息
@@ -373,7 +463,7 @@ import AIIcon2 from '../assets/AIIcons2.svg';
     const userMessage = document.createElement('div');
     userMessage.className = 'message user-message';
     userMessage.innerHTML = `
-      <div class="message-avatar">👤</div>
+      <img class="message-avatar" src="${userAvatarSrc}" alt="User" />
       <div class="message-content">
         <p>${message}</p>
       </div>
@@ -393,10 +483,11 @@ import AIIcon2 from '../assets/AIIcons2.svg';
     setTimeout(() => {
       const botMessage = document.createElement('div');
       botMessage.className = 'message bot-message';
+      const aiAvatarSrc = new URL('../assets/chatbot/AIAvatar.png', import.meta.url).href;
       botMessage.innerHTML = `
-        <div class="message-avatar">🤖</div>
+        <img class="message-avatar" src="${aiAvatarSrc}" alt="AI" />
         <div class="message-content">
-          <p>感谢您的提问！我们的团队会尽快为您解答。</p>
+          <p>Thank you for your question! Our team will get back to you soon.</p>
         </div>
       `;
       messagesContainer?.appendChild(botMessage);
