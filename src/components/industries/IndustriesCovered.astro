@@ -431,8 +431,16 @@ const imgs = [
     const slides = slider.querySelectorAll('.feature-slide');
     const totalSlides = 5; // 0-4 共5个状态
 
+    let isAnimating = false;
+    let scrollAccumulator = 0;
+    let lastScrollDirection = 0; // 1 for down, -1 for up
+    let animationTimeout: number | null = null;
+    
+    const SCROLL_THRESHOLD = 50; // 滚动阈值
+    const ANIMATION_DURATION = 800;
+
     const updateSlide = (index: number) => {
-        section.setAttribute('active-slider', index.toString())
+      section.setAttribute('active-slider', index.toString());
       slides.forEach((slide) => {
         slide.setAttribute('data-active', 'true');
         slide.setAttribute('data-index', index.toString());
@@ -441,31 +449,73 @@ const imgs = [
 
     updateSlide(0);
 
-    let isScrolling = false;
     section.addEventListener('wheel', (e) => {
-      if (isScrolling) return;
-      
+      const scrollDirection = e.deltaY > 0 ? 1 : -1;
+
+      // 检查是否在边界
+      const atStart = currentIndex === 0 && scrollDirection < 0;
+      const atEnd = currentIndex === totalSlides - 1 && scrollDirection > 0;
+
+      // 在边界时，不阻止默认行为，让滚动传递到父级 scroll-section
+      if (atStart || atEnd) {
+        // 重置状态
+        scrollAccumulator = 0;
+        lastScrollDirection = 0;
+        return;
+      }
+
+      // 不在边界，阻止默认滚动行为
       e.preventDefault();
       e.stopPropagation();
-      isScrolling = true;
 
-      if (e.deltaY > 0) {
-        // 向下滚动
-        if (currentIndex < totalSlides - 1) {
-          currentIndex++;
+      // 检测方向改变
+      if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
+        // 反向滚动，中断当前动画
+        if (animationTimeout) {
+          clearTimeout(animationTimeout);
+          animationTimeout = null;
         }
-      } else {
-        // 向上滚动
-        if (currentIndex > 0) {
-          currentIndex--;
+        isAnimating = false;
+        scrollAccumulator = 0;
+      }
+
+      lastScrollDirection = scrollDirection;
+
+      // 如果正在动画中且方向相同，累积滚动量
+      if (isAnimating) {
+        scrollAccumulator += Math.abs(e.deltaY);
+        // 同方向滚动未达到阈值，忽略
+        if (scrollAccumulator < SCROLL_THRESHOLD) {
+          return;
         }
       }
 
+      // 累积滚动量
+      scrollAccumulator += Math.abs(e.deltaY);
+
+      // 未达到阈值，不触发切换
+      if (scrollAccumulator < SCROLL_THRESHOLD) {
+        return;
+      }
+
+      // 达到阈值，执行切换
+      scrollAccumulator = 0;
+      isAnimating = true;
+
+      const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
+
+      currentIndex = targetIndex;
       updateSlide(currentIndex);
 
-      setTimeout(() => {
-        isScrolling = false;
-      }, 800);
+      // 动画完成后重置状态
+      if (animationTimeout) {
+        clearTimeout(animationTimeout);
+      }
+      animationTimeout = window.setTimeout(() => {
+        isAnimating = false;
+        scrollAccumulator = 0;
+        animationTimeout = null;
+      }, ANIMATION_DURATION);
     }, { passive: false });
   }
 </script>

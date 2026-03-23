@@ -11,6 +11,9 @@ import SoundIcon from '../assets/chatbot/sound.svg';
 ---
 
 <div class="chatbot-container">
+  <!-- 遮罩层 -->
+  <div class="chatbot-overlay" id="chatbot-overlay"></div>
+  
   <!-- 悬浮按钮 -->
   <button class="chatbot-button" id="chatbot-toggle" aria-label="Open AI Assistant">
     <img class="chatbot-icon" src={AIIcon1.src} alt="AI Icon" id="chatbot-icon" />
@@ -80,6 +83,23 @@ import SoundIcon from '../assets/chatbot/sound.svg';
     z-index: 9999;
   }
 
+  /* 遮罩层 */
+  .chatbot-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--Grey-Gray-30, rgba(17, 24, 39, 0.40));
+    backdrop-filter: blur(7.5px);
+    z-index: 9998;
+  }
+
+  .chatbot-overlay.active {
+    display: block;
+  }
+
   /* 悬浮按钮 */
   .chatbot-button {
     width: 3.125rem;
@@ -123,7 +143,7 @@ import SoundIcon from '../assets/chatbot/sound.svg';
   .chatbot-popup {
     position: fixed;
     bottom: 0.625rem;
-    right: 1.5rem;;
+    right: 2rem;
     width: 100%;
     max-width: 25rem;
     height: auto;
@@ -136,6 +156,7 @@ import SoundIcon from '../assets/chatbot/sound.svg';
     overflow: hidden;
     animation: slideUp 0.3s ease;
     transition: all 0.3s ease;
+    z-index: 10000;
   }
 
   .chatbot-popup.active {
@@ -144,7 +165,10 @@ import SoundIcon from '../assets/chatbot/sound.svg';
 
   .chatbot-popup.fullscreen {
     top: 5.375rem;
-    bottom: 0.625rem;
+    bottom: 10px;
+    right: 2rem;
+    left: 2rem;
+    max-width: none;
     max-height: none;
     height: auto;
   }
@@ -274,6 +298,7 @@ import SoundIcon from '../assets/chatbot/sound.svg';
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+    max-width: 80%;
   }
 
   :global(.message-content p) {
@@ -285,12 +310,7 @@ import SoundIcon from '../assets/chatbot/sound.svg';
 
   :global(.user-message) {
     flex-direction: row-reverse;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    /* flex-direction: column; */
-    flex-direction: row-reverse;
-    gap: 0.5rem;
+    justify-content: flex-start;
   }
 
   :global(.user-message .message-content) {
@@ -380,15 +400,39 @@ import SoundIcon from '../assets/chatbot/sound.svg';
       right: 1rem;
     }
 
+    .chatbot-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--Grey-Gray-30, rgba(17, 24, 39, 0.40));
+      backdrop-filter: blur(7.5px);
+      z-index: 9998;
+    }
+
+    .chatbot-overlay.active {
+      display: block;
+    }
+
     .chatbot-popup {
-      right: 1rem;
-      left: 1rem;
+      bottom: 0;
+      right: 0;
+      left: 0;
       max-width: none;
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      border-radius: 1rem 1rem 0 0;
     }
 
     .chatbot-popup.fullscreen {
+      top: 0;
       right: 0;
       left: 0;
+      max-height: 100vh;
+      height: 100vh;
       border-radius: 0;
     }
   }
@@ -401,6 +445,7 @@ import SoundIcon from '../assets/chatbot/sound.svg';
   const fullscreenToggle = document.getElementById('fullscreen-toggle');
   const fullscreenIcon = document.getElementById('fullscreen-icon') as HTMLImageElement;
   const popup = document.getElementById('chatbot-popup');
+  const overlay = document.getElementById('chatbot-overlay');
   const input = document.getElementById('chatbot-input') as HTMLInputElement;
   const sendButton = document.getElementById('chatbot-send');
   const messagesContainer = document.getElementById('chatbot-messages');
@@ -434,20 +479,25 @@ import SoundIcon from '../assets/chatbot/sound.svg';
   // 切换弹窗显示
   toggleButton?.addEventListener('click', () => {
     popup?.classList.add('active');
+    overlay?.classList.add('active');
     toggleButton?.classList.add('hidden');
     input?.focus();
   });
 
   // 关闭弹窗
-  closeButton?.addEventListener('click', () => {
+  const closePopup = () => {
     popup?.classList.remove('active');
     popup?.classList.remove('fullscreen');
+    overlay?.classList.remove('active');
     toggleButton?.classList.remove('hidden');
     isFullscreen = false;
     if (fullscreenIcon) {
       fullscreenIcon.src = fullScreenSrc;
     }
-  });
+  };
+
+  closeButton?.addEventListener('click', closePopup);
+  overlay?.addEventListener('click', closePopup);
 
   // 全屏切换
   fullscreenToggle?.addEventListener('click', () => {
