@@ -1,23 +1,13 @@
 ---
 // Chatbot 悬浮按钮和弹窗组件
+import AIIcon1 from '../assets/AIIcons.svg';
+import AIIcon2 from '../assets/AIIcons2.svg';
 ---
 
 <div class="chatbot-container">
   <!-- 悬浮按钮 -->
   <button class="chatbot-button" id="chatbot-toggle" aria-label="Open AI Assistant">
-    <svg class="chatbot-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="chatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
-        </linearGradient>
-      </defs>
-      <rect x="20" y="25" width="60" height="50" rx="12" fill="url(#chatGradient)" />
-      <circle cx="40" cy="45" r="4" fill="white" />
-      <circle cx="60" cy="45" r="4" fill="white" />
-      <path d="M50 65 L45 70 L50 70 L55 70 Z" fill="url(#chatGradient)" />
-    </svg>
+    <img class="chatbot-icon" src={AIIcon1.src} alt="AI Icon" id="chatbot-icon" />
   </button>
 
   <!-- Chatbot 弹窗 -->
@@ -88,28 +78,34 @@
 
   /* 悬浮按钮 */
   .chatbot-button {
-    width: 60px;
-    height: 60px;
+    width: 3.125rem;
+    height: 3.125rem;
     border-radius: 50%;
-    background: white;
-    border: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--AI-Gradient-Sky-Aurora-Medium, #FBE5CF);
+    background: linear-gradient(322deg, rgba(251, 229, 207, 0.30) 14.44%, rgba(175, 201, 255, 0.30) 82.53%), #FFF;
+    box-shadow: 0 0.75rem 2.5rem 0 rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.6s ease;
     padding: 0;
+  }
+
+  .chatbot-button.icon2 {
+    background: linear-gradient(142deg, rgba(251, 229, 207, 0.30) 13.69%, rgba(175, 201, 255, 0.30) 87.17%), #FFF;
   }
 
   .chatbot-button:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.08);
   }
 
   .chatbot-icon {
-    width: 36px;
-    height: 36px;
+    width: 1.875rem;
+    height: 1.875rem;
+    transition: opacity 0.3s ease;
   }
 
   /* Chatbot 弹窗 */
@@ -328,12 +324,33 @@
 
 <script>
   // Chatbot 交互逻辑
-  const toggleButton = document.getElementById('chatbot-toggle');
+  const toggleButton = document.getElementById('chatbot-toggle') as HTMLButtonElement;
   const closeButton = document.getElementById('chatbot-close');
   const popup = document.getElementById('chatbot-popup');
   const input = document.getElementById('chatbot-input') as HTMLInputElement;
   const sendButton = document.getElementById('chatbot-send');
   const messagesContainer = document.getElementById('chatbot-messages');
+  const chatbotIcon = document.getElementById('chatbot-icon') as HTMLImageElement;
+
+  // 图标循环切换
+  let currentIcon = 1;
+  const icon1Src = new URL('../assets/AIIcons.svg', import.meta.url).href;
+  const icon2Src = new URL('../assets/AIIcons2.svg', import.meta.url).href;
+
+  const cycleIcon = () => {
+    currentIcon = currentIcon === 1 ? 2 : 1;
+    
+    if (currentIcon === 1) {
+      chatbotIcon.src = icon1Src;
+      toggleButton?.classList.remove('icon2');
+    } else {
+      chatbotIcon.src = icon2Src;
+      toggleButton?.classList.add('icon2');
+    }
+  };
+
+  // 每3秒切换一次图标
+  setInterval(cycleIcon, 1500);
 
   // 切换弹窗显示
   toggleButton?.addEventListener('click', () => {
