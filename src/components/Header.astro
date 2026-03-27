@@ -1,6 +1,7 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import Button from './Button.astro';
+import logo from '../assets/logo.png';
 
 // 获取当前路径
 const currentPath = Astro.url.pathname;
@@ -13,7 +14,9 @@ console.log("base", base)
   <div class="container">
     <div class="header-content">
       <div class="header-content-wrap">
-        <a href={base} class="logo">LeapIn</a>
+        <a href={base} class="logo">
+          <img src={logo.src} alt="LeapIn" />
+        </a>
         
         <nav class="nav">
           <div class={`nav-link ${currentPath.includes('/platform') ? 'active' : ''}`}>
@@ -116,10 +119,14 @@ console.log("base", base)
   }
 
   .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #6366f1;
+    display: block;
     text-decoration: none;
+  }
+
+  .logo img {
+    height: 1.5rem;
+    width: auto;
+    display: block;
   }
 
   .nav {
