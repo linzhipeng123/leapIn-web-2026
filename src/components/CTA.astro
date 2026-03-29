@@ -53,11 +53,11 @@ const layers = [
 			const industriesCta = document.getElementById('industries-cta');
             let currentIndex = 0;
             // ----
-            if (industriesCta && ctaSection) {
-                const totalSlides = 3; // 0-2 共3个状态
+            if (ctaSection) {
+                const totalSlides = industriesCta ? 3 : 2; // 0-2 共3个状态
 
                 const updateSlide = (index: number) => {
-                    industriesCta.setAttribute('active-slider', index.toString());
+                    industriesCta?.setAttribute('active-slider', index.toString());
                     ctaSection.setAttribute('active-slider', index.toString());
                 };
 
@@ -70,7 +70,7 @@ const layers = [
                 const SCROLL_THRESHOLD = 50;
                 const ANIMATION_DURATION = 500;
 
-                industriesCta.addEventListener('wheel', (e) => {
+                (industriesCta || ctaSection).addEventListener('wheel', (e) => {
                     const scrollDirection = e.deltaY > 0 ? 1 : -1;
 
                     const atStart = currentIndex === 0 && scrollDirection < 0;
@@ -125,67 +125,6 @@ const layers = [
                         animationTimeout = null;
                     }, ANIMATION_DURATION);
                 }, { passive: false });
-            }
-            // // ----
-
-
-            if (!industriesCta && ctaSection) {
-                const footerSection = document.querySelector('.footer-section');
-                const ctaBg = document.getElementById('cta-bg');
-                const partnerItems = document.querySelectorAll('.partner-item');
-
-                const observerCallback = (entries: IntersectionObserverEntry[]) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // 滚动到 footer，收缩 CTA
-                            if (ctaSection) {
-                                // 先临时设置为 auto 来获取真实内容高度
-                                const originalMinHeight = ctaSection.style.minHeight;
-                                ctaSection.style.minHeight = 'auto';
-                                ctaSection.style.padding = '6rem 0';
-                                // 恢复原始值以便触发过渡
-                                ctaSection.style.minHeight = originalMinHeight || '100vh';
-                                
-                                // 使用 requestAnimationFrame 确保过渡生效
-                                requestAnimationFrame(() => {
-                                    if (ctaSection) {
-                                        ctaSection.style.minHeight = "calc(100vh - 25.25rem)";
-                                    }
-                                });
-                            }
-                            
-                            if (ctaBg) {
-                                ctaBg.style.gap = 'clamp(1rem, 2vw, 1.875rem)';
-                            }
-                            
-                            partnerItems.forEach(item => {
-                                (item as HTMLElement).style.maxWidth = 'clamp(30rem, 50vw, 39.75rem)';
-                            });
-                        } else {
-                            // 离开 footer，恢复 CTA 原始状态
-                            if (ctaSection) {
-                                ctaSection.style.minHeight = '100vh';
-                            }
-                            
-                            if (ctaBg) {
-                                ctaBg.style.gap = 'clamp(1.5rem, 3vw, 2.875rem)';
-                            }
-                            
-                            partnerItems.forEach(item => {
-                                (item as HTMLElement).style.maxWidth = 'clamp(35rem, 60vw, 65.375rem)';
-                            });
-                        }
-                    });
-                };
-
-                const observer = new IntersectionObserver(observerCallback, {
-                    threshold: 0.1,
-                    rootMargin: '0px'
-                });
-
-                if (footerSection) {
-                    observer.observe(footerSection);
-                }
             }
 		}
 	}
@@ -256,6 +195,11 @@ const layers = [
         transition: all 0.5s ease;
 		z-index: 0;
     }
+    .cta-industries[active-slider="2"]::after {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
 
 	.cta-industries[active-slider="0"].cta-industries {
 		position: absolute;
@@ -263,12 +207,16 @@ const layers = [
         min-height: 0;
 	}
 
-	.cta-industries[active-slider="1"].cta-industries {
+	.cta-industries[active-slider="1"].cta-industries,
+    .cta-section.cta-platform[active-slider="0"],
+    .cta-section.cta-solutions[active-slider="0"] {
 		opacity: 1;
         min-height: 100vh;
 	}
 
-	.cta-industries[active-slider="2"].cta-industries {
+	.cta-industries[active-slider="2"].cta-industries,
+    .cta-section.cta-platform[active-slider="1"],
+    .cta-section.cta-solutions[active-slider="1"] {
 		opacity: 1;
         min-height: calc(-25.25rem + 100vh);
 	}
