@@ -361,6 +361,8 @@
       "terms": "Terms of Service"
     },
     "email": "Email *",
+    "emailLabel": "Email *",
+    "submit": "Submit",
     "copyright": "© LeapIn AI Talent Intelligence Platform"
   },
   "chatbot": {

@@ -367,6 +367,8 @@
       "terms": "服务条款"
     },
     "email": "邮箱 *",
+    "emailLabel": "邮箱 *",
+    "submit": "提交",
     "copyright": "© LeapIn AI Talent Intelligence Platform"
   },
   "chatbot": {
