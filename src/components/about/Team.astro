@@ -404,43 +404,43 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
 
         .team-card-wrap[data-index="0"] {
             transform: none !important;
+            transform: translateX(100%) translateY(100%) rotate(-30deg) !important;
         }
 
         .team-card-wrap[data-index="1"] {
             margin: 0;
             right: 0;
-            transform: none;
+            transform: translateX(-100%) translateY(100%) rotate(30deg) !important;
         }
 
         .team-card-wrap[data-index="2"] {
-            transform: translateX(-70%) translateY(-50%) !important;
+            transform: translateX(70%) translateY(50%) rotate(-45deg) !important;
         }
 
         .team-card-wrap[data-index="3"] {
-            transform: translateX(70%) translateY(-140%) !important;
+            transform: translateX(-70%) translateY(40%) rotate(-30deg) !important;
         }
 
         .team-card-wrap[data-index="4"] {
             left: 0;
             bottom: none;
             position: absolute;
-            transform: translateX(0%) translateY(150%) !important;
+            transform: translateX(100%) translateY(190%) rotate(-30deg) !important;
         }
         
         .team-card-wrap[data-index="5"] {
             right: 0;
-            transform: translateX(50%) translateY(-20%) !important;
+            transform: translateX(100%) translateY(-80%) rotate(15deg) !important;
         }
 
         .team-card-wrap[data-index="6"] {
-            transform: translateX(-20%) translateY(-90%) !important;
+            transform: translateX(-100%) translateY(-100%) rotate(-15deg) !important;
         }
 
         .team-card-wrap[data-index="7"] {
             position: absolute;
-            bottom: 0;
             width: 21rem;
-            transform: translateX(0) translateY(0%) !important;
+            transform: translateX(100%) translateY(100%) rotate(30deg) !important;
         }
 
         .team-card-wrap-title {
@@ -449,11 +449,51 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
             margin-bottom: 0;
             transform: none;
         }
+
+        .team-section-inner.in-view .team-card-wrap[data-index="0"] {
+            transform: translateX(0) translateY(0) !important;
+        }
+
+        .team-section-inner.in-view .team-card-wrap[data-index="1"] {
+            margin: 0;
+            right: 0;
+            transform: translateX(0) translateY(0) !important;
+        }
+
+        .team-section-inner.in-view .team-card-wrap[data-index="2"] {
+            transform: translateX(-70%) translateY(-50%) !important;
+        }
+
+       .team-section-inner.in-view  .team-card-wrap[data-index="3"] {
+            transform: translateX(70%) translateY(-140%) !important;
+        }
+
+        .team-section-inner.in-view .team-card-wrap[data-index="4"] {
+            left: 0;
+            bottom: none;
+            position: absolute;
+            transform: translateX(0%) translateY(150%) !important;
+        }
+        
+        .team-section-inner.in-view .team-card-wrap[data-index="5"] {
+            right: 0;
+            transform: translateX(50%) translateY(-20%) !important;
+        }
+
+        .team-section-inner.in-view .team-card-wrap[data-index="6"] {
+            transform: translateX(-20%) translateY(-90%) !important;
+        }
+
+       .team-section-inner.in-view .team-card-wrap[data-index="7"] {
+            bottom: 0;
+            transform: translateX(0) translateY(0%) !important;
+        }
 	}
 </style>
 
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
+  import { inView } from '../../utils/inView';
   loadTranslations();
 
   const section = document.getElementById('team-section-inner');
@@ -537,5 +577,9 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
         animationTimeout = null;
       }, ANIMATION_DURATION);
     }, { passive: false });
+  }
+  // Intersection Observer 监听 features 是否在可视区域内
+  if (isMobile && typeof window !== 'undefined') {
+    inView({id: "team-section-inner", threshold: 0.2})
   }
 </script>
