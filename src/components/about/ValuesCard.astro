@@ -32,7 +32,7 @@ const { cardIndex, detailList, btn } = Astro.props;
         }
         {
             btn ? (
-                <Button type="primary" text={`about.values.items.${cardIndex}.${btn.text}`} className="cta-btn" href={btn.href} target='_blank' />
+                <Button type="primary" text={`about.values.items.${cardIndex}.${btn.text}`} className="w-full" href={btn.href} target='_blank' />
             ) : null
         }
     </div>

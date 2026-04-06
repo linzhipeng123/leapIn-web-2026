@@ -458,8 +458,8 @@ const products = [
     let scrollAccumulator = 0;
     let lastScrollDirection = 0;
     let animationTimeout: number | null = null;
-    const SCROLL_THRESHOLD = 50;
-    const ANIMATION_DURATION = 500;
+    const SCROLL_THRESHOLD = 100;
+    const ANIMATION_DURATION = 800;
 
     productShowcase.addEventListener('wheel', (e) => {
       const scrollDirection = e.deltaY > 0 ? 1 : -1;
