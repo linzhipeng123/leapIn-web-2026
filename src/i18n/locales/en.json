@@ -12,19 +12,19 @@
   },
   "homepage": {
     "hero": {
-      "title": "AI Talent Intelligence for Global Enterprises",
-      "subtitle": "Predict skills. Match talent. Build future-ready teams — at enterprise scale.",
-      "description": "LeapIn is the AI Talent Intelligence Platform that helps Fortune 500 organizations hire smarter, develop faster, and retain top talent across the entire talent lifecycle.",
+      "title": "Predictive Workforce Intelligence for Enterprise Talent Decisions",
+      "subtitle": "",
+      "description": "Bring quant-level intelligence to talent decisions — predict hiring success, leadership potential, and workforce outcomes before you invest.",
       "cta": "Get Started",
       "secondary": "Learn More"
     },
     "partners": {
-      "title": "Trusted by Leading Companies Worldwide",
-      "description": "Serving leading organizations across 8 major industries globally"
+      "title": "Trusted by Global Enterprises",
+      "description": "Serving leading organizations across 8 major industries worldwide."
     },
     "features": {
-      "title": "Talent Is Now a Board-Level Risk",
-      "subtitle": "The result: Talent becomes a constraint — not a competitive advantage.",
+      "title": "HR Has Become Strategic — Without Strategic Infrastructure",
+      "subtitle": "But most systems were designed for record-keeping — not decision-making.",
       "items": [
         {
           "label": "Slow Hiring",
@@ -53,49 +53,50 @@
       ]
     },
     "product": {
-      "title": "One Platform, Full Talent Intelligence",
-      "subtitle": "LeapIn uses behavioral AI to predict skills, potential, and fit — powering smarter talent decisions across the entire employee lifecycle, all on a single enterprise platform.",
-      "cta": "Request Platform Demo",
+      "title": "LeapIn turns workforce data into predictive intelligence —",
+      "subtitle": "helping enterprises make better decisions across hiring, mobility, and leadership. We don’t track what happened.We predict what will happen.",
+      "cta": "Explore the Platform",
       "items": [
         {
           "title": "AI Talent\nAcquisition",
-          "subtitle": "Hire for skills and potential\n— not resumes.",
-          "description": "Predict on-the-job success with behavioral AI that delivers faster, fairer, and more consistent hiring."
+          "subtitle": "Predict who will succeed—\nnot just who looks good on paper.",
+          "description": "Hire Success Probability predicts who will perform before day one, eliminating guesswork from hiring decisions."
         },
         {
           "title": "AI Talent\nMarketplace",
-          "subtitle": "Make skills visible.\nUnlock internal mobility.",
-          "description": "Create a dynamic internal talent marketplace with predictive skill profiling and role matching."
+          "subtitle": "Make internal talent your first hiring option.",
+          "description": "Mobility Fit Score reveals hidden internal potential, turning reactive backfilling into predictive capability deployment."
         },
         {
           "title": "AI Talent\nDevelopment",
-          "subtitle": "Develop people with precision.",
-          "description": "Personalize growth and succession planning using real skill gaps and business priorities."
+          "subtitle": "Build leadership pipelines with predictive certainty.",
+          "description": "Promotion Success Probability validates leadership readiness early, replacing annual planning with continuous succession intelligence."
         }
       ]
     },
     "stats": {
-      "title": "Proven ROI at Enterprise Scale",
-      "subtitle": "Serving leading organizations across 8 major industries worldwide.",
+      "title": "Infrastructure-Level Returns",
+      "subtitle": "LeapIn turns talent data into measurable business outcomes.",
       "items": [
         {
-          "value": "10x",
-          "label": "Faster Hiring"
+          "value": "40–60%",
+          "label": "Reduction",
+          "description": "In talent decision uncertainty"
         },
         {
           "value": "87%",
-          "label": "Cost Savings",
-          "description": "In recruitment spend"
+          "label": "Cost avoidance",
+          "description": "Through early risk detection"
         },
         {
-          "value": "80%",
-          "label": "Lower Turnover",
-          "description": "Through better fit prediction"
-        },
-        {
-          "value": "3-5x",
+          "value": "3-5×",
           "label": "Increase",
-          "description": "In internal mobility"
+          "description": "In internal capability reallocation"
+        },
+        {
+          "value": "12–18×",
+          "label": "Valuation",
+          "description": "Multiple alignment"
         }
       ]
     },
@@ -103,14 +104,14 @@
       "title": "Turn Talent Into Your Competitive Advantage",
       "subtitle": "See how LeapIn helps global enterprises make smarter talent decisions with AI.",
       "enterprises": {
-        "title": "Built for Enterprises\nThat Can’t Afford Talent Mistakes",
-        "subtitle": "LeapIn brings intelligence to every talent decision by predicting skills, potential, and fit using behavioral AI — all on a single enterprise platform.",
+        "title": "Built as Infrastructure, Not Software",
+        "subtitle": "",
         "items": [
-          {"label" : "Patented behavioral AI"},
-          {"label" : "Trained on billions of data points"},
-          {"label" : "20+ languages,\nglobal-ready"},
+          {"label" : "Proprietary Behavioral\nPrediction Engine "},
+          {"label" : "4M+ Multi-modal\nBehavioral Dataset"},
+          {"label" : "Global API Infrastructure\n(20+ languages)"},
           {"label" : "Industry-specific\nmodels (8 sectors)"},
-          {"label" : "Secure, scalable, compliantI"}
+          {"label" : "Industry-specific\nmodels (8 sectors)"}
         ]
       },
       "button": "Request a Demo"
