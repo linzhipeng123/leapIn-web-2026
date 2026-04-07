@@ -85,14 +85,15 @@ import Section2 from '../components/solutions/Section2.astro';
 				observer.observe(section1);
 			}
 			if (section2 && cardSection2) {
+      			const currentLang = localStorage.getItem('language') || 'en';
 				const observerCallback = (entries: IntersectionObserverEntry[]) => {
 					entries.forEach(entry => {
 						if (entry.isIntersecting) {
 							// 在可视区域内，恢复原始状态
-							(cardSection2 as HTMLElement).style.transform = 'translateY(0) rotate(0)';
-							(cardSection2 as HTMLElement).style.left = ' -4rem';
+							(cardSection2 as HTMLElement).style.transform = 'translateY(-4em) rotate(0)';
+							(cardSection2 as HTMLElement).style.left = ' 0rem';
 							(avatarSection2 as HTMLElement).style.transform = 'translateY(-5rem) rotate(0)';
-							(scoreSection2 as HTMLElement).style.transform = 'translateX(-12.5rem) translateY(12rem) rotate(0)';
+							(scoreSection2 as HTMLElement).style.transform = `translateX(${currentLang === 'zh' ? '-100%' : '-16.5rem'}) translateY(10rem) rotate(0)`;
 						} else {
 							// 不在可视区域，应用变换
 							(cardSection2 as HTMLElement).style.transform = 'translateY(-400px) rotate(-45deg)';
@@ -142,5 +143,9 @@ import Section2 from '../components/solutions/Section2.astro';
 		background: #0f172a;
 		color: rgba(255, 255, 255, 0.5);
 		text-align: center;
+	}
+	
+	.solution-section2 {
+        overflow: hidden;
 	}
 </style>
