@@ -54,6 +54,7 @@ const layers = [
 
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
+	import { createSectionScroll } from '../utils/sectionScroll';
 	loadTranslations();
 
 	// 监听 footer-section 的滚动
@@ -63,80 +64,22 @@ const layers = [
 		if (!isMobile()) {
 			const ctaSection = document.getElementById('cta-section');
 			const industriesCta = document.getElementById('industries-cta');
-            let currentIndex = 0;
-            // ----
+            
             if (ctaSection) {
-                const totalSlides = industriesCta ? 3 : 2; // 0-2 共3个状态
-
-                const updateSlide = (index: number) => {
-                    industriesCta?.setAttribute('active-slider', index.toString());
-                    ctaSection.setAttribute('active-slider', index.toString());
-                };
-
-                updateSlide(0);
-
-                let isAnimating = false;
-                let scrollAccumulator = 0;
-                let lastScrollDirection = 0;
-                let animationTimeout: number | null = null;
-                const SCROLL_THRESHOLD = 50;
-                const ANIMATION_DURATION = 500;
-
-                (industriesCta || ctaSection).addEventListener('wheel', (e) => {
-                    const scrollDirection = e.deltaY > 0 ? 1 : -1;
-
-                    const atStart = currentIndex === 0 && scrollDirection < 0;
-                    const atEnd = currentIndex === totalSlides - 1 && scrollDirection > 0;
-
-                    if (atStart || atEnd) {
-                        scrollAccumulator = 0;
-                        lastScrollDirection = 0;
-                        return;
-                    }
-
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
-                        if (animationTimeout) {
-                            clearTimeout(animationTimeout);
-                            animationTimeout = null;
-                        }
-                        isAnimating = false;
-                        scrollAccumulator = 0;
-                    }
-
-                    lastScrollDirection = scrollDirection;
-
-                    if (isAnimating) {
-                        scrollAccumulator += Math.abs(e.deltaY);
-                        if (scrollAccumulator < SCROLL_THRESHOLD) {
-                            return;
-                        }
-                    }
-
-                    scrollAccumulator += Math.abs(e.deltaY);
-
-                    if (scrollAccumulator < SCROLL_THRESHOLD) {
-                        return;
-                    }
-
-                    scrollAccumulator = 0;
-                    isAnimating = true;
-                    
-                    const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
-                    currentIndex = targetIndex;
-                    updateSlide(currentIndex);
-
-                    if (animationTimeout) {
-                        clearTimeout(animationTimeout);
-                    }
-                    animationTimeout = window.setTimeout(() => {
-                        isAnimating = false;
-                        scrollAccumulator = 0;
-                        animationTimeout = null;
-                    }, ANIMATION_DURATION);
-                }, { passive: false });
+                const totalSlides = industriesCta ? 3 : 2;
+				const targetSection = industriesCta || ctaSection;
+				
+				// 使用通用滚动控制器
+				createSectionScroll({
+					sectionId: targetSection.id,
+					totalSlides,
+					scrollThreshold: 100,
+					animationDuration: 800,
+					onSlideUpdate: (index) => {
+						industriesCta?.setAttribute('active-slider', index.toString());
+						ctaSection.setAttribute('active-slider', index.toString());
+					},
+				});
             }
 		}
 	}

@@ -264,90 +264,33 @@ const cards = [
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
   import { inView } from '../../utils/inView';
+  import { createSectionScroll } from '../../utils/sectionScroll';
   loadTranslations();
 
   const section = document.getElementById('values-section-inner');
   const slider = document.getElementById('values-section-inner-container');
   
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
+  // 使用通用滚动控制器
   if (section && slider && !isMobile) {
-    let currentIndex = 0;
     const slides = slider.querySelectorAll('.values-slider');
-    const totalSlides = 4; // 0-3 共4个状态
-
-    const updateSlide = (index: number) => {
-        section.setAttribute('active-slider', index.toString())
-      slides.forEach((slide) => {
-        slide.setAttribute('data-active', 'true');
-        slide.setAttribute('data-index', index.toString());
-      });
-    };
-
-    updateSlide(0);
-
-    let isAnimating = false;
-    let scrollAccumulator = 0;
-    let lastScrollDirection = 0;
-    let animationTimeout: number | null = null;
-    const SCROLL_THRESHOLD = 50;
-    const ANIMATION_DURATION = 800;
-
-    section.addEventListener('wheel', (e) => {
-      const scrollDirection = e.deltaY > 0 ? 1 : -1;
-
-      const atStart = currentIndex === 0 && scrollDirection < 0;
-      const atEnd = currentIndex === totalSlides - 1 && scrollDirection > 0;
-
-      if (atStart || atEnd) {
-        scrollAccumulator = 0;
-        lastScrollDirection = 0;
-        return;
-      }
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
-        if (animationTimeout) {
-          clearTimeout(animationTimeout);
-          animationTimeout = null;
-        }
-        isAnimating = false;
-        scrollAccumulator = 0;
-      }
-
-      lastScrollDirection = scrollDirection;
-
-      if (isAnimating) {
-        scrollAccumulator += Math.abs(e.deltaY);
-        if (scrollAccumulator < SCROLL_THRESHOLD) {
-          return;
-        }
-      }
-
-      scrollAccumulator += Math.abs(e.deltaY);
-
-      if (scrollAccumulator < SCROLL_THRESHOLD) {
-        return;
-      }
-
-      scrollAccumulator = 0;
-      isAnimating = true;
-
-      const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
-      currentIndex = targetIndex;
-      updateSlide(currentIndex);
-
-      if (animationTimeout) {
-        clearTimeout(animationTimeout);
-      }
-      animationTimeout = window.setTimeout(() => {
-        isAnimating = false;
-        scrollAccumulator = 0;
-        animationTimeout = null;
-      }, ANIMATION_DURATION);
-    }, { passive: false });
+    
+    createSectionScroll({
+      sectionId: 'values-section-inner',
+      totalSlides: 4,
+      scrollThreshold: 100,
+      animationDuration: 800,
+      onSlideUpdate: (index) => {
+        section.setAttribute('active-slider', index.toString());
+        slides.forEach((slide) => {
+          slide.setAttribute('data-active', 'true');
+          slide.setAttribute('data-index', index.toString());
+        });
+      },
+    });
   }
+  
   // Intersection Observer 监听 features 是否在可视区域内
   if (isMobile && typeof window !== 'undefined') {
     inView({id: "values-card-wrap-0", threshold: 0.2});

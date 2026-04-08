@@ -257,6 +257,13 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 		const sections = document.querySelectorAll('.scroll-section');
 		const container = document.querySelector('.scroll-container');
 
+		// 全局状态：用于子组件通知父级滚动控制
+		(window as any).scrollState = {
+			canScrollToNext: true,
+			canScrollToPrev: true,
+			isInnerScrolling: false
+		};
+
 		// 防抖函数
 		function debounce(func: Function, wait: number) {
 			let timeout: number;
@@ -292,20 +299,39 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 		function handleWheel(e: Event) {
 			if (!(e instanceof WheelEvent)) return;
 			
+			const scrollState = (window as any).scrollState;
+			
+			// 如果子组件正在处理内部滚动，不干预
+			if (scrollState.isInnerScrolling) {
+				return;
+			}
+
 			if (isScrolling) {
 				e.preventDefault();
 				return;
 			}
 
+			const scrollDirection = e.deltaY > 0 ? 'down' : 'up';
+
 			// 判断滚动方向
-			if (e.deltaY > 0) {
-				// 向下滚动
+			if (scrollDirection === 'down') {
+				// 向下滚动 - 检查子组件是否允许
+				if (!scrollState.canScrollToNext) {
+					// 子组件还有内容需要滚动，不跳转
+					return;
+				}
+				
 				if (currentSectionIndex < sections.length - 1) {
 					e.preventDefault();
 					scrollToSection(currentSectionIndex + 1);
 				}
-			} else if (e.deltaY < 0) {
-				// 向上滚动
+			} else {
+				// 向上滚动 - 检查子组件是否允许
+				if (!scrollState.canScrollToPrev) {
+					// 子组件还有内容需要滚动，不跳转
+					return;
+				}
+				
 				if (currentSectionIndex > 0) {
 					e.preventDefault();
 					scrollToSection(currentSectionIndex - 1);
@@ -317,7 +343,6 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 		const updateCurrentSection = debounce(() => {
 			if (isScrolling) return;
 
-			const scrollPosition = container?.scrollTop || 0;
 			const windowHeight = window.innerHeight;
 
 			sections.forEach((section, index) => {

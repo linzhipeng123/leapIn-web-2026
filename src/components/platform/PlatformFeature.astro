@@ -238,6 +238,7 @@ const features = [
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
   import { inView } from '../../utils/inView';
+  import { createSectionScroll } from '../../utils/sectionScroll';
   loadTranslations();
 
   // 为英文标题添加斜体样式
@@ -253,97 +254,24 @@ const features = [
   const slider = document.getElementById('platform-feature-container');
   
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
+  // 使用通用滚动控制器
   if (section && slider && !isMobile) {
-    let currentIndex = 0;
     const slides = slider.querySelectorAll('.feature-item');
-    const totalSlides = 3; // 0-2 共3个状态
-
-    let isAnimating = false;
-    let scrollAccumulator = 0;
-    let lastScrollDirection = 0; // 1 for down, -1 for up
-    let animationTimeout: number | null = null;
     
-    const SCROLL_THRESHOLD = 50; // 滚动阈值
-    const ANIMATION_DURATION = 800;
-
-    const updateSlide = (index: number) => {
-      section.setAttribute('active-slider', index.toString());
-      slides.forEach((slide) => {
-        slide.setAttribute('data-active', 'true');
-        slide.setAttribute('data-index', index.toString());
-      });
-    };
-
-    updateSlide(0);
-
-    section.addEventListener('wheel', (e) => {
-      const scrollDirection = e.deltaY > 0 ? 1 : -1;
-
-      // 检查是否在边界
-      const atStart = currentIndex === 0 && scrollDirection < 0;
-      const atEnd = currentIndex === totalSlides - 1 && scrollDirection > 0;
-
-      // 在边界时，不阻止默认行为，让滚动传递到父级 scroll-section
-      if (atStart || atEnd) {
-        // 重置状态
-        scrollAccumulator = 0;
-        lastScrollDirection = 0;
-        return;
-      }
-
-      // 不在边界，阻止默认滚动行为
-      e.preventDefault();
-      e.stopPropagation();
-
-      // 检测方向改变
-      if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
-        // 反向滚动，中断当前动画
-        if (animationTimeout) {
-          clearTimeout(animationTimeout);
-          animationTimeout = null;
-        }
-        isAnimating = false;
-        scrollAccumulator = 0;
-      }
-
-      lastScrollDirection = scrollDirection;
-
-      // 如果正在动画中且方向相同，累积滚动量
-      if (isAnimating) {
-        scrollAccumulator += Math.abs(e.deltaY);
-        // 同方向滚动未达到阈值，忽略
-        if (scrollAccumulator < SCROLL_THRESHOLD) {
-          return;
-        }
-      }
-
-      // 累积滚动量
-      scrollAccumulator += Math.abs(e.deltaY);
-
-      // 未达到阈值，不触发切换
-      if (scrollAccumulator < SCROLL_THRESHOLD) {
-        return;
-      }
-
-      // 达到阈值，执行切换
-      scrollAccumulator = 0;
-      isAnimating = true;
-
-      const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
-
-      currentIndex = targetIndex;
-      updateSlide(currentIndex);
-
-      // 动画完成后重置状态
-      if (animationTimeout) {
-        clearTimeout(animationTimeout);
-      }
-      animationTimeout = window.setTimeout(() => {
-        isAnimating = false;
-        scrollAccumulator = 0;
-        animationTimeout = null;
-      }, ANIMATION_DURATION);
-    }, { passive: false });
+    createSectionScroll({
+      sectionId: 'platform-feature-section',
+      totalSlides: 3,
+      scrollThreshold: 100,
+      animationDuration: 800,
+      onSlideUpdate: (index) => {
+        section.setAttribute('active-slider', index.toString());
+        slides.forEach((slide) => {
+          slide.setAttribute('data-active', 'true');
+          slide.setAttribute('data-index', index.toString());
+        });
+      },
+    });
   }
 
   // Intersection Observer 监听 features 是否在可视区域内
