@@ -77,12 +77,24 @@ export function createSectionScroll(config: SectionScrollConfig) {
     const atStart = currentIndex === 0 && scrollDirection < 0;
     const atEnd = currentIndex === totalSlides - 1 && scrollDirection > 0;
 
-    // 在边界时，允许滚动传递到父级
+    // 检查最小停留时间
+    const timeSinceLastChange = Date.now() - lastSlideChangeTime;
+    const hasStayedLongEnough = timeSinceLastChange >= minStayDuration;
+
+    // 在边界时，只有满足最小停留时间才允许滚动传递到父级
     if (atStart || atEnd) {
-      scrollAccumulator = 0;
-      lastScrollDirection = 0;
-      updateScrollState();
-      return;
+      if (hasStayedLongEnough) {
+        // 已经停留足够时间，允许滚动传递
+        scrollAccumulator = 0;
+        lastScrollDirection = 0;
+        updateScrollState();
+        return;
+      } else {
+        // 还未达到最小停留时间，阻止滚动
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
     }
 
     // 不在边界，阻止默认滚动行为
@@ -90,8 +102,7 @@ export function createSectionScroll(config: SectionScrollConfig) {
     e.stopPropagation();
 
     // 检查最小停留时间，防止快速滚动跳过 slide
-    const timeSinceLastChange = Date.now() - lastSlideChangeTime;
-    if (timeSinceLastChange < minStayDuration) {
+    if (!hasStayedLongEnough) {
       // 还未达到最小停留时间，忽略滚动
       return;
     }
