@@ -51,7 +51,7 @@ const products = [
             <div class="info-item" data-index={index}>
               <div class="info-number">{feature.number}</div>
               <h3 class="info-title" data-i18n={`homepage.product.items.${index}.title`}>功能标题</h3>
-              <h3 class="info-subtitle" data-i18n={`homepage.product.items.${index}.subtitle`}>功能副标题</h3>
+              <p class="info-subtitle" data-i18n={`homepage.product.items.${index}.subtitle`}>功能副标题</p>
               <p class="info-description" data-i18n={`homepage.product.items.${index}.description`}>功能描述</p>
             </div>
           ))}
@@ -92,7 +92,6 @@ const products = [
     margin-bottom: 0.5rem;
     line-height: 124%;
     letter-spacing: -1.1%;
-    font-family: DM Serif Display;
   }
 
   .section-subtitle {
@@ -237,7 +236,7 @@ const products = [
   }
 
   .info-subtitle {
-    font-family: Inter;
+    font-family: "PingFang SC";
     font-weight: 600;
     font-style: Semi Bold;
     font-size: 1.125rem;
@@ -253,7 +252,6 @@ const products = [
     font-size: 0.875rem;
     color: #FFFFFF;
     line-height: 1.125rem;
-    font-family: Inter;
     max-width: 16.25rem;
   }
 

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import ChatbotButton from '../components/ChatbotButton.astro';
+import CountryCodeSelect from '../components/CountryCodeSelect.astro';
 
 import { pxToRem } from '../utils';
 
@@ -83,13 +84,7 @@ const logos = [
                                         <span class="required">*</span>
                                     </label>
                                     <div class="phone-input">
-                                        <select id="countryCode" name="countryCode">
-                                            <option value="+86">+86</option>
-                                            <option value="+1">+1</option>
-                                            <option value="+44">+44</option>
-                                            <option value="+81">+81</option>
-                                            <option value="+82">+82</option>
-                                        </select>
+                                        <CountryCodeSelect />
                                         <input type="tel" id="phone" name="phone" required />
                                     </div>
                                 </div>
@@ -358,11 +353,7 @@ const logos = [
     .phone-input {
         display: flex;
         gap: 0.5rem;
-    }
-
-    .phone-input select {
-        width: 5rem;
-        flex-shrink: 0;
+        align-items: stretch;
     }
 
     .phone-input input {
