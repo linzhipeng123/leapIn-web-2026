@@ -41,6 +41,15 @@ const { type, className, dataIndex } = Astro.props;
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
   loadTranslations();
+
+  // 为英文标题添加斜体样式
+  const currentLang = localStorage.getItem('language') || 'en';
+  if (currentLang === 'en') {
+    const featureTitles = document.querySelectorAll('.platform-feature-card .feature-title');
+    featureTitles.forEach(title => {
+      title.classList.add('en');
+    });
+  }
 </script>
 
 <style>
@@ -64,9 +73,12 @@ const { type, className, dataIndex } = Astro.props;
 
     .feature-title {
         /* CN/PC/Title/italic */
-        font-family: "PingFang SC";
         font-size: 2rem;
         line-height: 150%; /* 54px */
+    }
+
+    .feature-title.en {
+        font-style: italic;
     }
 
     .feature-description {
@@ -79,7 +91,6 @@ const { type, className, dataIndex } = Astro.props;
         color: var(--Neutrals-White-00, #FFF);
         font-feature-settings: 'liga' off, 'clig' off;
         /* CN/PC/Body text/00 semibold */
-        font-family: "PingFang SC";
         font-size: 1.125rem;
         font-weight: 600;
         line-height: 120%; /* 21.6px */
@@ -91,7 +102,6 @@ const { type, className, dataIndex } = Astro.props;
         font-feature-settings: 'liga' off, 'clig' off;
 
         /* CN/PC/Body text/02 regular */
-        font-family: "PingFang SC";
         font-size: 0.875rem;
         font-style: normal;
         line-height: 150%; /* 21px */

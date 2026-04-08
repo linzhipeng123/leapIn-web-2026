@@ -218,6 +218,10 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     font-size: 2rem;
   }
 
+  .sales-coach-title.en {
+    font-style: italic;
+  }
+
   .sales-coach-subtitle {
     color: var(--grey-gray-60-base, #111827);
     font-feature-settings: 'liga' off, 'clig' off;
@@ -372,7 +376,15 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
   const slider = document.getElementById('ai-agents-slider');
   const featureAICoach = document.getElementById('feature-ai-coach');
 
-  const currentLang = localStorage.getItem('language');
+  const currentLang = localStorage.getItem('language') || 'en';
+
+  // 为英文标题添加斜体样式
+  if (currentLang === 'en') {
+    const salesCoachTitles = document.querySelectorAll('.sales-coach-title');
+    salesCoachTitles.forEach(title => {
+      title.classList.add('en');
+    });
+  }
 
   if (featureAICoach) {
     const src = currentLang === 'en'
