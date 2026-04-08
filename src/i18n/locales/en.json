@@ -25,6 +25,16 @@
     "features": {
       "title": "HR Has Become Strategic — Without Strategic Infrastructure",
       "subtitle": "But most systems were designed for record-keeping — not decision-making.",
+      "left": {
+        "title": "Talent decisions rely on:",
+        "info": "HR is no longer just managing talent.",
+        "description": "It is expected to predict it." ,
+        "list": [
+          "Fragmented systems",
+          "Lagging indicators",
+          "Limited visibility into future outcomes"
+        ]
+      },
       "items": [
         {
           "label": "Slow Hiring",
