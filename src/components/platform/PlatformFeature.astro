@@ -97,8 +97,12 @@ const features = [
         position: absolute;
     }
 
+    .feature-title.en {
+        font-style: italic;
+    }
+
     .platform-feature-container-pre .feature-item[data-index="0"] .feature-title {
-        transform: translateY(-80vh);
+        transform: translateY(-85vh);
     }
 
     .platform-feature-container-inner .feature-item[data-index="0"] .feature-title,
@@ -235,6 +239,15 @@ const features = [
   import { loadTranslations } from '../../scripts/i18n-loader';
   import { inView } from '../../utils/inView';
   loadTranslations();
+
+  // 为英文标题添加斜体样式
+  const currentLang = localStorage.getItem('language') || 'en';
+  if (currentLang === 'en') {
+    const featureTitles = document.querySelectorAll('.feature-title');
+    featureTitles.forEach(title => {
+      title.classList.add('en');
+    });
+  }
 
   const section = document.getElementById('platform-feature-section');
   const slider = document.getElementById('platform-feature-container');

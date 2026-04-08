@@ -229,10 +229,13 @@ const products = [
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: Inter;
-    font-style: Italic;
     leading-trim: NONE;
     letter-spacing: 0px;
     white-space: pre-wrap;
+  }
+
+  .info-title.en {
+    font-style: italic;
   }
 
   .info-subtitle {
@@ -396,6 +399,14 @@ const products = [
   loadTranslations();
 
   const currentLang = localStorage.getItem('language') || 'en';
+
+  // 为英文标题添加斜体样式
+  const infoTitles = document.querySelectorAll('.info-title');
+  if (currentLang === 'en') {
+    infoTitles.forEach(title => {
+      title.classList.add('en');
+    });
+  }
 
   // 切换图片语言
   const images = document.querySelectorAll('.feature-image');

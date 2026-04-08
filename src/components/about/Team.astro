@@ -176,6 +176,10 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
         -webkit-text-fill-color: transparent;
     }
 
+    .the-team-card-title.en {
+        font-style: italic;
+    }
+
     .the-team-card-description {
         color: var(--grey-gray-60-base, #111827);
         font-size: 1rem;
@@ -495,6 +499,15 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
   import { loadTranslations } from '../../scripts/i18n-loader';
   import { inView } from '../../utils/inView';
   loadTranslations();
+
+  // 为英文标题添加斜体样式
+  const currentLang = localStorage.getItem('language') || 'en';
+  if (currentLang === 'en') {
+    const teamCardTitles = document.querySelectorAll('.the-team-card-title');
+    teamCardTitles.forEach(title => {
+      title.classList.add('en');
+    });
+  }
 
   const section = document.getElementById('team-section-inner');
   const slider = document.getElementById('team-section-inner-container');

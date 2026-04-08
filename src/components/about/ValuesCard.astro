@@ -57,6 +57,10 @@ const { cardIndex, detailList, btn } = Astro.props;
         font-size: 2.25rem;
         line-height: 150%;
     }
+
+    .values-card-title.en {
+        font-style: italic;
+    }
     .values-card-subtitle {
         font-size: 1.25rem;
         font-style: italic;
@@ -111,3 +115,17 @@ const { cardIndex, detailList, btn } = Astro.props;
         }
     }
 </style>
+
+<script>
+    import { loadTranslations } from '../../scripts/i18n-loader';
+    loadTranslations();
+
+    // 为英文标题添加斜体样式
+    const currentLang = localStorage.getItem('language') || 'en';
+    if (currentLang === 'en') {
+        const cardTitles = document.querySelectorAll('.values-card-title');
+        cardTitles.forEach(title => {
+            title.classList.add('en');
+        });
+    }
+</script>

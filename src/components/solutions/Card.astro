@@ -24,6 +24,15 @@ const { index, itemLength, className } = Astro.props;
 <script>
 	import { loadTranslations } from '../../scripts/i18n-loader';
 	loadTranslations();
+
+	// 为英文标题添加斜体样式
+	const currentLang = localStorage.getItem('language') || 'en';
+	if (currentLang === 'en') {
+		const cardTitles = document.querySelectorAll('.card-title');
+		cardTitles.forEach(title => {
+			title.classList.add('en');
+		});
+	}
 </script>
 
 <style>
@@ -110,13 +119,16 @@ const { index, itemLength, className } = Astro.props;
     .card-title {
         width: 100%;
         font-size: 2.25rem;
-        font-style: italic;
         line-height: 100%; /* 36px */
         margin-bottom: 3.75rem;
         background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .card-title.en {
+        font-style: italic;
     }
 
     .card-description {
