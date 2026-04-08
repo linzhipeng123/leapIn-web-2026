@@ -252,10 +252,20 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 	const isDesktop = window.innerWidth > 768;
 
 	if (isDesktop) {
-		let isScrolling = false;
 		let currentSectionIndex = 0;
 		const sections = document.querySelectorAll('.scroll-section');
 		const container = document.querySelector('.scroll-container');
+
+		// 滚动控制变量
+		let isAnimating = false;
+		let scrollAccumulator = 0;
+		let lastScrollDirection = 0;
+		let animationTimeout: number | null = null;
+		let scrollEndTimeout: number | null = null;
+		let isInitialized = false; // 页面是否已初始化
+		const SCROLL_THRESHOLD = 50;
+		const ANIMATION_DURATION = 1000;
+		const SCROLL_END_DELAY = 500; // 增加到 500ms，给用户更多时间
 
 		// 全局状态：用于子组件通知父级滚动控制
 		(window as any).scrollState = {
@@ -263,6 +273,86 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 			canScrollToPrev: true,
 			isInnerScrolling: false
 		};
+
+		// 存储每个区域的滚动控制器引用
+		const sectionControllers = new Map<number, any>();
+
+		// 注册区域滚动控制器
+		(window as any).registerSectionController = (sectionId: string, controller: any) => {
+			// 首先尝试直接查找元素
+			let sectionElement = document.getElementById(sectionId);
+			
+			// 如果找不到，尝试查找包含该元素的 scroll-section
+			if (sectionElement && !sectionElement.classList.contains('scroll-section')) {
+				// 向上查找最近的 scroll-section
+				sectionElement = sectionElement.closest('.scroll-section') as HTMLElement;
+			}
+			
+			if (sectionElement) {
+				const index = Array.from(sections).indexOf(sectionElement as Element);
+				if (index !== -1) {
+					sectionControllers.set(index, controller);
+					console.log(`✅ Registered controller for section ${index} (${sectionId}), total: ${sectionControllers.size}`);
+				} else {
+					console.warn(`❌ Section ${sectionId} not found in sections array`);
+				}
+			} else {
+				console.warn(`❌ Section element ${sectionId} not found`);
+			}
+		};
+
+		// 打印所有 scroll-section 元素
+		console.log('📋 All scroll-section elements:', Array.from(sections).map((s, i) => ({
+			index: i,
+			id: s.id,
+			dataset: (s as HTMLElement).dataset
+		})));
+
+		// 检查相邻区域并调整它们的 slide 索引
+		function adjustAdjacentSections() {
+			const viewportHeight = window.innerHeight;
+			const viewportCenter = viewportHeight / 2;
+
+			sections.forEach((section, index) => {
+				const rect = section.getBoundingClientRect();
+				const controller = sectionControllers.get(index);
+				
+				if (!controller) return;
+
+				const totalSlides = controller.getTotalSlides ? controller.getTotalSlides() : 0;
+				if (totalSlides === 0) return;
+
+				// 区域是否在视口中（至少部分可见）
+				const isInViewport = rect.top < viewportHeight && rect.bottom > 0;
+				
+				// 如果区域在视口中，不要调整它的 slide（让用户自己滚动）
+				if (isInViewport) return;
+
+				// 区域完全在视口上方（用户已经向下滚动过了这个区域）
+				const isCompletelyAbove = rect.bottom <= 0;
+				
+				// 区域完全在视口下方（用户还未滚动到这个区域）
+				const isCompletelyBelow = rect.top >= viewportHeight;
+
+				const currentSlide = controller.getCurrentIndex();
+
+				if (isCompletelyAbove) {
+					// 区域在视口上方
+					// 只有当前不是最后一个 slide 时才调整
+					if (currentSlide !== totalSlides - 1) {
+						console.log(`Section ${index} is above viewport, setting to last slide (${totalSlides - 1})`);
+						controller.goToSlide(totalSlides - 1);
+					}
+				} else if (isCompletelyBelow) {
+					// 区域在视口下方
+					// 只有当前不是第一个 slide 时才调整
+					if (currentSlide !== 0) {
+						console.log(`Section ${index} is below viewport, setting to first slide (0)`);
+						controller.goToSlide(0);
+					}
+				}
+			});
+		}
 
 		// 防抖函数
 		function debounce(func: Function, wait: number) {
@@ -277,71 +367,177 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 			};
 		}
 
+		// 获取最近的区域索引
+		function getClosestSectionIndex(): number {
+			const windowHeight = window.innerHeight;
+			let closestIndex = 0;
+			let minDistance = Infinity;
+
+			sections.forEach((section, index) => {
+				const rect = section.getBoundingClientRect();
+				const distance = Math.abs(rect.top);
+				
+				if (distance < minDistance) {
+					minDistance = distance;
+					closestIndex = index;
+				}
+			});
+
+			return closestIndex;
+		}
+
 		// 滚动到指定区域
-		function scrollToSection(index: number) {
+		function scrollToSection(index: number, smooth: boolean = true) {
 			if (index < 0 || index >= sections.length) return;
 			
-			isScrolling = true;
 			currentSectionIndex = index;
 			
 			sections[index].scrollIntoView({
-				behavior: 'smooth',
+				behavior: smooth ? 'smooth' : 'auto',
 				block: 'start'
 			});
+			
+			// 如果是非平滑滚动（初始化），立即重置动画状态
+			if (!smooth) {
+				isAnimating = false;
+				scrollAccumulator = 0;
+			}
+		}
 
-			// 滚动完成后重置标志
-			setTimeout(() => {
-				isScrolling = false;
-			}, 1000);
+		// 处理滚动结束，确保对齐到最近的区域
+		function handleScrollEnd() {
+			if (scrollEndTimeout) {
+				clearTimeout(scrollEndTimeout);
+			}
+
+			scrollEndTimeout = window.setTimeout(() => {
+				// 如果正在动画中或者子组件正在滚动，不要对齐
+				if (isAnimating) return;
+				
+				const scrollState = (window as any).scrollState;
+				if (scrollState && scrollState.isInnerScrolling) return;
+
+				const closestIndex = getClosestSectionIndex();
+				
+				// 如果当前不在某个区域的顶部，滚动到最近的区域
+				if (closestIndex !== currentSectionIndex) {
+					currentSectionIndex = closestIndex;
+					scrollToSection(closestIndex, true);
+				} else {
+					// 检查是否完全对齐
+					const rect = sections[currentSectionIndex].getBoundingClientRect();
+					if (Math.abs(rect.top) > 5) {
+						scrollToSection(currentSectionIndex, true);
+					}
+				}
+			}, SCROLL_END_DELAY);
 		}
 
 		// 处理滚轮事件
 		function handleWheel(e: Event) {
 			if (!(e instanceof WheelEvent)) return;
 			
+			// 如果页面还未初始化完成，忽略滚动
+			if (!isInitialized) {
+				console.log('⏳ Waiting for initialization...');
+				return;
+			}
+			
+			// 如果正在动画中，完全忽略滚动事件
+			if (isAnimating) {
+				e.preventDefault();
+				e.stopPropagation();
+				console.log('⏸️ Animation in progress, ignoring scroll');
+				return;
+			}
+			
 			const scrollState = (window as any).scrollState;
 			
 			// 如果子组件正在处理内部滚动，不干预
-			if (scrollState.isInnerScrolling) {
+			if (scrollState && scrollState.isInnerScrolling) {
+				console.log('🔒 Inner scrolling, skipping');
 				return;
 			}
 
-			if (isScrolling) {
-				e.preventDefault();
+			const scrollDirection = e.deltaY > 0 ? 1 : -1;
+
+			// 边界检测 - 在开始或结束时允许自然滚动
+			const atStart = currentSectionIndex === 0 && scrollDirection < 0;
+			const atEnd = currentSectionIndex === sections.length - 1 && scrollDirection > 0;
+
+			if (atStart || atEnd) {
+				console.log('🚫 At boundary, allowing natural scroll');
+				scrollAccumulator = 0;
+				lastScrollDirection = 0;
 				return;
 			}
 
-			const scrollDirection = e.deltaY > 0 ? 'down' : 'up';
-
-			// 判断滚动方向
-			if (scrollDirection === 'down') {
-				// 向下滚动 - 检查子组件是否允许
-				if (!scrollState.canScrollToNext) {
-					// 子组件还有内容需要滚动，不跳转
+			// 检查子组件是否允许滚动
+			if (scrollState) {
+				if (scrollDirection > 0 && !scrollState.canScrollToNext) {
+					console.log('⛔ Child component blocking scroll to next');
 					return;
 				}
-				
-				if (currentSectionIndex < sections.length - 1) {
-					e.preventDefault();
-					scrollToSection(currentSectionIndex + 1);
+				if (scrollDirection < 0 && !scrollState.canScrollToPrev) {
+					console.log('⛔ Child component blocking scroll to prev');
+					return;
 				}
+			}
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			// 如果滚动方向改变，重置状态
+			if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
+				console.log('🔄 Direction changed, resetting');
+				scrollAccumulator = 0;
+			}
+
+			lastScrollDirection = scrollDirection;
+
+			// 累积滚动量
+			scrollAccumulator += Math.abs(e.deltaY);
+
+			// 未达到阈值时不触发滚动
+			if (scrollAccumulator < SCROLL_THRESHOLD) {
+				console.log(`📊 Accumulator: ${scrollAccumulator}/${SCROLL_THRESHOLD}`);
+				return;
+			}
+
+			// 达到阈值，执行切换
+			console.log(`✨ Threshold reached, triggering scroll`);
+			scrollAccumulator = 0;
+			isAnimating = true;
+
+			const targetIndex = scrollDirection > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
+			
+			console.log(`🎯 Scrolling from section ${currentSectionIndex} to ${targetIndex}`);
+			
+			// 确保目标索引有效
+			if (targetIndex >= 0 && targetIndex < sections.length) {
+				scrollToSection(targetIndex);
 			} else {
-				// 向上滚动 - 检查子组件是否允许
-				if (!scrollState.canScrollToPrev) {
-					// 子组件还有内容需要滚动，不跳转
-					return;
-				}
-				
-				if (currentSectionIndex > 0) {
-					e.preventDefault();
-					scrollToSection(currentSectionIndex - 1);
-				}
+				console.warn('❌ Invalid target index:', targetIndex);
+				isAnimating = false;
+				return;
 			}
+
+			// 设置动画完成后的重置
+			if (animationTimeout) {
+				clearTimeout(animationTimeout);
+			}
+			animationTimeout = window.setTimeout(() => {
+				isAnimating = false;
+				scrollAccumulator = 0;
+				lastScrollDirection = 0; // 重置方向
+				animationTimeout = null;
+				console.log(`✅ Animation complete, now at section ${currentSectionIndex}`);
+			}, ANIMATION_DURATION);
 		}
 
 		// 监听滚动位置，更新当前区域索引
-		const updateCurrentSection = debounce(() => {
-			if (isScrolling) return;
+		function handleScroll() {
+			if (isAnimating) return;
 
 			const windowHeight = window.innerHeight;
 
@@ -351,16 +547,43 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 					currentSectionIndex = index;
 				}
 			});
-		}, 100);
+
+			// 暂时禁用滚动结束对齐，避免跳过区域
+			// handleScrollEnd();
+		}
+
+		// 使用节流函数来调整相邻区域，避免过于频繁
+		let adjustThrottleTimeout: number | null = null;
+		function throttledAdjustAdjacentSections() {
+			if (adjustThrottleTimeout) return;
+			
+			adjustThrottleTimeout = window.setTimeout(() => {
+				adjustAdjacentSections();
+				adjustThrottleTimeout = null;
+			}, 300); // 300ms 节流
+		}
+
+		const debouncedHandleScroll = debounce(handleScroll, 100);
 
 		// 添加事件监听
 		if (container) {
 			container.addEventListener('wheel', handleWheel, { passive: false });
-			container.addEventListener('scroll', updateCurrentSection);
+			container.addEventListener('scroll', debouncedHandleScroll);
+			// 单独监听滚动来调整相邻区域（使用节流）
+			container.addEventListener('scroll', throttledAdjustAdjacentSections);
 		}
 
-		// 初始化当前区域
-		updateCurrentSection();
+		// 初始化当前区域 - 延迟执行，确保页面完全加载
+		setTimeout(() => {
+			currentSectionIndex = getClosestSectionIndex();
+			scrollToSection(currentSectionIndex, false);
+			// 确保初始化后状态正确
+			isAnimating = false;
+			scrollAccumulator = 0;
+			lastScrollDirection = 0;
+			isInitialized = true; // 标记初始化完成
+			console.log('✅ Page initialized at section:', currentSectionIndex);
+		}, 100);
 
 		// 监听窗口大小变化
 		window.addEventListener('resize', debounce(() => {
@@ -368,7 +591,8 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 				// 切换到移动端时移除事件监听
 				if (container) {
 					container.removeEventListener('wheel', handleWheel);
-					container.removeEventListener('scroll', updateCurrentSection);
+					container.removeEventListener('scroll', debouncedHandleScroll);
+					container.removeEventListener('scroll', throttledAdjustAdjacentSections);
 				}
 			}
 		}, 250));

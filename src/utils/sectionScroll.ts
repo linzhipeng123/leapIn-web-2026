@@ -52,6 +52,7 @@ export function createSectionScroll(config: SectionScrollConfig) {
   let lastScrollDirection = 0;
   let animationTimeout: number | null = null;
   let lastSlideChangeTime = Date.now();
+  let isInViewport = false;
 
   // 更新全局滚动状态（如果存在）
   const updateScrollState = () => {
@@ -68,6 +69,50 @@ export function createSectionScroll(config: SectionScrollConfig) {
     onSlideUpdate(index);
     updateScrollState();
   };
+
+  // 监听区域是否进入视口
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const wasInViewport = isInViewport;
+        isInViewport = entry.isIntersecting;
+
+        // 当区域进入视口时，根据滚动方向重置 slide 索引
+        if (isInViewport && !wasInViewport) {
+          // 检查区域在视口中的位置
+          const rect = section.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          
+          // 如果区域从上方进入（向下滚动），重置到第一个 slide
+          if (rect.top >= 0 && rect.top < viewportHeight) {
+            if (currentIndex !== 0) {
+              currentIndex = 0;
+              lastSlideChangeTime = Date.now();
+              updateSlide(0);
+            }
+          }
+          // 如果区域从下方进入（向上滚动），重置到最后一个 slide
+          else if (rect.bottom > 0 && rect.bottom <= viewportHeight) {
+            if (currentIndex !== totalSlides - 1) {
+              currentIndex = totalSlides - 1;
+              lastSlideChangeTime = Date.now();
+              updateSlide(totalSlides - 1);
+            }
+          }
+        }
+
+        // 离开视口时重置状态
+        if (!entry.isIntersecting) {
+          if ((window as any).scrollState) {
+            (window as any).scrollState.isInnerScrolling = false;
+          }
+        }
+      });
+    },
+    { threshold: [0, 0.1, 0.5, 0.9, 1] } // 多个阈值以更精确地检测进入方向
+  );
+
+  observer.observe(section);
 
   // 处理滚轮事件
   const handleWheel = (e: WheelEvent) => {
@@ -158,33 +203,19 @@ export function createSectionScroll(config: SectionScrollConfig) {
   // 添加事件监听
   section.addEventListener('wheel', handleWheel, { passive: false });
 
-  // 监听区域是否在视口中
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          // 离开视口时重置状态
-          if ((window as any).scrollState) {
-            (window as any).scrollState.isInnerScrolling = false;
-          }
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  observer.observe(section);
-
   // 初始化
   updateSlide(0);
 
-  // 返回控制器 API
-  return {
+  // 创建控制器 API
+  const controller = {
     /** 获取当前索引 */
     getCurrentIndex: () => currentIndex,
+    /** 获取总 slide 数量 */
+    getTotalSlides: () => totalSlides,
     /** 跳转到指定索引 */
     goToSlide: (index: number) => {
-      if (index >= 0 && index < totalSlides) {
+      if (index >= 0 && index < totalSlides && index !== currentIndex) {
+        lastSlideChangeTime = Date.now();
         updateSlide(index);
       }
     },
@@ -197,4 +228,13 @@ export function createSectionScroll(config: SectionScrollConfig) {
       }
     },
   };
+
+  // 延迟注册到全局，确保 registerSectionController 已定义
+  setTimeout(() => {
+    if ((window as any).registerSectionController) {
+      (window as any).registerSectionController(sectionId, controller);
+    }
+  }, 0);
+
+  return controller;
 }
