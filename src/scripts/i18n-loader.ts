@@ -11,12 +11,21 @@ export function loadTranslations() {
   const lang = (localStorage.getItem('language') || 'zh') as 'zh' | 'en';
   const t = translations[lang];
 
-  // 更新所有带 data-i18n 属性的元素
+  // 更新所有带 data-i18n 属性的元素（纯文本）
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (key) {
       const value = getNestedValue(t, key);
       if (value) el.textContent = value;
+    }
+  });
+
+  // 更新所有带 data-i18n-html 属性的元素（支持 HTML）
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (key) {
+      const value = getNestedValue(t, key);
+      if (value) (el as HTMLElement).innerHTML = value;
     }
   });
 

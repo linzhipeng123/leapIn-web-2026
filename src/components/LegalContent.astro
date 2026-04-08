@@ -19,7 +19,7 @@ const { pageName } = Astro.props;
         <section class="legal-page">
             <div class="container">
                 <h2 class="title" data-i18n={`legal.${pageName}.title`}></h2>
-                <div class="content" data-i18n={`legal.${pageName}.content`}></div>
+                <div class="content" data-i18n-html={`legal.${pageName}.content`}></div>
             </div>
         </section>
     </main>
@@ -68,7 +68,6 @@ const { pageName } = Astro.props;
     }
 
     .content {
-        white-space: pre-wrap;
         color: var(--grey-gray-60-base, #111827);
         font-feature-settings: 'liga' off, 'clig' off;
 
@@ -77,6 +76,83 @@ const { pageName } = Astro.props;
         font-size: 1rem;
         font-weight: 400;
         line-height: 137.5%;
+    }
+
+    .content :global(h3) {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--grey-gray-60-base, #111827);
+    }
+
+    .content :global(h4) {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: var(--grey-gray-60-base, #111827);
+    }
+
+    .content :global(h5) {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--grey-gray-60-base, #111827);
+    }
+
+    .content :global(p) {
+        margin-bottom: 1rem;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        margin: 1rem 0;
+        padding-left: 2rem;
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .content :global(ul li) {
+        list-style-type: disc;
+    }
+
+    .content :global(ol li) {
+        list-style-type: decimal;
+    }
+
+    .content :global(strong) {
+        font-weight: 600;
+    }
+
+    .content :global(em) {
+        font-style: italic;
+    }
+
+    .content :global(a) {
+        color: #5386FA;
+        text-decoration: underline;
+    }
+
+    .content :global(a:hover) {
+        color: #8B5CF6;
+    }
+
+    .content :global(.highlight-email) {
+        color: #5386FA;
+        font-weight: 600;
+        background: linear-gradient(90deg, rgba(83, 134, 250, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+    }
+    .content :global(p em) {
+        display: block;
+        text-align: right;
+        width: 100%;
     }
 
 	@media (max-width: 768px) {
