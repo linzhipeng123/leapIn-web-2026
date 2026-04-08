@@ -413,9 +413,9 @@
     "welcome": "Hello! I'm LeapIn AI Assistant. How can I help you today?"
   },
   "request": {
-    "title": "Request Free Demo",
+    "title": "Start growing\nyour business today",
     "form": {
-      "title": "Request Free Demo",
+      "title": "Schedule your free demo",
       "name": "Name",
       "email": "Work Email",
       "phone": "Phone",
