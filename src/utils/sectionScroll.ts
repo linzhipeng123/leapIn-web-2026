@@ -10,6 +10,8 @@ export interface SectionScrollConfig {
   scrollThreshold?: number;
   /** 动画持续时间（毫秒） */
   animationDuration?: number;
+  /** 每个 slide 的最小停留时间（毫秒），防止快速滚动跳过 */
+  minStayDuration?: number;
   /** 更新滑动状态的回调函数 */
   onSlideUpdate: (index: number) => void;
   /** 是否在移动端禁用 */
@@ -26,6 +28,7 @@ export function createSectionScroll(config: SectionScrollConfig) {
     totalSlides,
     scrollThreshold = 50,
     animationDuration = 800,
+    minStayDuration = 1000,
     onSlideUpdate,
     disableOnMobile = true,
   } = config;
@@ -48,6 +51,7 @@ export function createSectionScroll(config: SectionScrollConfig) {
   let scrollAccumulator = 0;
   let lastScrollDirection = 0;
   let animationTimeout: number | null = null;
+  let lastSlideChangeTime = Date.now();
 
   // 更新全局滚动状态（如果存在）
   const updateScrollState = () => {
@@ -85,6 +89,13 @@ export function createSectionScroll(config: SectionScrollConfig) {
     e.preventDefault();
     e.stopPropagation();
 
+    // 检查最小停留时间，防止快速滚动跳过 slide
+    const timeSinceLastChange = Date.now() - lastSlideChangeTime;
+    if (timeSinceLastChange < minStayDuration) {
+      // 还未达到最小停留时间，忽略滚动
+      return;
+    }
+
     // 检测方向改变
     if (lastScrollDirection !== 0 && scrollDirection !== lastScrollDirection) {
       if (animationTimeout) {
@@ -116,6 +127,7 @@ export function createSectionScroll(config: SectionScrollConfig) {
     // 达到阈值，执行切换
     scrollAccumulator = 0;
     isAnimating = true;
+    lastSlideChangeTime = Date.now(); // 记录切换时间
 
     const targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
     updateSlide(targetIndex);
