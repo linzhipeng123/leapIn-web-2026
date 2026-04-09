@@ -97,7 +97,7 @@ const wavesConf = wavesConfig || defaultWavesConfig;
 const orbConf = orbConfig || defaultOrbConfig;
 ---
 
-<section class="common-hero">
+<section class={`common-hero ${pageName}-hero`}>
 	<div class="hero-bg">
 		{bgType === 'colorBends' && colorBendsConf && (
 			<ColorBends
@@ -363,6 +363,10 @@ const orbConf = orbConfig || defaultOrbConfig;
 		max-width: 52.75rem;
 	}
 
+	.about-hero .hero-description {
+		font-size: 1.25rem;
+	}
+
 	.hero-info {
 		font-size: 2.25rem;
 		font-weight: 600;
@@ -438,7 +442,8 @@ const orbConf = orbConfig || defaultOrbConfig;
 			padding: 0;
 		}
 
-		.hero-content {
+		.hero-title-container,
+		.hero-description {
 			max-width: 84%;
 			margin: 0;
 		}
@@ -472,11 +477,13 @@ const orbConf = orbConfig || defaultOrbConfig;
 		}
 
 		.mission-vision {
+			width: 100%;
 			gap: 0.5rem;
 			margin-top: 5.75rem;
 		}
 
 		.mission-vision-container {
+			width: 100%;
 			padding: 1rem;
 			gap: 0.5rem;
 		}
