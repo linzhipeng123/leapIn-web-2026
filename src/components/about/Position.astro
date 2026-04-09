@@ -156,6 +156,7 @@ import position from '../../assets/about/position.png';
     max-width: 42rem;
     display: flex;
     flex-direction: column;
+    flex-basis: 50%;
   }
 
   .open-positions-title {
@@ -205,8 +206,7 @@ import position from '../../assets/about/position.png';
     text-decoration: none;
     cursor: pointer;
     min-width: 6.625rem;
-    height: 1.75rem;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.75rem;
     width: fit-content;
     justify-content: center;
@@ -228,7 +228,7 @@ import position from '../../assets/about/position.png';
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 150%;
+    line-height: 120%;
     white-space: nowrap;
   }
 
@@ -285,6 +285,10 @@ import position from '../../assets/about/position.png';
     :global(.position-name-apply-btn) {
       font-size: 0.9375rem;
       height: 4rem !important;
+    }
+
+    :global(.position-apply-btn) {
+      min-width: 5.75rem;
     }
   }
 </style>
