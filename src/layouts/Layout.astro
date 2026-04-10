@@ -87,7 +87,7 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 		--spacing-lg: 4rem;
 		--spacing-xl: 6rem;
 		--border-radius: 8px;
-		--max-width: 83.25rem; /* 1232px */
+		--max-width: 96rem; /* 1536px */
 		--AI-Gradient-Neon-Horizon-Heavy: linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%);
 		--Neutrals-White-00: #FFF;
 		--Neutrals-Dark-40: #6B7280;
@@ -212,9 +212,15 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 
 
   .scroll-container {
-	overflow-y: scroll;
-	height: 100vh;
+    overflow-y: scroll;
+    height: 100vh;
 	}
+  
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
 
 	.scroll-section {
 		min-height: 100vh;
@@ -241,6 +247,10 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 		.scroll-section {
 			min-height: auto;
 		}
+    
+    .container {
+      padding: 0 1rem;
+    }
 	}
 </style>
 

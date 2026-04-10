@@ -45,13 +45,11 @@ const { pageName } = Astro.props;
 	.legal-page {
         z-index: 1;
         position: relative;
-		padding-top: 80px;
+		padding-top: 4.75rem;
 		min-height: 100vh;
 	}
     .container {
-		max-width: var(--max-width);
-		margin: 0 auto;
-		padding: 3.125rem 1rem;
+		padding: 2rem 4rem;
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -161,6 +159,7 @@ const { pageName } = Astro.props;
 		}
 
         .container {
+		    padding: 2rem 1rem;
             gap: 1rem;
         }
 	}

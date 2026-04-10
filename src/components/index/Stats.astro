@@ -4,8 +4,8 @@ import bgDot from '../../assets/bg_dot_dark.png';
 
 // Pre-compute rem values
 const fontSize = {
-  titleMobile: pxToRem(32),
-  subtitleMobile: pxToRem(16),
+  titleMobile: pxToRem(24),
+  subtitleMobile: pxToRem(13),
   value: pxToRem(58),
   valueMobile: pxToRem(32),
   suffix: pxToRem(18),
@@ -95,9 +95,6 @@ const stats = [
   }
 
   .container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 2rem;
     position: relative;
     z-index: 1;
   }
@@ -122,7 +119,6 @@ const stats = [
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    max-width: 1200px;
     margin: 0 auto;
   }
 
