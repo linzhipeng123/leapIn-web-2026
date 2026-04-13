@@ -1,6 +1,6 @@
 # <center>LeapIn Website Terms of Service</center>
 
-*Effective Date: 2025-4-11*
+<p align="right">Effective Date: 2025-4-11</p>
 
 ### 1. Scope of These Terms
 

@@ -1,6 +1,6 @@
 # <center>LeapIn 官网服务条款</center>
 
-*生效日期：2026年4月11日*
+<p align="right">生效日期：2026年4月11日</p>
 
 ### 1. 本条款的适用范围
 
@@ -57,5 +57,3 @@ Elsa 的对话数据处理方式详见《LeapIn 官网隐私政策》。
 斯智信息科技（上海）有限公司
 
 电子邮件：<span class="highlight-email">info@leapin-ai.com</span>
-
-*这是一个占位文档。请用 DOCX 文件中的实际内容替换。*
