@@ -42,7 +42,7 @@ const logos = [
 
 		<section class="request-content">
 			<div class="container">
-				<div class="request-left">
+				<!-- <div class="request-left">
                     <h1 class="request-title pc" data-i18n="request.title"></h1>
                     <div class="request-logos">
                         {logos.map(({ src, width }, index) => (
@@ -55,11 +55,15 @@ const logos = [
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> -->
                 <div class="request-right-wrap">
                     <h1 class="request-title mobile" data-i18n="request.title"></h1>
                     <div class="request-right">
-                        <h3 class="request-form-title" data-i18n="request.form.title">预约免费演示</h3>
+                        <div class="request-title-wrap">
+                            <h3 class="request-form-title pc" data-i18n="request.form.title"></h3>
+                            <h3 class="request-form-subtitle pc" data-i18n="request.title"></h3>
+                            <h3 class="request-form-subtitle mobile" data-i18n="request.form.title"></h3>
+                        </div>
                         <form class="request-form" id="requestForm">
                             <div class="form-group">
                                 <label for="name">
@@ -216,7 +220,7 @@ const logos = [
         height: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
 	}
 
@@ -231,7 +235,7 @@ const logos = [
     }
 
 	.request-content {
-		padding: 6.625rem 0 0;
+		padding: 4.75rem 0 0;
         position: relative;
         width: 100%;
         height: 100vh;
@@ -253,6 +257,11 @@ const logos = [
         white-space: pre-wrap;
     }
 
+    .request-title.pc {
+        text-align: center;
+        width: 100%;
+    }
+
     .request-logos {
         display: flex;
         flex-wrap: wrap;
@@ -270,8 +279,8 @@ const logos = [
     }
     .request-right {
         display: flex;
-        width: 31.25rem;
-        padding: 1.5rem 2rem;
+        width: 37.5rem;
+        padding: 2rem;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
@@ -282,14 +291,30 @@ const logos = [
         backdrop-filter: blur(7.5px);
     }
 
+    .request-title-wrap {
+        width: 100%;
+    }
+
     .request-form-title {
+        text-align: center;
+        width: 100%;
+        font-family: "SF Pro";
+        font-size: 2.5rem;
+        font-weight: 600;
+        line-height: 124%; /* 49.6px */
+        background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .request-form-subtitle {
         color: var(--grey-gray-60-base, #111827);
         font-feature-settings: 'liga' off, 'clig' off;
         font-family: "PingFang SC";
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-style: normal;
         font-weight: 600;
-        line-height: 24px; /* 100% */
+        line-height: 1%%; /* 100% */
         letter-spacing: 0.15px;
         text-transform: capitalize;
         text-align: center;
@@ -300,7 +325,7 @@ const logos = [
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.5rem;
     }
 
     .form-group {
@@ -378,6 +403,7 @@ const logos = [
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s;
+        margin-top: 1rem;
     }
 
     .btn-submit:hover {
@@ -476,10 +502,10 @@ const logos = [
         .request-right {
             width: 100%;
             max-width: 100%;
-            padding: 1.5rem 1rem;
+            padding: 1rem 1.25rem;
         }
         
-        .request-form-title {
+        .request-form-subtitle {
             font-size: 1.25rem;
         }
 
