@@ -1,0 +1,40 @@
+---
+interface Props {
+  section: string;
+}
+const { section } = Astro.props;
+---
+
+<div class={`area-title ${section}-area-title`}>
+  <span class="area-title-text" data-i18n={`homepage.${section}.areaTitle`}></span>
+</div>
+
+<script>
+	import { loadTranslations } from '../../scripts/i18n-loader';
+	loadTranslations();
+</script>
+
+<style>
+  .area-title {
+    width: fit-content;
+    padding: 0.5rem 0.75rem;
+    border-radius: 1.5rem;
+    background: var(--Grey-Gray-10, rgba(17, 24, 39, 0.05));
+  }
+
+  .area-title-text {
+    font-feature-settings: 'liga' off, 'clig' off;
+
+    /* PC/EN/Body Text_1_semibold */
+    font-family: "SF Pro";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 19.2px */
+    text-transform: capitalize;
+    background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

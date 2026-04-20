@@ -3,6 +3,7 @@ import bgBottom from '../../assets/index/bg_linear.png';
 import bgBottom1 from '../../assets/index/bg_linear_1.png';
 import bgBottom2 from '../../assets/index/bg_linear_2.png';
 import Button from '../Button.astro';
+import AreaTitle from './AreaTitle.astro';
 ---
 
 <section class="hero">
@@ -15,12 +16,37 @@ import Button from '../Button.astro';
   
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title" data-i18n="homepage.hero.title"></h1>
-      <h6 class="hero-subtitle" data-i18n="homepage.hero.subtitle"></h6>
-      <p class="hero-description" data-i18n="homepage.hero.description"></p>
-      <div class="hero-actions">
-      <Button text="button.RequestDemo" type="primary" href="request" />
+      <div>
+        <AreaTitle section="hero" />
+        <h1 class="hero-title" data-i18n="homepage.hero.title"></h1>
+        <h6 class="hero-subtitle" data-i18n="homepage.hero.subtitle"></h6>
+        <p class="hero-description" data-i18n="homepage.hero.description"></p>
       </div>
+      <div class="hero-actions">
+        <Button text="button.RequestDemo" type="primary" href="request" />
+      </div>
+    </div>
+    <div class="hero-card-content">
+      {
+        ['aiInterviewScore', 'internalMatch', 'successionCoverage'].map((item, index) => (
+          <div class="hero-card" data-index={index}>
+            <div class="hero-card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M5.33333 12V7.6L2.23333 10.7167L1.28333 9.76667L4.4 6.66667H0V5.33333H4.4L1.28333 2.23333L2.23333 1.28333L5.33333 4.4V0H6.66667V4.4L9.76667 1.28333L10.7167 2.23333L7.6 5.33333H12V6.66667H7.6L10.7167 9.76667L9.76667 10.7167L6.66667 7.6V12H5.33333Z" fill="url(#paint0_linear_3322_43639)"/>
+                <defs>
+                  <linearGradient id="paint0_linear_3322_43639" x1="0.543624" y1="1.875" x2="10.7879" y2="10.6297" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#5386FA"/>
+                    <stop offset="1" stop-color="#8B5CF6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span data-i18n={`homepage.hero.cards.${item}.title`}></span>
+            </div>
+            <div class="hero-card-subtitle" data-i18n={`homepage.hero.cards.${item}.subtitle`}></div>
+            <div class="hero-card-info" data-i18n={`homepage.hero.cards.${item}.info`}></div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -77,6 +103,10 @@ import Button from '../Button.astro';
   .container {
     position: relative;
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
   }
 
   .hero-content {
@@ -84,11 +114,67 @@ import Button from '../Button.astro';
     text-align: left;
   }
 
+  .hero-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3.25rem;
+    position: relative;
+  }
+
+  .hero-card {
+    width: 17.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.60);
+    backdrop-filter: blur(15px);
+  }
+
+  .hero-card[data-index="1"] {
+    margin-left: 8.5rem;
+  }
+
+  .hero-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: "SF Pro";
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 100%;
+    background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-card-subtitle {
+    color: var(--grey-gray-60-base, #111827);
+    font-family: "SF Pro";
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 100%;
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-card-info {
+    color: var(--Grey-Gray-30, rgba(17, 24, 39, 0.40));
+    font-family: "SF Pro";
+    font-size: 0.875rem;
+    line-height: 120%; /* 16.8px */
+  }
+
   .hero-title {
     font-size: 4rem;
     line-height: 1.2;
     white-space: pre-wrap;
-    margin-bottom: 0.5rem;
+    color: var(--grey-gray-60-base, #111827);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "SF Pro";
+    font-weight: 600;
+    line-height: 100%; /* 64px */
+    margin-top: 1rem;
   }
 
   .hero-subtitle {
@@ -101,7 +187,7 @@ import Button from '../Button.astro';
   .hero-description {
     font-size: 1.25rem;
     margin-bottom: 10.625rem;
-    line-height: 1.5;
+    line-height: 1.2;
   }
 
   .hero-actions {
@@ -141,18 +227,36 @@ import Button from '../Button.astro';
   @media (max-width: 768px) {
     .container {
       padding: 0;
+      flex-direction: column;
+      padding: 10rem 0 1.5rem 0;
+      align-items: start;
     }
     .hero {
       min-height: fit-content;
-      padding: 10rem 1rem;
+      padding: 0;
+    }
+
+    .hero-content {
+      padding: 0 1rem;
+      max-width: 90%;
+    }
+
+    .hero-card-content {
+      flex-direction: row;
+      gap: 0.5rem;
+      justify-content: start;
+      position: relative;
+      min-width: 100%;
+      padding: 0 1rem;
+    }
+    .hero-card[data-index="1"]  {
+      margin-left: 0;
     }
 
     .hero-bg-img {
       background-size: 200%;
     }
-    .hero-content {
-      max-width: 84%;
-    }
+
     .hero-title {
       font-size: 2rem;
       letter-spacing: -1.1%;

@@ -12,11 +12,29 @@
   },
   "homepage": {
     "hero": {
-      "title": "Predictive Workforce Intelligence for Enterprise Talent Decisions",
+      "areaTitle": "AI Workforce Intelligence",
+      "title": "Predict performance. \nBefore you hire.",
       "subtitle": "",
-      "description": "Bring quant-level intelligence to talent decisions — predict hiring success, leadership potential, and workforce outcomes before you invest.",
+      "description": "The AI talent intelligence platform built for enterprise. Predict who will perform, who will leave, and who is ready to lead — across hiring, mobility, and development.",
       "cta": "Get Started",
-      "secondary": "Learn More"
+      "secondary": "Learn More",
+      "cards": {
+        "aiInterviewScore": {
+          "title": "AI INTERVIEW SCORE",
+          "subtitle": "Zhang Wei · 91/100",
+          "info": "High performance probability · Low attrition risk"
+        },
+        "internalMatch": {
+          "title": "INTERNAL MATCH",
+          "subtitle": "GM Role · 3 candidates surfaced",
+          "info": "Capability-matched · Ready now"
+        },
+        "successionCoverage": {
+          "title": "SUCCESSION COVERAGE",
+          "subtitle": "Critical roles · 88% Coverage",
+          "info": "Up from 40% · One candidate short of full coverage"
+        }
+      }
     },
     "partners": {
       "title": "Trusted by Global Enterprises",

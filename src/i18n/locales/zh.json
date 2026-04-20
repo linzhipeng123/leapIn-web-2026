@@ -12,11 +12,29 @@
   },
   "homepage": {
     "hero": {
+      "areaTitle": "AI Workforce Intelligence",
       "title": "面向企业人才决策的\n预测型劳动力智能",
       "subtitle": "",
       "description": "将量化级别的智能带入人才决策——在投入之前，就预测招聘成功率、领导力潜力与组织用工结果。",
       "cta": "立即开始",
-      "secondary": "了解更多"
+      "secondary": "了解更多",
+      "cards": {
+        "aiInterviewScore": {
+          "title": "AI INTERVIEW SCORE",
+          "subtitle": "Zhang Wei · 91/100",
+          "info": "High performance probability · Low attrition risk"
+        },
+        "internalMatch": {
+          "title": "INTERNAL MATCH",
+          "subtitle": "GM Role · 3 candidates surfaced",
+          "info": "Capability-matched · Ready now"
+        },
+        "successionCoverage": {
+          "title": "SUCCESSION COVERAGE",
+          "subtitle": "Critical roles · 88% Coverage",
+          "info": "Up from 40% · One candidate short of full coverage"
+        }
+      }
     },
     "partners": {
       "title": "深受全球企业信赖",
