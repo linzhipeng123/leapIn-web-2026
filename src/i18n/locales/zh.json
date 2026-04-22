@@ -12,27 +12,27 @@
   },
   "homepage": {
     "hero": {
-      "areaTitle": "AI Workforce Intelligence",
-      "title": "面向企业人才决策的\n预测型劳动力智能",
+      "areaTitle": "AI 人才决策平台",
+      "title": "入职之前，先见绩效",
       "subtitle": "",
-      "description": "将量化级别的智能带入人才决策——在投入之前，就预测招聘成功率、领导力潜力与组织用工结果。",
+      "description": "专为企业打造的 AI 人才智能平台，覆盖招聘、调配、发展全流程，精准预测员工绩效、离职风险与领导潜力。",
       "cta": "立即开始",
       "secondary": "了解更多",
       "cards": {
         "aiInterviewScore": {
-          "title": "AI INTERVIEW SCORE",
-          "subtitle": "Zhang Wei · 91/100",
-          "info": "High performance probability · Low attrition risk"
+          "title": "AI 面试评分",
+          "subtitle": "张伟 · 91/100",
+          "info": "高绩效潜力 · 低离职风险"
         },
         "internalMatch": {
-          "title": "INTERNAL MATCH",
-          "subtitle": "GM Role · 3 candidates surfaced",
-          "info": "Capability-matched · Ready now"
+          "title": "内部人才匹配H",
+          "subtitle": "总经理岗位 · 已匹配3名候选人",
+          "info": "能力匹配度达标 · 可立即任用"
         },
         "successionCoverage": {
-          "title": "SUCCESSION COVERAGE",
-          "subtitle": "Critical roles · 88% Coverage",
-          "info": "Up from 40% · One candidate short of full coverage"
+          "title": "继任人才覆盖率",
+          "subtitle": "关键岗位 · 覆盖率 88%",
+          "info": "较原40%显著提升 · 距全覆盖仅差1名候选人"
         }
       }
     },
@@ -65,7 +65,7 @@
       ]
     },
     "features": {
-      "areaTitle": "The Problem Section",
+      "areaTitle": "行业痛点",
       "title": "HR 已经战略化——但缺少战略级基础设施",
       "subtitle": "但大多数系统被设计用来记录，而不是用来决策。",
       "left": {
@@ -106,7 +106,7 @@
       ]
     },
     "product": {
-      "areaTitle": "Product suite",
+      "areaTitle": "产品系列",
       "title": "认识 LeapIn——面向劳动力决策的预测层",
       "subtitle": "LeapIn 不是一堆 HR 工具的拼装，而是预测型人才操作系统——统一基础设施，采集行为信号、构建动态技能图谱，并通过 API 输出决策智能。",
       "cta": "预约平台演示",
