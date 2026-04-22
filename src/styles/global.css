@@ -143,42 +143,23 @@
   * {
     @apply border-border outline-ring/50;
     }
-  body {
+  
+  /* 英文页面使用 SF Pro */
+  html[lang="en"] body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
   
-  /* Apply fonts based on language */
-  html[lang="en"] h1,
-  html[lang="en"] h2,
-  html[lang="en"] h3,
-  html[lang="en"] h4,
-  html[lang="en"] h5,
-  html[lang="en"] h6,
-  html[lang="en"] .stats-title,
-  html[lang="en"] .hero-title {
-    font-family: 'DM Serif Display', serif;
-  }
+  /* 中文页面使用 PingFang SC */
+  html[lang="zh"] body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+    }
   
-  html[lang="zh"] h1,
-  html[lang="zh"] h2,
-  html[lang="zh"] h3,
-  html[lang="zh"] h4,
-  html[lang="zh"] h5,
-  html[lang="zh"] h6,
-  html[lang="zh"] .stats-title,
-  html[lang="zh"] .hero-title {
-    font-family: 'Source Han Serif SC', serif;
+  /* 默认使用中文字体 */
+  html:not([lang]) body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
   }
-  
-  /* Default to Chinese font if no lang attribute */
-  html:not([lang]) h1,
-  html:not([lang]) h2,
-  html:not([lang]) h3,
-  html:not([lang]) h4,
-  html:not([lang]) h5,
-  html:not([lang]) h6,
-  html:not([lang]) .stats-title,
-  html:not([lang]) .hero-title {
-    font-family: 'Source Han Serif SC', serif;
-  }
+
 }
