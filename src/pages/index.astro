@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/index/Hero.astro';
 import Partners from '../components/index/Partners.astro';
+import Difference from '../components/index/Difference.astro';
 import Features from '../components/index/Features.astro';
 import ProductShowcase from '../components/index/ProductShowcase.astro';
 import Stats from '../components/index/Stats.astro';
@@ -20,6 +21,9 @@ import Footer from '../components/Footer.astro';
 		<section class="scroll-section partners-section" data-section="partners">
 			<Partners />
 		</section>
+		<section class="scroll-section difference-section" data-section="difference">
+			<Difference />
+		</section>
 		<section class="scroll-section" data-section="features">
 			<Features />
 		</section>
@@ -29,9 +33,9 @@ import Footer from '../components/Footer.astro';
 		<section class="scroll-section" data-section="stats">
 			<Stats />
 		</section>
-		<section class="scroll-section cta-section" data-section="cta">
+		<!-- <section class="scroll-section cta-section" data-section="cta">
 			<CTA />
-		</section>
+		</section> -->
 		<section class="scroll-section cta-section" data-section="cta">
 			<CommonCTA pageName='homepage' />
 		</section>

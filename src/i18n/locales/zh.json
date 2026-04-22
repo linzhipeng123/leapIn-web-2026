@@ -64,6 +64,24 @@
         }
       ]
     },
+    "difference": {
+      "areaTitle": "LeapIn 与众不同",
+      "title1": "多数 HR 工具只告诉你已发生的，",
+      "title2": "LeapIn 帮你预见将发生的。",
+      "description": "传统评估只看候选人过去的经历，LeapIn 行为 AI 基于企业实际数据训练，预测未来绩效、离职风险与领导潜力，让每一次招聘、内部调动、人才评估都有据可依、科学决策。",
+      "cta": "了解原理",
+      "demo": {
+        "trigger": "触发事件",
+        "badge": "94% 继任风险匹配度",
+        "action": "自动化操作",
+        "actionTag": "#安排面试",
+        "name": "亚历克斯·里维拉",
+        "role": "软件架构师",
+        "metric": "领导潜力",
+        "tag1": "高影响力",
+        "tag2": "预测匹配"
+      }
+    },
     "features": {
       "areaTitle": "行业痛点",
       "title": "HR 已经战略化——但缺少战略级基础设施",

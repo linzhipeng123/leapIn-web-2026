@@ -64,6 +64,24 @@
         }
       ]
     },
+    "difference": {
+      "areaTitle": "The LeapIn Difference",
+      "title1": "Most HR tools tell you what happened.",
+      "title2": "LeapIn tells you what will.",
+      "description": "Traditional assessments measure what candidates did in the past. LeapIn's behavioral AI predicts future performance, attrition risk, and leadership potential — trained on your own organization's data, not generic benchmarks. Every hiring decision, every internal move, every talent review becomes an evidence-based call.",
+      "cta": "See how it works",
+      "demo": {
+        "trigger": "TRIGGER EVENT",
+        "badge": "94% Succession Risk Match",
+        "action": "AUTOMATED ACTION",
+        "actionTag": "#Schedule_Interview",
+        "name": "Alex Rivera",
+        "role": "SOFTWARE ARCHITECT",
+        "metric": "Leadership Potential",
+        "tag1": "High Impact",
+        "tag2": "Predictive Match"
+      }
+    },
     "features": {
       "areaTitle": "The Problem Section",
       "title": "HR Has Become Strategic — Without Strategic Infrastructure",

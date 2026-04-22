@@ -1,0 +1,510 @@
+---
+import bgBottom1 from '../../assets/index/bg_linear_1.png';
+import avatar1 from '../../assets/index/difference/1.png';
+import avatar2 from '../../assets/index/difference/2.png';
+import avatar3 from '../../assets/index/difference/3.png';
+import avatar4 from '../../assets/index/difference/4.png';
+import AreaTitle from './AreaTitle.astro';
+import Button from '../Button.astro';
+---
+
+<section class="difference">
+  <div class="difference-container">
+    <div class="difference-left">
+      <div class="difference-top">
+        <AreaTitle section="difference" />
+        <h2 class="difference-title">
+          <span data-i18n="homepage.difference.title1">Most HR tools tell you what happened.</span>
+          <br />
+          <span data-i18n="homepage.difference.title2">LeapIn tells you what will.</span>
+        </h2>
+        <p class="difference-description" data-i18n="homepage.difference.description">
+          Traditional assessments measure what candidates did in the past. LeapIn's behavioral AI predicts future performance, attrition risk, and leadership potential — trained on your own organization's data, not generic benchmarks. Every hiring decision, every internal move, every talent review becomes an evidence-based call.
+        </p>
+      </div>
+      <Button text="homepage.difference.cta" type="primary" href="request" />
+    </div>
+
+    <div class="difference-right">
+      <div class="difference-demo">
+        <!-- Trigger Event Card -->
+        <div class="demo-card trigger-card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-label" data-i18n="homepage.difference.demo.trigger">TRIGGER EVENT</div>
+          <div class="card-code">if @candidate_ready...</div>
+        </div>
+
+        <!-- Success Badge -->
+        <div class="demo-badge">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor"/>
+          </svg>
+          <span data-i18n="homepage.difference.demo.badge">94% Succession Risk Match</span>
+        </div>
+
+        <!-- Automated Action Card -->
+        <div class="demo-card action-card">
+          <div class="card-icon">
+            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 15C1.0875 15 0.734375 14.8531 0.440625 14.5594C0.146875 14.2656 0 13.9125 0 13.5V3C0 2.5875 0.146875 2.23438 0.440625 1.94062C0.734375 1.64687 1.0875 1.5 1.5 1.5H2.25V0H3.75V1.5H9.75V0H11.25V1.5H12C12.4125 1.5 12.7656 1.64687 13.0594 1.94062C13.3531 2.23438 13.5 2.5875 13.5 3V13.5C13.5 13.9125 13.3531 14.2656 13.0594 14.5594C12.7656 14.8531 12.4125 15 12 15H1.5ZM1.5 13.5H12V6H1.5V13.5ZM1.5 4.5H12V3H1.5V4.5ZM1.5 4.5V3V4.5Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="card-label" data-i18n="homepage.difference.demo.action">AUTOMATED ACTION</div>
+          <div class="card-tag" data-i18n="homepage.difference.demo.actionTag">#Schedule_Interview</div>
+          <div class="card-avatars">
+            <div class="avatar-group">
+              <img class="avatar" src={avatar1.src} alt="Team member 1" />
+              <img class="avatar" src={avatar2.src} alt="Team member 2" />
+              <img class="avatar" src={avatar3.src} alt="Team member 3" />
+              <div class="avatar-more">+3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Candidate Profile Card -->
+        <div class="demo-card profile-card">
+          <div class="profile-header">
+            <img class="profile-avatar" src={avatar4.src} alt="Alex Rivera" />
+            <div class="profile-info">
+              <div class="profile-name" data-i18n="homepage.difference.demo.name">Alex Rivera</div>
+              <div class="profile-role" data-i18n="homepage.difference.demo.role">SOFTWARE ARCHITECT</div>
+            </div>
+          </div>
+          <div class="profile-metric">
+            <div class="metric-label" data-i18n="homepage.difference.demo.metric">Leadership Potential</div>
+            <div class="metric-value">94%</div>
+          </div>
+          <div class="metric-bar">
+            <div class="metric-fill"></div>
+          </div>
+          <div class="profile-tags">
+            <span class="tag" data-i18n="homepage.difference.demo.tag1">High Impact</span>
+            <span class="tag" data-i18n="homepage.difference.demo.tag2">Predictive Match</span>
+          </div>
+        </div>
+
+        <!-- Candidate Profile Card -->
+        <div class="demo-card empty-card">
+          <div class="empty-progress-1"></div>
+          <div class="empty-progress-2"></div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <!-- <svg class="demo-line line-1" viewBox="0 0 200 200" fill="none">
+          <path d="M 10 10 Q 100 50 190 190" stroke="#6366F1" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+        </svg> -->
+        <svg class="demo-line line-1" xmlns="http://www.w3.org/2000/svg" width="230" height="118" viewBox="0 0 230 118" fill="none">
+          <path d="M0 116.037C114.888 116.037 114.888 1.14893 229.777 1.14893" stroke="#5A3BDD" stroke-width="2.29777" stroke-dasharray="9.19 9.19"/>
+        </svg>
+        <!-- <svg class="demo-line line-2" viewBox="0 0 200 200" fill="none">
+          <path d="M 190 10 Q 100 50 10 190" stroke="#6366F1" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+        </svg> -->
+        <svg class="demo-line line-2"xmlns="http://www.w3.org/2000/svg" width="230" height="118" viewBox="0 0 230 118" fill="none">
+          <path d="M0 1.14893C114.888 1.14893 114.888 116.037 229.777 116.037" stroke="#5A3BDD" stroke-width="2.29777" stroke-dasharray="9.19 9.19"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ 
+  bgBottom1: `url(${bgBottom1.src})`,
+}}>
+  .difference {
+    padding-top: 4.75rem;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+  }
+
+  .difference::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+	  background-image: var(--bgBottom1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transform: scaleY(-1);
+    z-index: -1;
+  }
+
+  .difference-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.762fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .difference-left {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .difference-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .difference-tag {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6366F1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .difference-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #111827;
+  }
+
+  .difference-description {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #4B5563;
+  }
+
+  .difference-cta {
+    padding: 1rem 2rem;
+    background: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+  }
+
+  .difference-cta:hover {
+    background: #4F46E5;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+  }
+
+  .difference-right {
+    position: relative;
+  }
+
+  .difference-demo {
+    background: #1F2937;
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    position: relative;
+    min-height: 29.75rem;
+    border-radius: 0.75rem;
+    background: var(--grey-gray-60-base, #111827);
+    backdrop-filter: blur(7.5px);
+  }
+
+  .demo-card {
+    padding: 1.5rem;
+    position: absolute;
+    border-radius: 0.75rem;
+    border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+    background: rgba(255, 255, 255, 0.05);
+    /* backgroud blur */
+    backdrop-filter: blur(15px);
+  }
+
+  .trigger-card {
+    top: 2rem;
+    left: 2rem;
+  }
+
+  .action-card {
+    top: 10rem;
+    right: 2rem;
+    width: 18rem;
+  }
+
+  .profile-card {
+    bottom: 2rem;
+    left: 2rem;
+  }
+
+  .empty-card {
+    bottom: 2rem;
+    left: 20rem;
+    width: 10.125rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .empty-progress-1 {
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background: linear-gradient(90deg, #5A3BDD 0%, rgba(90, 59, 221, 0.00) 100%);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -4px rgba(0, 0, 0, 0.10);
+  }
+
+  .empty-progress-2 {
+    width: 6rem;
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    opacity: 0.5;
+    background: linear-gradient(90deg, #5A3BDD 0%, rgba(90, 59, 221, 0.00) 100%);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -4px rgba(0, 0, 0, 0.10);
+  }
+
+  .card-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #6366F1;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-code {
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    color: #E5E7EB;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+  }
+
+  .card-tag {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #E5E7EB;
+    margin-bottom: 1rem;
+  }
+
+  .card-avatars {
+    margin-top: 1rem;
+  }
+
+  .avatar-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid #1F2937;
+    margin-right: -8px;
+    object-fit: cover;
+  }
+
+  .avatar-more {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.2);
+    border: 2px solid #1F2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #E5E7EB;
+  }
+
+  .demo-badge {
+    position: absolute;
+    top: 7rem;
+    right: 8rem;
+    background: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #1F2937;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .demo-badge svg {
+    color: #6366F1;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile-info {
+    flex: 1;
+  }
+
+  .profile-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #E5E7EB;
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-role {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .profile-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-label {
+    font-size: 0.875rem;
+    color: #E5E7EB;
+  }
+
+  .metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #6366F1;
+  }
+
+  .metric-bar {
+    height: 8px;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .metric-fill {
+    height: 100%;
+    width: 94%;
+    background: linear-gradient(90deg, #6366F1, #8B5CF6);
+    border-radius: 1rem;
+  }
+
+  .profile-tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.375rem 0.75rem;
+    background: rgba(99, 102, 241, 0.2);
+    color: #E5E7EB;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .demo-line {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .line-1 {
+    top: 2rem;
+    right: 20rem;
+  }
+
+  .line-2 {
+    bottom: 14rem;
+    left: 13rem;
+  }
+
+  @media (max-width: 768px) {
+    .difference {
+      padding: 3rem 0;
+      height: auto;
+    }
+
+    .difference-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .difference-title {
+      font-size: 1.75rem;
+    }
+
+    .difference-demo {
+      padding: 2rem 1rem;
+      min-height: 600px;
+    }
+
+    .trigger-card {
+      top: 1rem;
+      left: 1rem;
+      width: calc(100% - 2rem);
+    }
+
+    .demo-badge {
+      top: 9rem;
+      right: 1rem;
+      left: 1rem;
+      width: calc(100% - 2rem);
+      justify-content: center;
+    }
+
+    .action-card {
+      top: 14rem;
+      right: 1rem;
+      left: 1rem;
+      width: calc(100% - 2rem);
+    }
+
+    .profile-card {
+      bottom: 1rem;
+      left: 1rem;
+      width: calc(100% - 2rem);
+    }
+
+    .demo-line {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+</script>
