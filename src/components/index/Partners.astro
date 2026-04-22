@@ -10,6 +10,9 @@ import logo6 from '../../assets/index/partner/logo6.png';
 import logo7 from '../../assets/index/partner/logo7.png';
 import logo8 from '../../assets/index/partner/logo8.png';
 import logo9 from '../../assets/index/partner/logo9.png';
+import avatar1 from '../../assets/index/partner/user/1.png';
+import avatar2 from '../../assets/index/partner/user/2.png';
+import avatar3 from '../../assets/index/partner/user/3.png';
 
 const logos = [
   { src: logo1, width: 103, mobileWidth: 40 },
@@ -22,6 +25,8 @@ const logos = [
   { src: logo8, width: 93, mobileWidth: 36 },
   { src: logo9, width: 204, mobileWidth: 80 },
 ];
+
+const avatars = [avatar1, avatar2, avatar3];
 ---
 <section class="partners">
   <div class="container">
@@ -61,6 +66,24 @@ const logos = [
         ))}
       </div>
     </div>
+
+    <div class="partners-reviews">
+      <div class="partners-reviews-left">
+        <div class="reviews-left-quote">"</div>
+        <div class="reviews-left-description" data-i18n="homepage.partners.reviews.0.quote"></div>
+        <div class="reviews-left-user-wrap">
+          <img class="reviews-left-user-avatar" src={avatars[0].src} alt="User avatar" data-avatar-0={avatars[0].src} data-avatar-1={avatars[1].src} data-avatar-2={avatars[2].src} />
+          <div class="reviews-left-user-info">
+            <div class="reviews-left-user-name" data-i18n="homepage.partners.reviews.0.name"></div>
+            <div class="reviews-left-user-position" data-i18n="homepage.partners.reviews.0.position"></div>
+          </div>
+        </div>
+      </div>
+      <div class="partners-reviews-right">
+        <div class="reviews-data" data-i18n="homepage.partners.reviews.0.stat"></div>
+        <div class="reviews-data-info" data-i18n="homepage.partners.reviews.0.statLabel"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -68,7 +91,8 @@ const logos = [
   bgBottom1: `url(${bgBottom1.src})`,
 }}>
   .partners {
-    padding: 4rem 0;
+    padding-top: 4.75rem;
+    /* padding: 4rem 0; */
     position: relative;
     overflow: hidden;
   }
@@ -96,18 +120,18 @@ const logos = [
 
   .partners-title {
     text-align: center;
-    font-size: 2.5rem; /* 40px / 16 = 2.5rem */
+    font-size: 2.5rem;
     font-weight: 600;
     color: var(--color-text);
     margin-top: 4rem;
-    margin-bottom: 0.5rem; /* 16px */
+    margin-bottom: 0.5rem;
   }
 
   .partners-description {
     text-align: center;
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     color: var(--grey-gray-60-base, #111827);
-    margin-bottom: 5.625rem; /* 48px */
+    margin-bottom: 5.625rem;
   }
 
   .partners-scroll {
@@ -141,7 +165,6 @@ const logos = [
     image-rendering: crisp-edges;
   }
 
-  /* 使用 translate3d 实现硬件加速的平滑滚动 */
   @keyframes scroll {
     0% {
       transform: translate3d(0, 0, 0);
@@ -149,6 +172,97 @@ const logos = [
     100% {
       transform: translate3d(calc(-100% / 3), 0, 0);
     }
+  }
+
+  /* Reviews Section */
+  .partners-reviews {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5rem auto 0;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+    max-width: var(--max-width);
+    padding: 0 4rem;
+    gap: 3rem;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .partners-reviews-left {
+    flex: 1;
+  }
+
+  .reviews-left-quote {
+    font-size: 3.75rem;
+    line-height: 1;
+    color: #6366F1;
+    font-family: Georgia, serif;
+  }
+
+  .reviews-left-description {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #1F2937;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .reviews-left-user-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .reviews-left-user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .reviews-left-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .reviews-left-user-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #6366F1;
+  }
+
+  .reviews-left-user-position {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+
+  .partners-reviews-right {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4rem;
+    border-left: 1px solid #E5E7EB;
+    width: 21.625rem;
+    height: 11.5rem;
+    justify-content: center;
+  }
+
+  .reviews-data {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #6366F1;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .reviews-data-info {
+    font-size: 1rem;
+    color: #6B7280;
   }
 
   @media (max-width: 768px) {
@@ -181,11 +295,50 @@ const logos = [
       padding: 0 1rem;
       text-align: left;
     }
+
+    .partners-reviews {
+      flex-direction: column;
+      padding: 0 1rem;
+      margin: 3rem auto 0;
+      gap: 2rem;
+    }
+
+    .partners-reviews-left {
+      max-width: 100%;
+    }
+
+    .reviews-left-quote {
+      font-size: 3rem;
+    }
+
+    .reviews-left-description {
+      font-size: 1rem;
+    }
+
+    .partners-reviews-right {
+      border-left: none;
+      border-top: 1px solid var(--grey-gray-60-base, #111827);
+      width: 100%;
+      padding: 1.5rem 0 0;
+      align-items: flex-start;
+      height: fit-content;
+    }
+
+    .reviews-data {
+      font-size: 3rem;
+    }
+
+    .reviews-data-info {
+      font-size: 0.875rem;
+      max-width: auto;
+    }
   }
 </style>
 
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
+  import { getCurrentLanguage } from '../../i18n/utils';
+  
   loadTranslations();
 
   // 应用移动端宽度
@@ -203,4 +356,77 @@ const logos = [
 
   applyMobileWidths();
   window.addEventListener('resize', applyMobileWidths);
+
+  // 客户评价轮播
+  let currentReviewIndex = 0;
+  const totalReviews = 3;
+  let reviewInterval: number;
+
+  function updateReview(index: number) {
+    const lang = getCurrentLanguage();
+    const reviewsSection = document.querySelector('.partners-reviews');
+    
+    if (!reviewsSection) return;
+
+    // 淡出效果
+    reviewsSection.style.opacity = '0';
+
+    setTimeout(() => {
+      // 更新内容
+      const quoteEl = reviewsSection.querySelector('.reviews-left-description');
+      const nameEl = reviewsSection.querySelector('.reviews-left-user-name');
+      const positionEl = reviewsSection.querySelector('.reviews-left-user-position');
+      const avatarEl = reviewsSection.querySelector('.reviews-left-user-avatar') as HTMLImageElement;
+      const statEl = reviewsSection.querySelector('.reviews-data');
+      const statLabelEl = reviewsSection.querySelector('.reviews-data-info');
+
+      if (quoteEl) quoteEl.setAttribute('data-i18n', `homepage.partners.reviews.${index}.quote`);
+      if (nameEl) nameEl.setAttribute('data-i18n', `homepage.partners.reviews.${index}.name`);
+      if (positionEl) positionEl.setAttribute('data-i18n', `homepage.partners.reviews.${index}.position`);
+      if (statEl) statEl.setAttribute('data-i18n', `homepage.partners.reviews.${index}.stat`);
+      if (statLabelEl) statLabelEl.setAttribute('data-i18n', `homepage.partners.reviews.${index}.statLabel`);
+      
+      // 更新头像
+      if (avatarEl) {
+        const avatarSrc = avatarEl.getAttribute(`data-avatar-${index}`);
+        if (avatarSrc) {
+          avatarEl.src = avatarSrc;
+        }
+      }
+
+      // 重新加载翻译
+      loadTranslations();
+
+      // 淡入效果
+      setTimeout(() => {
+        reviewsSection.style.opacity = '1';
+      }, 50);
+    }, 300);
+  }
+
+  function startReviewCarousel() {
+    reviewInterval = window.setInterval(() => {
+      currentReviewIndex = (currentReviewIndex + 1) % totalReviews;
+      updateReview(currentReviewIndex);
+    }, 5000); // 每5秒切换一次
+  }
+
+  function stopReviewCarousel() {
+    if (reviewInterval) {
+      clearInterval(reviewInterval);
+    }
+  }
+
+  // 启动轮播
+  startReviewCarousel();
+
+  // 鼠标悬停时暂停轮播
+  const reviewsSection = document.querySelector('.partners-reviews');
+  if (reviewsSection) {
+    reviewsSection.addEventListener('mouseenter', stopReviewCarousel);
+    reviewsSection.addEventListener('mouseleave', startReviewCarousel);
+  }
+
+  // 页面卸载时清理
+  window.addEventListener('beforeunload', stopReviewCarousel);
 </script>

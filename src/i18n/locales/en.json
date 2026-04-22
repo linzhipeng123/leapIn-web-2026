@@ -38,7 +38,30 @@
     },
     "partners": {
       "title": "Trusted by Global Enterprises",
-      "description": "Serving leading organizations across 8 major industries worldwide."
+      "description": "Serving leading organizations across 8 major industries worldwide.",
+      "reviews": [
+        {
+          "quote": "With LeapIn's predictive intelligence, we have transformed talent acquisition from guesswork into an exact science. We ensure that every leader who joins our team perfectly aligns with our culture.",
+          "name": "Janelle Sallenave",
+          "position": "Chief Operating Officer",
+          "stat": "88%",
+          "statLabel": "Faster Hiring Cycles"
+        },
+        {
+          "quote": "LeapIn gave us the hard data to back up every hiring and promotion decision. We no longer have to defend our choices with opinions — we can show performance probability, attrition risk, and readiness scores.",
+          "name": "Emma Rogers",
+          "position": "Talent Operations Lead",
+          "stat": "70%",
+          "statLabel": "Reduction in Subjective Hiring Bias"
+        },
+        {
+          "quote": "From hiring to internal mobility to leadership development, LeapIn covers the entire employee lifecycle with predictive intelligence. We're no longer reacting to talent gaps — we're anticipating them.",
+          "name": "James Wilson",
+          "position": "Director of Talent Development",
+          "stat": "55%",
+          "statLabel": "Faster Identification Of High-Potential Employees"
+        }
+      ]
     },
     "features": {
       "areaTitle": "The Problem Section",

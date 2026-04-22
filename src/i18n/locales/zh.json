@@ -38,7 +38,30 @@
     },
     "partners": {
       "title": "深受全球企业信赖",
-      "description": "服务于全球 8 大主要行业的领先组织"
+      "description": "服务于全球 8 大主要行业的领先组织",
+      "reviews": [
+        {
+          "quote": "借助 LeapIn 的预测智能，我们将人才招聘从猜测转变为精确科学。我们确保每一位加入团队的领导者都与我们的文化完美契合。",
+          "name": "Janelle Sallenave",
+          "position": "首席运营官",
+          "stat": "88%",
+          "statLabel": "招聘周期加快"
+        },
+        {
+          "quote": "LeapIn 为我们提供了支持每一次招聘和晋升决策的硬数据。我们不再需要用观点来辩护我们的选择——我们可以展示绩效概率、流失风险和准备度评分。",
+          "name": "Emma Rogers",
+          "position": "人才运营主管",
+          "stat": "70%",
+          "statLabel": "主观招聘偏见减少"
+        },
+        {
+          "quote": "从招聘到内部流动再到领导力发展，LeapIn 覆盖了整个员工生命周期，提供预测性智能。我们不再对人才缺口做出反应——我们在它们发生之前就预测到了。",
+          "name": "James Wilson",
+          "position": "人才发展总监",
+          "stat": "55%",
+          "statLabel": "更快识别高潜力员工"
+        }
+      ]
     },
     "features": {
       "areaTitle": "The Problem Section",
