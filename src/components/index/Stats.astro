@@ -5,22 +5,26 @@ import bgDot from '../../assets/bg_dot_dark.png';
 // Pre-compute rem values
 const fontSize = {
   titleMobile: pxToRem(24),
-  subtitleMobile: pxToRem(13),
-  value: pxToRem(58),
+  subtitleMobile: pxToRem(14),
+  value: pxToRem(40),
   valueMobile: pxToRem(32),
   suffix: pxToRem(18),
   suffixMobile: pxToRem(13),
-  label: pxToRem(20),
-  labelMobile: pxToRem(14),
-  description: pxToRem(14),
-  descriptionMobile: pxToRem(12),
+  label: pxToRem(14),
+  labelMobile: pxToRem(12),
+  description: pxToRem(16),
+  descriptionMobile: pxToRem(13),
+  industry: pxToRem(16),
+  industryMobile: pxToRem(13),
 };
 
 const stats = [
-  {value: 10, hasSuffix: true},
-  {value: '87%', hasSuffix: false},
-  {value: '80%', hasSuffix: false},
-  {value: '3-5', hasSuffix: true},
+  {value: '↑ + ↓', hasSuffix: false, industry: 'Retail'},
+  {value: '8', hasSuffix: false, suffix: 'x', industry: 'FMCG'},
+  {value: '63', hasSuffix: false, suffix: '%', industry: 'Hospitality'},
+  {value: '40→88', hasSuffix: false, suffix: '%', industry: 'Financial Services'},
+  {value: '10', hasSuffix: false, suffix: 'x', industry: 'Manufacturing'},
+  {value: '40→15', hasSuffix: false, suffix: '%', industry: 'Healthcare & Biotech'},
 ]
 ---
 
@@ -32,17 +36,17 @@ const stats = [
       {
         stats.map((item, index) => (
           <div class="stat-card">
+            <div class="stat-industry">{item.industry}</div>
             <div class="stat-value-wrapper">
               <div class="stat-value">
                 <span class="value-text">
-                  <span data-i18n={`homepage.stats.items.${index}.value`}></span>{item.hasSuffix ? <span class="stat-suffix" data-i18n={`homepage.stats.items.${index}.suffix`}></span> : null}
+                  <span data-i18n={`homepage.stats.items.${index}.value`}></span>{item.hasSuffix ? <span class="stat-suffix">{item.suffix}</span> : null}
                 </span>
                 <span class="value-text">
-                  <span data-i18n={`homepage.stats.items.${index}.value`}></span>{item.hasSuffix ? <span class="stat-suffix" data-i18n={`homepage.stats.items.${index}.suffix`}></span> : null}
+                  <span data-i18n={`homepage.stats.items.${index}.value`}></span>{item.hasSuffix ? <span class="stat-suffix">{item.suffix}</span> : null}
                 </span>
               </div>
             </div>
-            <div class="stat-label" data-i18n={`homepage.stats.items.${index}.label`}></div>
             <div class="stat-description" data-i18n={`homepage.stats.items.${index}.description`}></div>
           </div>
         ))
@@ -68,6 +72,8 @@ const stats = [
   descriptionMobileSize: fontSize.descriptionMobile,
   labelSize: fontSize.label,
   labelMobileSize: fontSize.labelMobile,
+  industrySize: fontSize.industry,
+  industryMobileSize: fontSize.industryMobile,
 }}>
   .stats {
     padding: 6rem 0;
@@ -102,55 +108,67 @@ const stats = [
   .stats-title {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    line-height: 124%; /* 49.6px */
+    line-height: 124%;
     color: var(--Neutrals-White-00, #FFF);
     letter-spacing: -0.44px;
+    font-weight: 600;
   }
 
   .stats-subtitle {
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: var(--Neutrals-White-00, #FFF);
-    margin-bottom: 3.12rem;
+    margin-bottom: 2rem;
     line-height: 1.2;
     font-feature-settings: 'liga' off, 'clig' off;
   }
 
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin: 0 auto;
   }
 
   .stat-card {
+    border-radius: 0.75rem;
+    border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 4.375rem 0;
-    text-align: center;
+
+    /* backgroud blur */
+    backdrop-filter: blur(15px);
+    padding: 1.5rem;
+    text-align: left;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
+  }
+
+  .stat-industry {
+    font-size: var(--industrySize);
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2rem;
   }
 
   .stat-value-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 2rem;
   }
 
   .stat-value {
     font-size: var(--valueSize);
-    font-weight: 700;
-    line-height: 1.2;
+    font-weight: 600;
+    line-height: 1.24;
     display: inline-block;
     overflow: hidden;
     height: 1.2em;
     position: relative;
+    letter-spacing: -0.44px;
   }
 
   .stat-value > span {
@@ -202,24 +220,13 @@ const stats = [
     }
   }
 
-  .stat-label {
-    font-size: var(--labelSize);
-    line-height: 1;
-    background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   .stat-description {
-    color: var(--Neutrals-Dark-40, #6B7280);
+    color: rgba(255, 255, 255, 0.6);
     font-size: var(--descriptionSize);
     font-style: normal;
-    font-weight: 700;
-    line-height: 100%; /* 14px */
+    font-weight: 400;
+    line-height: 1.2;
     letter-spacing: -0.154px;
-    text-transform: capitalize;
-    margin-top: 0.5rem;
   }
 
   @media (max-width: 768px) {
@@ -238,7 +245,7 @@ const stats = [
 
     .stats-subtitle {
       font-size: var(--subtitleMobileSize);
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
     }
 
     .stats-grid {
@@ -247,7 +254,16 @@ const stats = [
     }
 
     .stat-card {
-      padding: 2rem 1rem;
+      padding: 1.5rem 1rem;
+    }
+
+    .stat-industry {
+      font-size: var(--industryMobileSize);
+      margin-bottom: 1rem;
+    }
+
+    .stat-value-wrapper {
+      margin-bottom: 1rem;
     }
 
     .stat-value {
@@ -261,15 +277,9 @@ const stats = [
       font-size: var(--suffixMobileSize);
     }
 
-    .stat-label {
-      font-size: var(--labelMobileSize);
-      line-height: 1;
-    }
-
     .stat-description {
       font-size: var(--descriptionMobileSize);
-      line-height: 1;
-      margin-top: 0.25rem;
+      line-height: 1.4;
     }
   }
 </style>

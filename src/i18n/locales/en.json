@@ -184,28 +184,38 @@
       ]
     },
     "stats": {
-      "title": "Infrastructure-Level Returns",
-      "subtitle": "LeapIn turns talent data into measurable business outcomes.",
+      "title": "Instant ROI on the metrics that matter.",
+      "subtitle": "Validated outcomes from enterprise deployments across industries.",
       "items": [
         {
-          "value": "40–60%",
-          "label": "Reduction",
-          "description": "In talent decision uncertainty"
+          "label": "Retail",
+          "value": "↑ + ↓",
+          "description": "Performance up, attrition down — AI score validated over 12 months"
         },
         {
-          "value": "87%",
-          "label": "Cost avoidance",
-          "description": "Through early risk detection"
+          "label": "FMCG",
+          "value": "8×",
+          "description": "Faster hiring · 88% reduction in screening time"
         },
         {
-          "value": "3-5×",
-          "label": "Increase",
-          "description": "In internal capability reallocation"
+          "label": "Hospitality",
+          "value": "63%",
+          "description": "Increase in internal mobility · 50% faster role filling"
         },
         {
-          "value": "12–18×",
-          "label": "Valuation",
-          "description": "Multiple alignment"
+          "label": "Financial Services",
+          "value": "40→88%",
+          "description": "Succession coverage in one AI-powered review cycle"
+        },
+        {
+          "label": "Manufacturing",
+          "value": "10×",
+          "description": "Interview throughput · high alignment with BU performance feedback"
+        },
+        {
+          "label": "Healthcare & Biotech",
+          "value": "40→15%",
+          "description": "External hiring rate · 30% reduction in external hiring cost"
         }
       ]
     },
