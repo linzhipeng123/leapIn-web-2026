@@ -4,6 +4,7 @@ import developImg from '../../assets/solutions/section/develop.png';
 import developMobileImg from '../../assets/solutions/section/develop-mobile.png';
 import developImgCn from '../../assets/solutions/section/cn/develop.png';
 import developMobileImgCn from '../../assets/solutions/section/cn/develop-mobile.png';
+import bgDot from '../../assets/bg_dot_dark.png';
 import Card from './Card.astro';
 
 const stats = [
@@ -43,7 +44,10 @@ const stats = [
   </div>
 </section>
 
-<style define:vars={{ circleBg: `url(${circleBg.src})` }}>
+<style define:vars={{
+  circleBg: `url(${circleBg.src})`,
+  bgDot: `url(${bgDot.src})`
+}}>
   .develop-section {
     width: 100%;
     min-height: 100vh;
@@ -53,6 +57,20 @@ const stats = [
     overflow: visible;
     display: flex;
     flex-direction: column;
+  }
+
+  .develop-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--bgDot);
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.3;
+    z-index: 0;
   }
 
   .develop-container {
@@ -92,12 +110,15 @@ const stats = [
     margin: 0 auto;
     padding: 0 4rem;
     width: 100%;
+    margin-top: 3rem;
   }
 
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.30);;
+    padding-top: 3.25rem;
   }
 
   .stat-card {
@@ -173,13 +194,14 @@ const stats = [
 
     .stats-container {
       padding: 0 1rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
       width: 100%;
     }
 
     .stats-grid {
       grid-template-columns: 1fr;
       gap: 1rem;
+      padding-top: 1.25rem;
     }
 
     .stat-card {

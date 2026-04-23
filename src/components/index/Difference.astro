@@ -4,6 +4,7 @@ import avatar1 from '../../assets/index/difference/1.png';
 import avatar2 from '../../assets/index/difference/2.png';
 import avatar3 from '../../assets/index/difference/3.png';
 import avatar4 from '../../assets/index/difference/4.png';
+import bgDot from '../../assets/bg_dot_dark.png';
 import AreaTitle from './AreaTitle.astro';
 import Button from '../Button.astro';
 ---
@@ -120,6 +121,7 @@ import Button from '../Button.astro';
 
 <style define:vars={{ 
   bgBottom1: `url(${bgBottom1.src})`,
+  bgDot: `url(${bgDot.src})`
 }}>
   .difference {
     padding-top: 4.75rem;
@@ -210,6 +212,20 @@ import Button from '../Button.astro';
 
   .difference-right {
     position: relative;
+  }
+
+  .difference-demo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--bgDot);
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.3;
+    z-index: 0;
   }
 
   .difference-demo {
