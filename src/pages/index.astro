@@ -4,10 +4,10 @@ import Header from '../components/Header.astro';
 import Hero from '../components/index/Hero.astro';
 import Partners from '../components/index/Partners.astro';
 import Difference from '../components/index/Difference.astro';
+import AIWorkforce from '../components/index/AIWorkforce.astro';
 import Features from '../components/index/Features.astro';
 import ProductShowcase from '../components/index/ProductShowcase.astro';
 import Stats from '../components/index/Stats.astro';
-import CTA from '../components/index/CTA.astro';
 import CommonCTA from '../components/cta/CommonCAT.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -23,6 +23,9 @@ import Footer from '../components/Footer.astro';
 		</section>
 		<section class="scroll-section difference-section" data-section="difference">
 			<Difference />
+		</section>
+		<section class="scroll-section ai-workforce-section" data-section="ai-workforce">
+			<AIWorkforce />
 		</section>
 		<section class="scroll-section" data-section="features">
 			<Features />
@@ -47,6 +50,7 @@ import Footer from '../components/Footer.astro';
 
 <style>
 	/* .partners-section, */
+	.ai-workforce-section,
 	.cta-section,
 	.footer-section {
 		min-height: auto;

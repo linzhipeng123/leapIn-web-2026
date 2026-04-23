@@ -82,6 +82,43 @@
         "tag2": "Predictive Match"
       }
     },
+    "aiWorkforce": {
+      "areaTitle": "Complete, unified platform",
+      "title": "One platform. Every talent decision.",
+      "hire": {
+        "title": "Hire with prediction",
+        "description": "Traditional assessments measure what candidates did in the past. LeapIn's behavioral AI predicts future performance, attrition risk, and leadership potential — trained on your own organization's data, not generic benchmarks. Every hiring decision, every internal move, every talent review becomes an evidence-based call."
+      },
+      "move": {
+        "title": "Move talent with intelligence",
+        "description": "Enterprise skills mapping builds a live talent profile for every employee. When a critical role opens, surface the right internal candidates instantly — scored on capability fit, not tenure or visibility."
+      },
+      "develop": {
+        "title": "Develop with evidence",
+        "description": "AI talent reviews identify high-potential leaders objectively — replacing manager nominations with structured, bias-reduced signal. Map succession depth and generate individual development plans, automatically."
+      },
+      "cards": {
+        "analytics": {
+          "label": "Predictive Analytics",
+          "performance": "Performance",
+          "retention": "Retention",
+          "leadership": "Leadership",
+          "culture": "Culture Fit",
+          "footer": "AI-powered predictions"
+        },
+        "intelligence": {
+          "label": "Talent Intelligence",
+          "footer": "Real-time talent mapping"
+        },
+        "development": {
+          "label": "Development Tracking",
+          "leadership": "Leadership Skills",
+          "technical": "Technical Expertise",
+          "strategic": "Strategic Thinking",
+          "footer": "Automated development plans"
+        }
+      }
+    },
     "features": {
       "areaTitle": "The Problem Section",
       "title": "HR Has Become Strategic — Without Strategic Infrastructure",

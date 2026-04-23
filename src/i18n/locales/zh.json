@@ -82,6 +82,43 @@
         "tag2": "预测匹配"
       }
     },
+    "aiWorkforce": {
+      "areaTitle": "完整统一平台",
+      "title": "一个平台，支撑所有人才决策",
+      "hire": {
+        "title": "预测式招聘",
+        "description": "AI 面试可规模化评估候选人，发 offer 前即可预测在岗表现、文化适配度与早期离职风险。模型基于企业高绩效员工训练，结果经真实场景验证。"
+      },
+      "move": {
+        "title": "智能人才调配",
+        "description": "企业技能图谱为每位员工建立实时能力档案，关键岗位空缺时，快速匹配最佳内部人选 —— 按能力匹配度评分，不看资历、不看曝光度。"
+      },
+      "develop": {
+        "title": "数据驱动发展",
+        "description": "AI 人才评估客观识别高潜管理者，用结构化、低偏差数据替代主观推荐，自动构建人才梯队并生成个人发展计划。"
+      },
+      "cards": {
+        "analytics": {
+          "label": "预测分析",
+          "performance": "绩效",
+          "retention": "留存率",
+          "leadership": "领导力",
+          "culture": "文化适配度",
+          "footer": "AI 驱动预测模型"
+        },
+        "intelligence": {
+          "label": "人才智能图谱",
+          "footer": "实时人才全景映射"
+        },
+        "development": {
+          "label": "发展追踪",
+          "leadership": "领导力",
+          "technical": "专业技能",
+          "strategic": "战略思维",
+          "footer": "自动生成发展计划"
+        }
+      }
+    },
     "features": {
       "areaTitle": "行业痛点",
       "title": "HR 已经战略化——但缺少战略级基础设施",
