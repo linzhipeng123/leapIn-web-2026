@@ -58,6 +58,11 @@ import Footer from '../components/Footer.astro';
 
 	/* PC 端启用滚动捕捉 */
 	@media (min-width: 769px) {
+		/* ai-workforce-section 保持滚动捕捉 */
+		.ai-workforce-section {
+			scroll-snap-align: start;
+			scroll-snap-stop: always;
+		}
 
 		/* 除了 hero 外，其他区域需要留出 header 高度 */
 		.scroll-section:not([data-section="hero"]) {
@@ -65,3 +70,49 @@ import Footer from '../components/Footer.astro';
 		}
 	}
 </style>
+
+<script>
+	// AIWorkforce 区域内部滚动控制
+	if (typeof window !== 'undefined' && window.innerWidth > 768) {
+		setTimeout(() => {
+			const aiWorkforceSection = document.querySelector('.ai-workforce-section');
+			const aiWorkforceContent = aiWorkforceSection?.querySelector('.ai-workforce') as HTMLElement;
+			
+			if (aiWorkforceSection && aiWorkforceContent) {
+				aiWorkforceSection.addEventListener('wheel', (e: WheelEvent) => {
+					const sectionRect = aiWorkforceSection.getBoundingClientRect();
+					const isAtTop = Math.abs(sectionRect.top) < 10;
+					
+					if (!isAtTop) return;
+
+					const scrollTop = aiWorkforceContent.scrollTop;
+					const scrollHeight = aiWorkforceContent.scrollHeight;
+					const clientHeight = aiWorkforceContent.clientHeight;
+					const maxScroll = scrollHeight - clientHeight;
+
+					const scrollingDown = e.deltaY > 0;
+					const scrollingUp = e.deltaY < 0;
+
+					const canScrollDown = scrollTop < maxScroll - 5;
+					const canScrollUp = scrollTop > 5;
+
+					if ((scrollingDown && canScrollDown) || (scrollingUp && canScrollUp)) {
+						e.stopPropagation();
+						
+						if ((window as any).scrollState) {
+							(window as any).scrollState.isInnerScrolling = true;
+						}
+
+						aiWorkforceContent.scrollTop += e.deltaY;
+
+						setTimeout(() => {
+							if ((window as any).scrollState) {
+								(window as any).scrollState.isInnerScrolling = false;
+							}
+						}, 150);
+					}
+				}, { passive: false });
+			}
+		}, 200);
+	}
+</script>

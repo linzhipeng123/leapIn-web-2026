@@ -236,6 +236,32 @@ import talentIntelligenceImg from '../../assets/index/ai-workforce/2.png';
     overflow: hidden;
   }
 
+  .ai-workforce-header {
+    margin-top: 3rem;
+  }
+
+  /* PC 端：设置固定高度并允许内部滚动 */
+  @media (min-width: 769px) {
+    .ai-workforce {
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-top: 4.75rem;
+      padding-bottom: 2rem;
+    }
+
+    /* 隐藏滚动条但保持滚动功能 */
+    .ai-workforce::-webkit-scrollbar {
+      width: 0;
+      display: none;
+    }
+    
+    .ai-workforce {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+
   .ai-workforce-container {
     max-width: var(--max-width);
     margin: 0 auto;
