@@ -4,8 +4,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CommonHero from '../components/hero/CommonHero.astro';
 import CTA from '../components/CTA.astro';
-import Section1 from '../components/solutions/Section1.astro';
-import Section2 from '../components/solutions/Section2.astro';
+import Hire from '../components/solutions/Hire.astro';
+import Mobilize from '../components/solutions/Mobilize.astro';
+import Develop from '../components/solutions/Develop.astro';
 ---
 
 <Layout>
@@ -17,102 +18,36 @@ import Section2 from '../components/solutions/Section2.astro';
 			<CommonHero pageName="solutions" />
 		</section>
 
-		<!-- Talent Sourcing Section - Dark -->
-		<section class="scroll-section solution-dark solution-section1" data-section="section1">
-			<Section1 />
+		<!-- Hire Section -->
+		<section class="scroll-section solution-dark" data-section="hire">
+			<Hire />
 		</section>
 
-		<section class="scroll-section solution-dark solution-section2" data-section="section2">
-			<Section2 />
+		<!-- Mobilize Section -->
+		<section class="scroll-section solution-dark" data-section="mobilize">
+			<Mobilize />
 		</section>
 
-		<!-- Development Section - Light -->
+		<!-- Develop Section -->
+		<section class="scroll-section solution-dark" data-section="develop">
+			<Develop />
+		</section>
+
+		<!-- CTA Section -->
 		<section class="scroll-section solutions-cta alt" data-section="cta">
 			<CTA pageName='solutions' />
 		</section>
 
+		<!-- Footer Section -->
 		<section class="scroll-section footer-section" data-section="footer">
 			<Footer />
 		</section>
 	</main>
-	<!-- <section class="scroll-section footer-section">
-		<Footer />
-	</section> -->
 </Layout>
 
 <script>
 	import { loadTranslations } from '../scripts/i18n-loader';
 	loadTranslations();
-
-	// PC端监听 solution-section1 可见性
-	if (typeof window !== 'undefined') {
-		const isMobile = () => window.innerWidth <= 768;
-		
-		if (!isMobile()) {
-			const section1 = document.querySelector('.solution-section1');
-			const cardSection1 = document.querySelector('.card-section1');
-			const avatarSection1 = document.querySelector('.section-avatar');
-			const scoreSection1 = document.querySelector('.section-score');
-			const section2 = document.querySelector('.solution-section2');
-			const cardSection2 = document.querySelector('.card-section2');
-			const avatarSection2 = document.querySelector('.section-avatar2');
-			const scoreSection2 = document.querySelector('.section-score2');
-
-			if (section1 && cardSection1) {
-				const observerCallback = (entries: IntersectionObserverEntry[]) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							// 在可视区域内，恢复原始状态
-							(cardSection1 as HTMLElement).style.transform = 'translateY(0) rotate(0)';
-							(cardSection1 as HTMLElement).style.left = ' -4rem';
-							(avatarSection1 as HTMLElement).style.transform = 'rotate(0)';
-							(scoreSection1 as HTMLElement).style.transform = 'translateX(14rem) translateY(12rem) rotate(0)';
-						} else {
-							// 不在可视区域，应用变换
-							(cardSection1 as HTMLElement).style.transform = 'translateY(-400px) rotate(-45deg)';
-							(cardSection1 as HTMLElement).style.left = '-30%';
-							(avatarSection1 as HTMLElement).style.transform = 'rotate(29.655deg)';
-							(scoreSection1 as HTMLElement).style.transform = 'rotate(-40.218deg)';
-						}
-					});
-				};
-
-				const observer = new IntersectionObserver(observerCallback, {
-					threshold: 0.1,
-					rootMargin: '0px'
-				});
-
-				observer.observe(section1);
-			}
-			if (section2 && cardSection2) {
-      			const currentLang = localStorage.getItem('language') || 'en';
-				const observerCallback = (entries: IntersectionObserverEntry[]) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							// 在可视区域内，恢复原始状态
-							(cardSection2 as HTMLElement).style.transform = 'translateY(-4em) rotate(0)';
-							(cardSection2 as HTMLElement).style.left = ' 0rem';
-							(avatarSection2 as HTMLElement).style.transform = 'translateY(-5rem) rotate(0)';
-							(scoreSection2 as HTMLElement).style.transform = `translateX(${currentLang === 'zh' ? '-100%' : '-16.5rem'}) translateY(10rem) rotate(0)`;
-						} else {
-							// 不在可视区域，应用变换
-							(cardSection2 as HTMLElement).style.transform = 'translateY(-400px) rotate(-45deg)';
-							(cardSection2 as HTMLElement).style.left = '-30%';
-							(avatarSection2 as HTMLElement).style.transform = 'translateY(-15rem) rotate(-29.655deg)';
-							(scoreSection2 as HTMLElement).style.transform = 'translateX(12.5rem) translateY(0rem) rotate(40.218deg)';
-						}
-					});
-				};
-
-				const observer = new IntersectionObserver(observerCallback, {
-					threshold: 0.1,
-					rootMargin: '0px'
-				});
-
-				observer.observe(section2);
-			}
-		}
-	}
 </script>
 
 <style>
@@ -143,9 +78,5 @@ import Section2 from '../components/solutions/Section2.astro';
 		background: #0f172a;
 		color: rgba(255, 255, 255, 0.5);
 		text-align: center;
-	}
-	
-	.solution-section2 {
-        overflow: hidden;
 	}
 </style>

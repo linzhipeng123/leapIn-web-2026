@@ -1,0 +1,104 @@
+---
+import circleBg from '../../assets/solutions/section/circle.png';
+import hireImg from '../../assets/solutions/section/hire.png';
+import hireMobileImg from '../../assets/solutions/section/hire-mobile.png';
+import hireImgCn from '../../assets/solutions/section/cn/hire.png';
+import hireMobileImgCn from '../../assets/solutions/section/cn/hire-mobile.png';
+import Card from './Card.astro';
+---
+
+<section class="hire-section">
+  <div class="hire-container">
+    <div class="hire-left">
+      <div class="hire-visual">
+        <picture>
+          <source media="(max-width: 768px)" srcset={hireMobileImg.src} class="hire-img-mobile" data-en={hireMobileImg.src} data-cn={hireMobileImgCn.src} />
+          <img src={hireImg.src} alt="Predictive Hiring" class="visual-image hire-img" data-en={hireImg.src} data-cn={hireImgCn.src} />
+        </picture>
+      </div>
+    </div>
+    <Card index={1} itemLength={3} className="card-section1" cardName='hire'></Card>
+  </div>
+</section>
+
+<style define:vars={{ circleBg: `url(${circleBg.src})` }}>
+  .hire-section {
+    height: 100vh;
+    padding-top: 4.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hire-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hire-left {
+    position: relative;
+    flex: 0 0 auto;
+    width: calc(654 / 1134 * 100%);
+  }
+
+  .hire-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .visual-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .hire-section {
+      padding: 0;
+    }
+
+    .hire-container {
+      flex-direction: column-reverse;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .hire-left {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+
+  // 切换图片语言
+  function switchImageLanguage() {
+    const currentLang = localStorage.getItem('language') || 'en';
+    const img = document.querySelector('.hire-img') as HTMLImageElement;
+    const source = document.querySelector('.hire-img-mobile') as HTMLSourceElement;
+    
+    if (img && source) {
+      if (currentLang === 'zh') {
+        img.src = img.getAttribute('data-cn') || img.src;
+        source.srcset = source.getAttribute('data-cn') || source.srcset;
+      } else {
+        img.src = img.getAttribute('data-en') || img.src;
+        source.srcset = source.getAttribute('data-en') || source.srcset;
+      }
+    }
+  }
+
+  // 初始化时切换
+  switchImageLanguage();
+
+  // 监听语言切换事件
+  window.addEventListener('languageChanged', switchImageLanguage);
+</script>

@@ -4,20 +4,24 @@ interface Props {
 	index: number;
     itemLength: number;
     className?: string;
+    cardName?: string;
 }
-const { index, itemLength, className } = Astro.props;
+const { index, itemLength, className, cardName } = Astro.props;
 ---
 
 <div class={`card ${className}`}>
-    <div class="card-index">0{index}</div>
-    <h3 class="card-title" data-i18n={`solutions.section${index}.title`}></h3>
-    <div class="card-description" data-i18n={`solutions.section${index}.description`}></div>
+    <div class="card-index">0{index} · <span data-i18n={`solutions.${cardName || ('section' + index)}.label`}></span></div>
+    <h3 class="card-title" data-i18n={`solutions.${cardName || ('section' + index)}.title`}></h3>
+    <div class="card-description" data-i18n={`solutions.${cardName || ('section' + index)}.description`}></div>
     <div class="card-items">
         {
             Array(itemLength).fill(0).map((_, itemIndex) => (
-                <CardItem text={`solutions.section${index}.items.${itemIndex}`} />
+                <CardItem text={`solutions.${cardName || ('section' + index)}.items.${itemIndex}`} />
             ))
         }
+    </div>
+    <div class="tag-line">
+        <span data-i18n={`solutions.${cardName || ('section' + index)}.tagline`}></span>
     </div>
 </div>
 
@@ -75,14 +79,16 @@ const { index, itemLength, className } = Astro.props;
         backdrop-filter: blur(7.5px);
     }
 
-    .card.card-section1::before {
+    .card.card-section1::before,
+    .card.card-section3::before {
         width: 2rem;
         border-radius: 1.25rem 0 0 1.25rem;
         border-right: none;
         left: -2rem;
     }
 
-    .card.card-section1::after {
+    .card.card-section1::after,
+    .card.card-section3::after {
         width: 4rem;
         border-radius: 1.25rem 0 0 1.25rem;
         border-right: none;
@@ -119,8 +125,9 @@ const { index, itemLength, className } = Astro.props;
     .card-title {
         width: 100%;
         font-size: 2.25rem;
-        line-height: 100%; /* 36px */
-        margin-bottom: 3.75rem;
+        line-height: 130%; /* 36px */
+        white-space: pre-wrap;
+        margin-bottom: 2.5rem;
         background: var(--AI-Gradient-Neon-Horizon-Heavy, linear-gradient(131deg, #5386FA 9.64%, #8B5CF6 89.29%));
         background-clip: text;
         -webkit-background-clip: text;
@@ -145,15 +152,27 @@ const { index, itemLength, className } = Astro.props;
         gap: 0.5rem;
     }
 
+    .tag-line {
+        width: 100%;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.60);
+        color: var(--Neutrals-White-00, #FFF);
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 128.571%; /* 128.571% */
+    }
+
 	@media (max-width: 768px) {
         .card {
             width: 100%;
             margin: 0 auto;
-            margin-bottom: 3.125rem;
+            margin-bottom: 2rem;
         }
 
         .card.card-section1::before,
-        .card.card-section2::before {
+        .card.card-section2::before,
+        .card.card-section3::before {
             width: calc(100% - 2rem);
             height: 1rem;
             border-radius: 0 0 1.25rem 1.25rem;
@@ -166,7 +185,8 @@ const { index, itemLength, className } = Astro.props;
         }
 
         .card.card-section1::after,
-        .card.card-section2::after {
+        .card.card-section2::after,
+        .card.card-section3::after {
             width: calc(100% - 4rem);
             height: 1rem;
             border-radius: 0 0 1.25rem 1.25rem;

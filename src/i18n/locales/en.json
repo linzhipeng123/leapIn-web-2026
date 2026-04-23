@@ -358,10 +358,52 @@
   },
   "solutions": {
     "hero": {
-      "title": "AI",
-      "titleSuffix": "for the Entire Talent Lifecycle",
-      "subtitle": "Solutions",
-      "description": "LeapIn helps enterprises solve their most critical workforce challenges with intelligence — not intuition."
+      "title": "No more guesswork\nJust outcomes.",
+      "titleSuffix": "",
+      "subtitle": "",
+      "description": "Most companies don't fail because of talent. They fail because of bad talent decisions — hiring, promotions, mobility — still run on judgment. LeapIn changes that."
+    },
+    "hire": {
+      "label": "Hire",
+      "title": "Predict who will perform.\nBefore day one.",
+      "description": "Not based on resumes. Not based on interviews. Based on behavior → outcome prediction trained on your own top performers.",
+      "items": [
+        "Predict performance before offer — scored against real outcomes",
+        "Flag attrition risk at screening — before they're on payroll",
+        "8× faster hiring · 88% reduction in screening time"
+      ],
+      "tagline": "Know before you hire.",
+      "visual": {
+        "step1": "Data intake",
+        "engine": "Predictive Engine",
+        "candidate": "Elena K.",
+        "role": "Lead Engineer",
+        "score": "Match Score",
+        "tag1": "High performance probability",
+        "tag2": "Low attrition risk"
+      }
+    },
+    "mobilize": {
+      "label": "Mobilize",
+      "title": "Your next leader is already on your payroll.",
+      "description": "Most companies underutilize internal talent because they can't see it. LeapIn maps every employee's capabilities and surfaces the right person for every role.",
+      "items": [
+        "Match employees to roles based on predicted success",
+        "Surface hidden capabilities across teams and geographies",
+        "63% more internal mobility · external hiring rate 40% → 15%"
+      ],
+      "tagline": "Right talent. Right role. Right time."
+    },
+    "develop": {
+      "label": "Develop",
+      "title": "Leadership gaps don't happen suddenly. They build quietly.",
+      "description": "AI talent reviews identify high-potential leaders on structured signal — not manager nominations. Map succession depth. Generate development plans. Automatically.",
+      "items": [
+        "Identify HiPo talent early — objective, bias-reduced signal",
+        "Predict leadership readiness before the role is open",
+        "Succession coverage 40% → 88% in one review cycle"
+      ],
+      "tagline": "From reactive development → predictive leadership."
     },
     "section1": {
       "title": "Hire Smarter",

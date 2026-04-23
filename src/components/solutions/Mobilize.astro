@@ -1,0 +1,103 @@
+---
+import circleBg from '../../assets/solutions/section/circle.png';
+import mobilizeImg from '../../assets/solutions/section/mobilize.png';
+import mobilizeMobileImg from '../../assets/solutions/section/mobilize-mobile.png';
+import mobilizeImgCn from '../../assets/solutions/section/cn/mobilize.png';
+import mobilizeMobileImgCn from '../../assets/solutions/section/cn/mobilize-mobile.png';
+import Card from './Card.astro';
+---
+
+<section class="mobilize-section">
+  <div class="mobilize-container">
+    <Card index={2} itemLength={3} className="card-section2" cardName='mobilize'></Card>
+    <div class="mobilize-left">
+      <div class="mobilize-visual">
+        <picture>
+          <source media="(max-width: 768px)" srcset={mobilizeMobileImg.src} class="mobilize-img-mobile" data-en={mobilizeMobileImg.src} data-cn={mobilizeMobileImgCn.src} />
+          <img src={mobilizeImg.src} alt="Internal Talent Matching" class="visual-image mobilize-img" data-en={mobilizeImg.src} data-cn={mobilizeImgCn.src} />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ circleBg: `url(${circleBg.src})` }}>
+  .mobilize-section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobilize-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobilize-left {
+    position: relative;
+    flex: 0 0 auto;
+    width: calc(654 / 1134 * 100%);
+  }
+
+  .mobilize-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .visual-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .mobilize-section {
+      padding: 0;
+    }
+
+    .mobilize-container {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .mobilize-left {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+
+  // 切换图片语言
+  function switchImageLanguage() {
+    const currentLang = localStorage.getItem('language') || 'en';
+    const img = document.querySelector('.mobilize-img') as HTMLImageElement;
+    const source = document.querySelector('.mobilize-img-mobile') as HTMLSourceElement;
+    
+    if (img && source) {
+      if (currentLang === 'zh') {
+        img.src = img.getAttribute('data-cn') || img.src;
+        source.srcset = source.getAttribute('data-cn') || source.srcset;
+      } else {
+        img.src = img.getAttribute('data-en') || img.src;
+        source.srcset = source.getAttribute('data-en') || source.srcset;
+      }
+    }
+  }
+
+  // 初始化时切换
+  switchImageLanguage();
+
+  // 监听语言切换事件
+  window.addEventListener('languageChanged', switchImageLanguage);
+</script>

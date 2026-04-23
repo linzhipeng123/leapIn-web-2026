@@ -18,7 +18,7 @@ const { pageName, backgroundType, colorBendsConfig, wavesConfig, orbConfig } = A
 // Default background types for different pages
 const defaultBackgroundTypes: Record<string, 'colorBends' | 'waves' | 'orb' | 'gradient'> = {
 	platform: 'colorBends',
-	solutions: 'colorBends',
+	solutions: 'orb',
 	industries: 'orb',
 	about: 'waves',
 	legal: 'colorBends',
@@ -240,6 +240,7 @@ const orbConf = orbConfig || defaultOrbConfig;
 
 	.hero-title {
 		display: inline;
+		white-space: pre-wrap;
 	}
 
 	.hero-subtitle {

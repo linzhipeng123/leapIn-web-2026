@@ -1,0 +1,103 @@
+---
+import circleBg from '../../assets/solutions/section/circle.png';
+import developImg from '../../assets/solutions/section/develop.png';
+import developMobileImg from '../../assets/solutions/section/develop-mobile.png';
+import developImgCn from '../../assets/solutions/section/cn/develop.png';
+import developMobileImgCn from '../../assets/solutions/section/cn/develop-mobile.png';
+import Card from './Card.astro';
+---
+
+<section class="develop-section">
+  <div class="develop-container">
+    <div class="develop-left">
+      <div class="develop-visual">
+        <picture>
+          <source media="(max-width: 768px)" srcset={developMobileImg.src} class="develop-img-mobile" data-en={developMobileImg.src} data-cn={developMobileImgCn.src} />
+          <img src={developImg.src} alt="Leadership Pipeline" class="visual-image develop-img" data-en={developImg.src} data-cn={developImgCn.src} />
+        </picture>
+      </div>
+    </div>
+    <Card index={3} itemLength={3} className="card-section3" cardName='develop'></Card>
+  </div>
+</section>
+
+<style define:vars={{ circleBg: `url(${circleBg.src})` }}>
+  .develop-section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .develop-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .develop-left {
+    position: relative;
+    flex: 0 0 auto;
+    width: calc(654 / 1134 * 100%);
+  }
+
+  .develop-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .visual-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .develop-section {
+      padding: 0;
+    }
+
+    .develop-container {
+      flex-direction: column-reverse;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .develop-left {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import { loadTranslations } from '../../scripts/i18n-loader';
+  loadTranslations();
+
+  // 切换图片语言
+  function switchImageLanguage() {
+    const currentLang = localStorage.getItem('language') || 'en';
+    const img = document.querySelector('.develop-img') as HTMLImageElement;
+    const source = document.querySelector('.develop-img-mobile') as HTMLSourceElement;
+    
+    if (img && source) {
+      if (currentLang === 'zh') {
+        img.src = img.getAttribute('data-cn') || img.src;
+        source.srcset = source.getAttribute('data-cn') || source.srcset;
+      } else {
+        img.src = img.getAttribute('data-en') || img.src;
+        source.srcset = source.getAttribute('data-en') || source.srcset;
+      }
+    }
+  }
+
+  // 初始化时切换
+  switchImageLanguage();
+
+  // 监听语言切换事件
+  window.addEventListener('languageChanged', switchImageLanguage);
+</script>
