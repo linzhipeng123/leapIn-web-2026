@@ -28,69 +28,76 @@ import Button from '../Button.astro';
     <div class="difference-right">
       <div class="difference-demo">
         <!-- Trigger Event Card -->
-        <div class="demo-card trigger-card">
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" fill="currentColor"/>
-            </svg>
+        <div class="difference-demo-left">
+          <div class="demo-card trigger-card">
+            <div class="card-title">
+              <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="card-label" data-i18n="homepage.difference.demo.trigger">TRIGGER EVENT</div>
+            </div>
+            <div class="card-code">if @candidate_ready...</div>
           </div>
-          <div class="card-label" data-i18n="homepage.difference.demo.trigger">TRIGGER EVENT</div>
-          <div class="card-code">if @candidate_ready...</div>
-        </div>
 
-        <!-- Success Badge -->
-        <div class="demo-badge">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor"/>
-          </svg>
-          <span data-i18n="homepage.difference.demo.badge">94% Succession Risk Match</span>
-        </div>
-
-        <!-- Automated Action Card -->
-        <div class="demo-card action-card">
-          <div class="card-icon">
-            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.5 15C1.0875 15 0.734375 14.8531 0.440625 14.5594C0.146875 14.2656 0 13.9125 0 13.5V3C0 2.5875 0.146875 2.23438 0.440625 1.94062C0.734375 1.64687 1.0875 1.5 1.5 1.5H2.25V0H3.75V1.5H9.75V0H11.25V1.5H12C12.4125 1.5 12.7656 1.64687 13.0594 1.94062C13.3531 2.23438 13.5 2.5875 13.5 3V13.5C13.5 13.9125 13.3531 14.2656 13.0594 14.5594C12.7656 14.8531 12.4125 15 12 15H1.5ZM1.5 13.5H12V6H1.5V13.5ZM1.5 4.5H12V3H1.5V4.5ZM1.5 4.5V3V4.5Z" fill="white"/>
-            </svg>
-          </div>
-          <div class="card-label" data-i18n="homepage.difference.demo.action">AUTOMATED ACTION</div>
-          <div class="card-tag" data-i18n="homepage.difference.demo.actionTag">#Schedule_Interview</div>
-          <div class="card-avatars">
-            <div class="avatar-group">
-              <img class="avatar" src={avatar1.src} alt="Team member 1" />
-              <img class="avatar" src={avatar2.src} alt="Team member 2" />
-              <img class="avatar" src={avatar3.src} alt="Team member 3" />
-              <div class="avatar-more">+3</div>
+          <!-- Candidate Profile Card -->
+          <div class="demo-card profile-card">
+            <div class="profile-header">
+              <img class="profile-avatar" src={avatar4.src} alt="Alex Rivera" />
+              <div class="profile-info">
+                <div class="profile-name" data-i18n="homepage.difference.demo.name">Alex Rivera</div>
+                <div class="profile-role" data-i18n="homepage.difference.demo.role">SOFTWARE ARCHITECT</div>
+              </div>
+            </div>
+            <div class="profile-metric">
+              <div class="metric-label" data-i18n="homepage.difference.demo.metric">Leadership Potential</div>
+              <div class="metric-value">94%</div>
+            </div>
+            <div class="metric-bar">
+              <div class="metric-fill"></div>
+            </div>
+            <div class="profile-tags">
+              <span class="tag" data-i18n="homepage.difference.demo.tag1">High Impact</span>
+              <span class="tag" data-i18n="homepage.difference.demo.tag2">Predictive Match</span>
             </div>
           </div>
         </div>
+        <div class="difference-demo-right">
+          <!-- Success Badge -->
+          <div class="demo-badge">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor"/>
+            </svg>
+            <span data-i18n="homepage.difference.demo.badge">94% Succession Risk Match</span>
+          </div>
 
-        <!-- Candidate Profile Card -->
-        <div class="demo-card profile-card">
-          <div class="profile-header">
-            <img class="profile-avatar" src={avatar4.src} alt="Alex Rivera" />
-            <div class="profile-info">
-              <div class="profile-name" data-i18n="homepage.difference.demo.name">Alex Rivera</div>
-              <div class="profile-role" data-i18n="homepage.difference.demo.role">SOFTWARE ARCHITECT</div>
+          <!-- Automated Action Card -->
+          <div class="demo-card action-card">
+            <div class="card-title">
+              <div class="card-icon">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.5 15C1.0875 15 0.734375 14.8531 0.440625 14.5594C0.146875 14.2656 0 13.9125 0 13.5V3C0 2.5875 0.146875 2.23438 0.440625 1.94062C0.734375 1.64687 1.0875 1.5 1.5 1.5H2.25V0H3.75V1.5H9.75V0H11.25V1.5H12C12.4125 1.5 12.7656 1.64687 13.0594 1.94062C13.3531 2.23438 13.5 2.5875 13.5 3V13.5C13.5 13.9125 13.3531 14.2656 13.0594 14.5594C12.7656 14.8531 12.4125 15 12 15H1.5ZM1.5 13.5H12V6H1.5V13.5ZM1.5 4.5H12V3H1.5V4.5ZM1.5 4.5V3V4.5Z" fill="white"/>
+                </svg>
+              </div>
+              <div class="card-label" data-i18n="homepage.difference.demo.action">AUTOMATED ACTION</div>
+            </div>
+            <div class="card-tag" data-i18n="homepage.difference.demo.actionTag">#Schedule_Interview</div>
+            <div class="card-avatars">
+              <div class="avatar-group">
+                <img class="avatar" src={avatar1.src} alt="Team member 1" />
+                <img class="avatar" src={avatar2.src} alt="Team member 2" />
+                <img class="avatar" src={avatar3.src} alt="Team member 3" />
+                <div class="avatar-more">+3</div>
+              </div>
             </div>
           </div>
-          <div class="profile-metric">
-            <div class="metric-label" data-i18n="homepage.difference.demo.metric">Leadership Potential</div>
-            <div class="metric-value">94%</div>
-          </div>
-          <div class="metric-bar">
-            <div class="metric-fill"></div>
-          </div>
-          <div class="profile-tags">
-            <span class="tag" data-i18n="homepage.difference.demo.tag1">High Impact</span>
-            <span class="tag" data-i18n="homepage.difference.demo.tag2">Predictive Match</span>
-          </div>
-        </div>
 
-        <!-- Candidate Profile Card -->
-        <div class="demo-card empty-card">
-          <div class="empty-progress-1"></div>
-          <div class="empty-progress-2"></div>
+          <!-- Candidate Profile Card -->
+          <div class="demo-card empty-card">
+            <div class="empty-progress-1"></div>
+            <div class="empty-progress-2"></div>
+          </div>
         </div>
 
         <!-- Decorative Elements -->
@@ -206,14 +213,20 @@ import Button from '../Button.astro';
   }
 
   .difference-demo {
+    display: flex;
     background: #1F2937;
     border-radius: 1rem;
-    padding: 3rem 2rem;
-    position: relative;
+    padding: 3rem;
     min-height: 29.75rem;
     border-radius: 0.75rem;
     background: var(--grey-gray-60-base, #111827);
     backdrop-filter: blur(7.5px);
+  }
+
+  .difference-demo-left,
+  .difference-demo-right {
+    position: relative;
+    flex-basis: 50%;
   }
 
   .demo-card {
@@ -227,24 +240,31 @@ import Button from '../Button.astro';
   }
 
   .trigger-card {
-    top: 2rem;
-    left: 2rem;
+    top: 0;
+    left: 0;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .action-card {
-    top: 10rem;
-    right: 2rem;
+    top: 6rem;
+    left: 1rem;
     width: 18rem;
   }
 
   .profile-card {
-    bottom: 2rem;
-    left: 2rem;
+    left: 4rem;
+    bottom: 0;
   }
 
   .empty-card {
-    bottom: 2rem;
-    left: 20rem;
+    bottom: 0;
+    left: 1rem;
     width: 10.125rem;
     display: flex;
     gap: 0.5rem;
@@ -277,7 +297,6 @@ import Button from '../Button.astro';
     align-items: center;
     justify-content: center;
     color: white;
-    margin-bottom: 1rem;
   }
 
   .card-label {
@@ -285,16 +304,17 @@ import Button from '../Button.astro';
     color: #9CA3AF;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
   }
 
   .card-code {
     font-family: 'Monaco', 'Courier New', monospace;
     font-size: 0.875rem;
     color: #E5E7EB;
-    background: rgba(0, 0, 0, 0.3);
     padding: 0.5rem 1.5rem;
     border-radius: 0.375rem;
+    border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(7.5px);
   }
 
   .card-tag {
@@ -337,8 +357,8 @@ import Button from '../Button.astro';
 
   .demo-badge {
     position: absolute;
-    top: 7rem;
-    right: 8rem;
+    top: 3rem;
+    left: 0;
     background: white;
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
@@ -487,7 +507,6 @@ import Button from '../Button.astro';
 
     .action-card {
       top: 14rem;
-      right: 1rem;
       left: 1rem;
       width: calc(100% - 2rem);
     }
