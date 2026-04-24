@@ -9,7 +9,7 @@ import img5 from '../../assets/about/5.png';
 import img6 from '../../assets/about/6.png';
 import img7 from '../../assets/about/7.png';
 
-const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
+const imgs = [img2, img6, img4, img5, img7];
 ---
 
 <section class="section-container team-section-inner" id="team-section-inner">
@@ -26,7 +26,7 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
                 {
                     imgs.map((img,index) => (
                         <div class="team-card-wrap" data-index={index + 1}>
-                            {index=== 3 || index === 6 ? <div class={`team-card-info team-card-info-${index}`} data-i18n={`about.team.card.cardInfo${index}`}></div> : null}
+                            {index === 2 || index === 4 ? <div class={`team-card-info team-card-info-${index}`} data-i18n={`about.team.card.cardInfo${index}`}></div> : null}
                             <img src={img.src} alt="" />
                         </div>
                     ))
@@ -189,47 +189,57 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
     .team-card-wrap {
         transition: all 0.8s ease;
         position: absolute;
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    .team-card-wrap::before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 11.25rem;
+        content: '';
+        /* z-index: 1; */
+        display: block;
+        background: linear-gradient(-14deg, rgba(255, 255, 255, 0.00) 57.16%, #5386FA 98.88%);
     }
 
     .team-card-info {
         position: absolute;
-        color: var(--Neutrals-White-10, rgba(255, 255, 255, 0.75));
+        color: var(--azure-azure-50-brand, #2257BF);
         font-weight: 600;
         line-height: 120%;
         white-space: pre-wrap;
     }
 
-    .team-card-info-3 {
+    .team-card-info-2 {
         left: 1.25rem;
         top: 1.5rem;
-        font-size: 1.125rem;
+        font-size: 0.875rem;
     }
 
-    .team-card-info-6 {
-        left: 2rem;
-        top: 2.25rem;
-        font-size: 1.5rem;
+    .team-card-info-4 {
+        left: 1.25rem;
+        top: 1.5rem;
+        font-size: 1rem;
     }
     .team-card-wrap[data-index="1"] {
-        width: 21.125rem;
+        width: 10.625rem;
     }
     .team-card-wrap[data-index="2"] {
-        width: 15.5rem;
+        width: 16.375rem;
     }
     .team-card-wrap[data-index="3"] {
-        width: 14.375rem;
+        width: 15rem;
     }
     .team-card-wrap[data-index="4"] {
-        width: 19.25rem;
+        width: 11.875rem;
     }
     .team-card-wrap[data-index="5"] {
-        width: 16rem;
-    }
-    .team-card-wrap[data-index="6"] {
-        width: 19.3125rem;
-    }
-    .team-card-wrap[data-index="7"] {
-        width: 32.125rem;
+        width: 27.375rem;
     }
 
     /* data-index="0" - 初始状态 */
@@ -260,34 +270,24 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
     }
 
     .team-slider[data-index="1"] .team-card-wrap[data-index="1"] {
-        right: 2rem;
-        transform: translateY(8vh) rotate(-19.702deg);
+        transform: translateX(-160%) translateY(40vh) rotate(-6deg);
     }
-    
+
     .team-slider[data-index="1"] .team-card-wrap[data-index="2"] {
-        transform: translateX(-160%) translateY(45vh) rotate(-20.936deg);
+        transform: translateX(-35%) translateY(10vh) rotate(8deg);
     }
-    
+
     .team-slider[data-index="1"] .team-card-wrap[data-index="3"] {
-        transform: translateY(100vh) rotate(20.936deg);
+        transform: translateX(-160%) translateY(-10vh) rotate(-8deg);
     }
     
     .team-slider[data-index="1"] .team-card-wrap[data-index="4"] {
-        left: 5rem;
-        transform: translateY(0) rotate(18.404deg);
+        right: 6rem;
+        transform: translateY(2vh) rotate(-6deg);
     }
-    
+
     .team-slider[data-index="1"] .team-card-wrap[data-index="5"] {
-        right: 3rem;
-        transform: translateY(55vh) rotate(36.546deg);
-    }
-    
-    .team-slider[data-index="1"] .team-card-wrap[data-index="6"] {
-        transform: translateY(20vh) rotate(24.156deg);
-    }
-    
-    .team-slider[data-index="1"] .team-card-wrap[data-index="7"] {
-        transform: translateY(100vh) rotate(-24.156deg);
+        transform: translateX(70%) translateY(40vh) rotate(8deg);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="0"] {
@@ -295,38 +295,25 @@ const imgs = [img1, img2, img3, img4, img5, img6, img7 ];
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="1"] {
-        transform: translateX(-110%) translateY(-25vh) rotate(0);
+        /* left: 5rem; */
+        transform: translateX(-260%) translateY(-15vh) rotate(-6deg);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="2"] {
-        left: 0;
-        transform: translateY(-10vh) rotate(0);
+        transform: translateY(-25vh) rotate(8deg);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="3"] {
-        right: 0;
-        transform: translateY(8vh) rotate(0);
-        z-index: 1;
+        transform: translateX(-115%) translateY(20vh) rotate(-8deg);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="4"] {
-        bottom: 3.5rem;
-        transform: translateX(-115%) rotate(0);
+        right: 2rem;
+        transform: translateY(-18vh) rotate(-6deg);
     }
 
     .team-slider[data-index="2"] .team-card-wrap[data-index="5"] {
-        transform: translateX(170%) translateY(-20vh) rotate(0);
-    }
-
-    .team-slider[data-index="2"] .team-card-wrap[data-index="6"] {
-        bottom: 1rem;
-        transform: translateX(100%) translateY(0) rotate(0);
-        z-index: 3;
-    }
-
-    .team-slider[data-index="2"] .team-card-wrap[data-index="7"] {
-        transform: translateX(15%) translateY(0) rotate(0);
-        z-index: 2;
+        transform: translateX(50%) translateY(20vh) rotate(8deg);
     }
     
     @media (max-width: 768px) {
