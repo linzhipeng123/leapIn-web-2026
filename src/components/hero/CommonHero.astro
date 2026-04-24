@@ -176,6 +176,22 @@ const orbConf = orbConfig || defaultOrbConfig;
 					</div>
 				)
 			}
+			{
+				pageName === 'solutions' && (
+					<div class="solution-info-container">
+						<div class="solution-info-top">
+							<span class="solution-info-top-tag" data-i18n="solutions.hero.info.behavior"></span>
+							<span class="solution-info-top-arrow">→</span>
+							<span class="solution-info-top-tag" data-i18n="solutions.hero.info.skills"></span>
+							<span class="solution-info-top-arrow">→</span>
+							<span class="solution-info-top-tag" data-i18n="solutions.hero.info.performance"></span>
+							<span class="solution-info-top-arrow">→</span>
+							<span class="solution-info-top-tag" data-i18n="solutions.hero.info.retention"></span>
+						</div>
+						<div class="solution-info-bottom" data-i18n="solutions.hero.info.info"></div>
+					</div>
+				)
+			}
 			<h2 class="hero-info"></h2>
 		</div>
 	</div>
@@ -426,6 +442,51 @@ const orbConf = orbConfig || defaultOrbConfig;
 		text-align: left;
 	}
 
+	.solution-info-container {
+		border-radius: 0.75rem;
+		border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+		background: var(--banner, linear-gradient(0deg, rgba(34, 87, 191, 0.10) 0%, rgba(255, 255, 255, 0.10) 100%));
+		/* backgroud blur */
+		backdrop-filter: blur(15px);
+		display: inline-flex;
+		padding: 1.5rem;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		color: var(--Neutrals-White-00, #FFF);
+	}
+
+	.solution-info-top {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+	}
+
+	.solution-info-top-tag {
+		font-size: 1.25rem;
+		line-height: 1;
+		font-weight: 600;
+		padding: 0.75rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
+		background: rgba(34, 87, 191, 0.05);
+	}
+
+	.solution-info-top-arrow {
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	.solution-info-bottom {
+		width: 100%;
+		text-align: center;
+		/* PC/EN/Subtitle_2 */
+		font-size: 1.25rem;
+		line-height: 120%; /* 24px */
+	}
+
 	@media (max-width: 768px) {
 		.common-hero {
 			padding: 12rem 1.25rem 3rem;
@@ -494,6 +555,24 @@ const orbConf = orbConfig || defaultOrbConfig;
 		.mission-vision-info {
 			font-size: 0.8125rem;
 			line-height: 150%;
+		}
+		.solution-info-container {
+			margin-top: 1rem;
+			padding: 1rem;
+		}
+
+		.solution-info-top-tag {
+			font-size: 0.8125rem;
+			padding: 0.375rem;
+		}
+
+		.solution-info-top-arrow {
+			font-size: 0.8125rem;
+		}
+
+		.solution-info-bottom {
+			text-align: left;
+			font-size: 0.875rem;
 		}
 	}
 </style>

@@ -324,7 +324,14 @@
       "title": "告别主观判断，只看真实结果",
       "titleSuffix": "",
       "subtitle": "",
-      "description": "多数企业失败不是缺人才，而是人才决策失误\n—— 招聘、晋升、调配仍靠主观判断。LeapIn 改变这一切。"
+      "description": "多数企业失败不是缺人才，而是人才决策失误\n—— 招聘、晋升、调配仍靠主观判断。LeapIn 改变这一切。",
+      "info": {
+        "behavior": "行为",
+        "skills": "能力",
+        "performance": "绩效",
+        "retention": "留存",
+        "info": "基于真实结果训练，而非假设"
+      }
     },
     "hire": {
       "label": "招聘",

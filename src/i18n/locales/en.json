@@ -361,7 +361,14 @@
       "title": "No more guesswork\nJust outcomes.",
       "titleSuffix": "",
       "subtitle": "",
-      "description": "Most companies don't fail because of talent. They fail because of bad talent decisions — hiring, promotions, mobility — still run on judgment. LeapIn changes that."
+      "description": "Most companies don't fail because of talent. They fail because of bad talent decisions — hiring, promotions, mobility — still run on judgment. LeapIn changes that.",
+      "info": {
+        "behavior": "Behavior",
+        "skills": "Skills",
+        "performance": "Performance",
+        "retention": "Retention",
+        "info": "Trained on actual outcomes — not assumptions."
+      }
     },
     "hire": {
       "label": "Hire",
