@@ -144,7 +144,7 @@ const features = [
     .platform-feature-container-pre .feature-item[data-index="0"] .feature-item-card[data-index="1"],
     .feature-item[data-index="0"] .feature-item-card[data-index="1"] {
         position: absolute;
-        transform: translateY(100vh) rotate(-45deg);
+        transform: translateY(150vh) rotate(-45deg);
     }
 
     .platform-feature-container-pre .feature-item[data-index="0"] .feature-item-card[data-index="2"],
@@ -154,8 +154,17 @@ const features = [
         transform: translateY(100vh) rotate(45deg);
     }
 
+    /*
+    .feature-item[data-index="0"] .feature-item-card[data-index="1"]
+    .feature-item[data-index="0"] .feature-item-card[data-index="2"],
+    .feature-item[data-index="1"] .feature-item-card[data-index="2"],
+    .feature-item[data-index="2"] .feature-item-card[data-index="0"],
+    .feature-item[data-index="2"] .feature-item-card[data-index="1"]  */
+
     /* data-index="0" - 初始状态 */
-    .feature-item[data-index="0"] .feature-item-card[data-index="0"] {
+    .feature-item[data-index="0"] .feature-item-card[data-index="0"],
+    .feature-item[data-index="1"] .feature-item-card[data-index="1"],
+    .feature-item[data-index="2"] .feature-item-card[data-index="2"] {
         position: absolute;
         margin: 0 auto;
         transform: translateY(0) rotate(0deg);
@@ -163,22 +172,13 @@ const features = [
 
     /* data-index="1" */
     .feature-item[data-index="1"] .feature-item-card[data-index="0"],
-    .feature-item[data-index="2"] .feature-item-card[data-index="0"],
     .feature-item[data-index="2"] .feature-item-card[data-index="1"] {
         position: absolute;
-        transform: translateY(-100vh) rotate(0deg);
+        transform: translateX(-150%) translateY(0) rotate(0deg);
     }
-
-    .feature-item[data-index="1"] .feature-item-card[data-index="1"] {
+    .feature-item[data-index="2"] .feature-item-card[data-index="0"] {
         position: absolute;
-        margin: 0 auto;
-        transform: translateY(0) rotate(0deg);
-    }
-
-    .feature-item[data-index="2"] .feature-item-card[data-index="2"] {
-        position: absolute;
-        margin: 0 auto;
-        transform: translateY(0) rotate(0deg);
+        transform: translateX(150%) translateY(0) rotate(0deg);
     }
     
     @media (max-width: 768px) {
