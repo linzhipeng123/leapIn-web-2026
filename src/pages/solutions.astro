@@ -64,7 +64,6 @@ import Develop from '../components/solutions/Develop.astro';
 
 	/* Dark Solution Sections */
 	.solution-dark {
-		padding: 2rem 0;
 		background: var(--grey-gray-60-base, #111827);
 		border: none;
 		display: flex;
@@ -79,5 +78,10 @@ import Develop from '../components/solutions/Develop.astro';
 		background: #0f172a;
 		color: rgba(255, 255, 255, 0.5);
 		text-align: center;
+	}
+	@media (max-width: 768px) {
+		.solution-dark {
+			padding: 2rem 0;
+		}
 	}
 </style>
