@@ -207,6 +207,10 @@ const imgs = [img2, img6, img4, img5, img7];
         background: linear-gradient(-14deg, rgba(255, 255, 255, 0.00) 57.16%, #5386FA 98.88%);
     }
 
+    .team-card-wrap[data-index="0"]::before {
+        display: none;
+    }
+
     .team-card-info {
         position: absolute;
         color: var(--azure-azure-50-brand, #2257BF);
@@ -318,7 +322,7 @@ const imgs = [img2, img6, img4, img5, img7];
     
     @media (max-width: 768px) {
         .section-container {
-            padding: 2.25rem 0;
+            padding: 2.25rem 0 0;
         }
         .container {
             padding: 0 1rem;
@@ -397,8 +401,26 @@ const imgs = [img2, img6, img4, img5, img7];
             transform: none !important;
             transform: translateX(100%) translateY(100%) rotate(-30deg) !important;
         }
-
         .team-card-wrap[data-index="1"] {
+            transform: translateX(-1000px) translateY(100%) rotate(-6deg) !important;
+        }
+        .team-card-wrap[data-index="2"] {
+            transform: translateX(1000px) translateY(50%) rotate(8deg) !important;
+        }
+        .team-card-wrap[data-index="3"] {
+            transform: translateX(-1000px) translateY(40%) rotate(-8deg) !important;
+        }
+
+        .team-card-wrap[data-index="4"] {
+            transform: translateX(1000px) translateY(190%) rotate(-6deg) !important;
+        }
+        .team-card-wrap[data-index="5"] {
+            width: 22.5rem;
+            position: absolute;
+            transform: translateX(-1000px) translateY(-80%) rotate(8deg) !important;
+        }
+
+        /* .team-card-wrap[data-index="1"] {
             margin: 0;
             right: 0;
             transform: translateX(-100%) translateY(100%) rotate(30deg) !important;
@@ -432,7 +454,7 @@ const imgs = [img2, img6, img4, img5, img7];
             position: absolute;
             width: 21rem;
             transform: translateX(100%) translateY(100%) rotate(30deg) !important;
-        }
+        } */
 
         .team-card-wrap-title {
             font-size: 0.8125rem;
@@ -444,8 +466,25 @@ const imgs = [img2, img6, img4, img5, img7];
         .team-section-inner.in-view .team-card-wrap[data-index="0"] {
             transform: translateX(0) translateY(0) !important;
         }
-
         .team-section-inner.in-view .team-card-wrap[data-index="1"] {
+            transform: translateX(-55%) translateY(50%) rotate(-6deg) !important;
+        }
+        .team-section-inner.in-view .team-card-wrap[data-index="2"] {
+            transform: translateX(-10%) translateY(-140%) rotate(8deg) !important;
+        }
+        .team-section-inner.in-view .team-card-wrap[data-index="3"] {
+            transform: translateX(0%) translateY(-65%) rotate(-8deg) !important;
+        }
+
+        .team-section-inner.in-view .team-card-wrap[data-index="4"] {
+            transform: translateX(-20%) translateY(0%) rotate(-6deg) !important;
+        }
+        .team-section-inner.in-view .team-card-wrap[data-index="5"] {
+            position: absolute;
+            transform: translateX(0) translateY(-130%) rotate(8deg) !important;
+            bottom: 0;
+        }
+        /* .team-section-inner.in-view .team-card-wrap[data-index="1"] {
             margin: 0;
             right: 0;
             transform: translateX(0) translateY(0) !important;
@@ -478,7 +517,7 @@ const imgs = [img2, img6, img4, img5, img7];
        .team-section-inner.in-view .team-card-wrap[data-index="7"] {
             bottom: 0;
             transform: translateX(0) translateY(0%) !important;
-        }
+        } */
 	}
 </style>
 
