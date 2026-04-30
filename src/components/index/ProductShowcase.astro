@@ -142,6 +142,7 @@ const products = [
   .product-slider-wrap {
     position: relative;
     z-index: 1;
+    transform: translateX(0) translateY(0) rotate(0) !important;
   }
 
   .product-slider {
@@ -149,15 +150,15 @@ const products = [
     aspect-ratio: 16 / 10;
     border-radius: 16px;
     overflow: hidden;
-    transition: transform 2s ease-out, opacity 2s ease-out;
+    transition: transform 1s ease-out, opacity 1s ease-out;
   }
 
-  .product-slider[data-active="false"] {
-    transform: translateX(-1500px) translateY(100vh) rotate(-15deg);
+  .product-slider[data-animate="false"] {
+    transform: translateX(-30%) rotate(-20deg);
     opacity: 0;
   }
 
-  .product-slider[data-active="true"] {
+  .product-slider[data-animate="true"] {
     transform: translateX(0) translateY(0) rotate(0);
     opacity: 1;
   }
@@ -166,7 +167,7 @@ const products = [
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,6 +196,7 @@ const products = [
   .feature-info-wrap {
     position: relative;
     z-index: 1;
+    transform: translateX(0) translateY(0) rotate(0) !important;
   }
 
   .feature-info {
@@ -202,15 +204,15 @@ const products = [
     border-radius: 0.75rem;
     padding: 1.5rem;
     border: 1px solid #FFFFFF4D;
-    transition: all 1s ease-out;
+    transition: transform 1s ease-out, opacity 1s ease-out;
   }
 
-  .feature-info[data-active="false"] {
-    transform: translateX(1500px) translateY(100vh) rotate(15deg);
+  .feature-info[data-animate="false"] {
+    transform: translateX(30%) rotate(20deg);
     opacity: 0;
   }
 
-  .feature-info[data-active="true"] {
+  .feature-info[data-animate="true"] {
     transform: translateX(0) translateY(0) rotate(0);
     opacity: 1;
   }
@@ -480,35 +482,42 @@ const products = [
     const slides = slider.querySelectorAll('.feature-slide');
     const infoItems = info.querySelectorAll('.info-item');
     
+    // 初始化动画状态
+    slider.setAttribute('data-animate', 'false');
+    info.setAttribute('data-animate', 'false');
+    
     const scrollController = createSectionScroll({
       sectionId: 'product-showcase',
       totalSlides: slides.length,
       scrollThreshold: 100,
       animationDuration: 800,
       onSlideUpdate: (index) => {
-        // 先隐藏当前元素
-        slider.setAttribute('data-active', 'false');
-        info.setAttribute('data-active', 'false');
+        // 立即隐藏元素
+        slider.setAttribute('data-animate', 'false');
+        info.setAttribute('data-animate', 'false');
         
-        // 更新slide显示
-        slides.forEach((slide, i) => {
-          slide.setAttribute('data-active', i === index ? 'true' : 'false');
-        });
-        infoItems.forEach((item, i) => {
-          item.setAttribute('data-active', i === index ? 'true' : 'false');
-        });
-        
-        // 第二屏（index=1）反转布局
-        if (index === 1) {
-          darkBox.setAttribute('data-layout', 'reverse');
-        } else {
-          darkBox.removeAttribute('data-layout');
-        }
-        
-        // 延迟显示新元素，让动画更明显
+        // 等待元素完全隐藏后再更新内容
         setTimeout(() => {
-          slider.setAttribute('data-active', 'true');
-          info.setAttribute('data-active', 'true');
+          // 更新slide显示
+          slides.forEach((slide, i) => {
+            slide.setAttribute('data-active', i === index ? 'true' : 'false');
+          });
+          infoItems.forEach((item, i) => {
+            item.setAttribute('data-active', i === index ? 'true' : 'false');
+          });
+          
+          // 第二屏（index=1）反转布局
+          if (index === 1) {
+            darkBox.setAttribute('data-layout', 'reverse');
+          } else {
+            darkBox.removeAttribute('data-layout');
+          }
+          
+          // 内容更新后触发飞入动画
+          requestAnimationFrame(() => {
+            slider.setAttribute('data-animate', 'true');
+            info.setAttribute('data-animate', 'true');
+          });
         }, 100);
       },
     });
