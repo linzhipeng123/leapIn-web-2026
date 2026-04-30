@@ -10,13 +10,17 @@ import Card from './Card.astro';
 
 <section class="mobilize-section">
   <div class="mobilize-container">
-    <Card index={2} itemLength={3} className="card-section2" cardName='mobilize'></Card>
-    <div class="mobilize-left">
-      <div class="mobilize-visual">
-        <picture>
-          <source media="(max-width: 768px)" srcset={mobilizeMobileImg.src} class="mobilize-img-mobile" data-en={mobilizeMobileImg.src} data-cn={mobilizeMobileImgCn.src} />
-          <img src={mobilizeImg.src} alt="Internal Talent Matching" class="visual-image mobilize-img" data-en={mobilizeImg.src} data-cn={mobilizeImgCn.src} />
-        </picture>
+    <div class="card-section-wrap" id="card-section2">
+      <Card index={2} itemLength={3} className="card-section2" cardName='mobilize'></Card>
+    </div>
+    <div class="mobilize-left" id="mobilize-left">
+      <div class="mobilize-left-inner">
+        <div class="mobilize-visual">
+          <picture>
+            <source media="(max-width: 768px)" srcset={mobilizeMobileImg.src} class="mobilize-img-mobile" data-en={mobilizeMobileImg.src} data-cn={mobilizeMobileImgCn.src} />
+            <img src={mobilizeImg.src} alt="Internal Talent Matching" class="visual-image mobilize-img" data-en={mobilizeImg.src} data-cn={mobilizeImgCn.src} />
+          </picture>
+        </div>
       </div>
     </div>
   </div>
@@ -59,10 +63,41 @@ import Card from './Card.astro';
     align-items: center;
   }
 
+  .card-section-wrap {
+    position: relative;
+    transform: translateX(0) translateY(0) rotate(0) !important;
+    transition: all 0.8s ease;
+  }
+
+  :global(.card-section2) {
+    transition: all 0.8s ease;
+    transform: translateX(-2000px) rotate(-15deg);
+    opacity: 0;
+  }
+
+  .card-section-wrap.in-view :global(.card-section2) {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+
   .mobilize-left {
     position: relative;
     flex: 0 0 auto;
     width: calc(654 / 1134 * 100%);
+    transform: translateX(0) translateY(0) rotate(0) !important;
+    transition: all 0.8s ease;
+  }
+
+  .mobilize-left-inner {
+    position: relative;
+    transition: all 0.8s ease;
+    transform: translateX(2000px) rotate(15deg);
+    opacity: 0;
+  }
+
+  .mobilize-left.in-view .mobilize-left-inner {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
   }
 
   .mobilize-visual {
@@ -92,14 +127,40 @@ import Card from './Card.astro';
       padding: 0 1rem;
     }
 
+    .card-section-wrap {
+      transform: translateX(0) translateY(0) rotate(0) !important;
+    }
+
+    :global(.card-section2) {
+      transform: translateX(-2000px) translateY(100%) rotate(-45deg);
+      opacity: 0;
+    }
+
+    .card-section-wrap.in-view :global(.card-section2) {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
+    }
+
     .mobilize-left {
       width: 100%;
+      transform: translateX(0) translateY(0) rotate(0) !important;
+    }
+
+    .mobilize-left-inner {
+      transform: translateX(2000px) translateY(100%) rotate(45deg);
+      opacity: 0;
+    }
+
+    .mobilize-left.in-view .mobilize-left-inner {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
     }
   }
 </style>
 
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
+  import { inView } from '../../utils/inView';
   loadTranslations();
 
   // 切换图片语言
@@ -124,4 +185,10 @@ import Card from './Card.astro';
 
   // 监听语言切换事件
   window.addEventListener('languageChanged', switchImageLanguage);
+
+  // Intersection Observer 监听元素是否在可视区域内
+  if (typeof window !== 'undefined') {
+    inView({id: "card-section2", threshold: 0.2});
+    inView({id: "mobilize-left", threshold: 0.2});
+  }
 </script>

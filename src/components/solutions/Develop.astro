@@ -16,15 +16,19 @@ const stats = [
 
 <section class="develop-section">
   <div class="develop-container">
-    <div class="develop-left">
-      <div class="develop-visual">
-        <picture>
-          <source media="(max-width: 768px)" srcset={developMobileImg.src} class="develop-img-mobile" data-en={developMobileImg.src} data-cn={developMobileImgCn.src} />
-          <img src={developImg.src} alt="Leadership Pipeline" class="visual-image develop-img" data-en={developImg.src} data-cn={developImgCn.src} />
-        </picture>
+    <div class="develop-left" id="develop-left">
+      <div class="develop-left-inner">
+        <div class="develop-visual">
+          <picture>
+            <source media="(max-width: 768px)" srcset={developMobileImg.src} class="develop-img-mobile" data-en={developMobileImg.src} data-cn={developMobileImgCn.src} />
+            <img src={developImg.src} alt="Leadership Pipeline" class="visual-image develop-img" data-en={developImg.src} data-cn={developImgCn.src} />
+          </picture>
+        </div>
       </div>
     </div>
-    <Card index={3} itemLength={3} className="card-section3" cardName='develop'></Card>
+    <div class="card-section-wrap" id="card-section3">
+      <Card index={3} itemLength={3} className="card-section3" cardName='develop'></Card>
+    </div>
   </div>
 
   <!-- Stats Section -->
@@ -87,6 +91,37 @@ const stats = [
     position: relative;
     flex: 0 0 auto;
     width: calc(654 / 1134 * 100%);
+    transform: translateX(0) translateY(0) rotate(0) !important;
+    transition: all 0.8s ease;
+  }
+
+  .develop-left-inner {
+    position: relative;
+    transition: all 0.8s ease;
+    transform: translateX(-2000px) rotate(-15deg);
+    opacity: 0;
+  }
+
+  .develop-left.in-view .develop-left-inner {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+
+  .card-section-wrap {
+    position: relative;
+    transform: translateX(0) translateY(0) rotate(0) !important;
+    transition: all 0.8s ease;
+  }
+
+  :global(.card-section3) {
+    transition: all 0.8s ease;
+    transform: translateX(2000px) rotate(15deg);
+    opacity: 0;
+  }
+
+  .card-section-wrap.in-view :global(.card-section3) {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
   }
 
   .develop-visual {
@@ -190,6 +225,31 @@ const stats = [
 
     .develop-left {
       width: 100%;
+      transform: translateX(0) translateY(0) rotate(0) !important;
+    }
+
+    .develop-left-inner {
+      transform: translateX(-2000px) translateY(100%) rotate(-45deg);
+      opacity: 0;
+    }
+
+    .develop-left.in-view .develop-left-inner {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    .card-section-wrap {
+      transform: translateX(0) translateY(0) rotate(0) !important;
+    }
+
+    :global(.card-section3) {
+      transform: translateX(2000px) translateY(100%) rotate(45deg);
+      opacity: 0;
+    }
+
+    .card-section-wrap.in-view :global(.card-section3) {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
     }
 
     .stats-container {
@@ -228,6 +288,7 @@ const stats = [
 
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
+  import { inView } from '../../utils/inView';
   loadTranslations();
 
   // 切换图片语言
@@ -252,4 +313,10 @@ const stats = [
 
   // 监听语言切换事件
   window.addEventListener('languageChanged', switchImageLanguage);
+
+  // Intersection Observer 监听元素是否在可视区域内
+  if (typeof window !== 'undefined') {
+    inView({id: "develop-left", threshold: 0.2});
+    inView({id: "card-section3", threshold: 0.2});
+  }
 </script>
