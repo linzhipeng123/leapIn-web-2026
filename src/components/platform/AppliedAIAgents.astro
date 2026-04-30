@@ -13,29 +13,33 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
     <div class="ai-agents-content">
       <div class="ai-agents-slider" id="ai-agents-slider">
         <div class="feature-slide" data-index={0}>
-          <img class="feature-ai-coach" id="feature-ai-coach" src={enAICoachUI.src} data-en-src={enAICoachUI.src} data-cn-src={cnAICoachUI.src} alt="AI Persona Card">
-          <div class="feature-ai-sales-coach">
-            <h3 class="sales-coach-title" data-i18n="platform.platformFeatures.salesCoach.title"></h3>
-            <div class="sales-coach-subtitle" data-i18n="platform.platformFeatures.salesCoach.subtitle"></div>
-            <div class="sales-coach-description" data-i18n="platform.platformFeatures.salesCoach.description"></div>
-            <div class="sales-coach-subtitle" data-i18n="platform.platformFeatures.salesCoach.outcomes"></div>
-            <div class="sales-coach-list">
-              {
-                Array(3).fill(0).map((_, index) => (
-                  <div class="sales-coach-item" data-index={index}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M7.06536 11.0654L11.7654 6.36536L10.832 5.43203L7.06536 9.1987L5.16536 7.2987L4.23203 8.23203L7.06536 11.0654ZM7.9987 14.6654C7.07648 14.6654 6.20981 14.4904 5.3987 14.1404C4.58759 13.7904 3.88203 13.3154 3.28203 12.7154C2.68203 12.1154 2.20703 11.4098 1.85703 10.5987C1.50703 9.78759 1.33203 8.92092 1.33203 7.9987C1.33203 7.07648 1.50703 6.20981 1.85703 5.3987C2.20703 4.58759 2.68203 3.88203 3.28203 3.28203C3.88203 2.68203 4.58759 2.20703 5.3987 1.85703C6.20981 1.50703 7.07648 1.33203 7.9987 1.33203C8.92092 1.33203 9.78759 1.50703 10.5987 1.85703C11.4098 2.20703 12.1154 2.68203 12.7154 3.28203C13.3154 3.88203 13.7904 4.58759 14.1404 5.3987C14.4904 6.20981 14.6654 7.07648 14.6654 7.9987C14.6654 8.92092 14.4904 9.78759 14.1404 10.5987C13.7904 11.4098 13.3154 12.1154 12.7154 12.7154C12.1154 13.3154 11.4098 13.7904 10.5987 14.1404C9.78759 14.4904 8.92092 14.6654 7.9987 14.6654ZM7.9987 13.332C9.48759 13.332 10.7487 12.8154 11.782 11.782C12.8154 10.7487 13.332 9.48759 13.332 7.9987C13.332 6.50981 12.8154 5.2487 11.782 4.21536C10.7487 3.18203 9.48759 2.66536 7.9987 2.66536C6.50981 2.66536 5.2487 3.18203 4.21536 4.21536C3.18203 5.2487 2.66536 6.50981 2.66536 7.9987C2.66536 9.48759 3.18203 10.7487 4.21536 11.782C5.2487 12.8154 6.50981 13.332 7.9987 13.332Z" fill="url(#paint0_linear_2623_4753)"/>
-                      <defs>
-                        <linearGradient id="paint0_linear_2623_4753" x1="1.93606" y1="3.41536" x2="13.3186" y2="13.1429" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#5386FA"/>
-                          <stop offset="1" stop-color="#8B5CF6"/>
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <span class="item-description" data-i18n={`platform.platformFeatures.salesCoach.items.${index}.description`}></span>
-                  </div>
-                ))
-              }
+          <div class="feature-ai-coach-wrap" id="feature-ai-coach-wrap">
+            <img class="feature-ai-coach" id="feature-ai-coach" src={enAICoachUI.src} data-en-src={enAICoachUI.src} data-cn-src={cnAICoachUI.src} alt="AI Persona Card">
+          </div>
+          <div class="feature-ai-sales-coach-wrap" id="feature-ai-sales-coach-wrap">
+            <div class="feature-ai-sales-coach">
+              <h3 class="sales-coach-title" data-i18n="platform.platformFeatures.salesCoach.title"></h3>
+              <div class="sales-coach-subtitle" data-i18n="platform.platformFeatures.salesCoach.subtitle"></div>
+              <div class="sales-coach-description" data-i18n="platform.platformFeatures.salesCoach.description"></div>
+              <div class="sales-coach-subtitle" data-i18n="platform.platformFeatures.salesCoach.outcomes"></div>
+              <div class="sales-coach-list">
+                {
+                  Array(3).fill(0).map((_, index) => (
+                    <div class="sales-coach-item" data-index={index}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7.06536 11.0654L11.7654 6.36536L10.832 5.43203L7.06536 9.1987L5.16536 7.2987L4.23203 8.23203L7.06536 11.0654ZM7.9987 14.6654C7.07648 14.6654 6.20981 14.4904 5.3987 14.1404C4.58759 13.7904 3.88203 13.3154 3.28203 12.7154C2.68203 12.1154 2.20703 11.4098 1.85703 10.5987C1.50703 9.78759 1.33203 8.92092 1.33203 7.9987C1.33203 7.07648 1.50703 6.20981 1.85703 5.3987C2.20703 4.58759 2.68203 3.88203 3.28203 3.28203C3.88203 2.68203 4.58759 2.20703 5.3987 1.85703C6.20981 1.50703 7.07648 1.33203 7.9987 1.33203C8.92092 1.33203 9.78759 1.50703 10.5987 1.85703C11.4098 2.20703 12.1154 2.68203 12.7154 3.28203C13.3154 3.88203 13.7904 4.58759 14.1404 5.3987C14.4904 6.20981 14.6654 7.07648 14.6654 7.9987C14.6654 8.92092 14.4904 9.78759 14.1404 10.5987C13.7904 11.4098 13.3154 12.1154 12.7154 12.7154C12.1154 13.3154 11.4098 13.7904 10.5987 14.1404C9.78759 14.4904 8.92092 14.6654 7.9987 14.6654ZM7.9987 13.332C9.48759 13.332 10.7487 12.8154 11.782 11.782C12.8154 10.7487 13.332 9.48759 13.332 7.9987C13.332 6.50981 12.8154 5.2487 11.782 4.21536C10.7487 3.18203 9.48759 2.66536 7.9987 2.66536C6.50981 2.66536 5.2487 3.18203 4.21536 4.21536C3.18203 5.2487 2.66536 6.50981 2.66536 7.9987C2.66536 9.48759 3.18203 10.7487 4.21536 11.782C5.2487 12.8154 6.50981 13.332 7.9987 13.332Z" fill="url(#paint0_linear_2623_4753)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2623_4753" x1="1.93606" y1="3.41536" x2="13.3186" y2="13.1429" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#5386FA"/>
+                            <stop offset="1" stop-color="#8B5CF6"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <span class="item-description" data-i18n={`platform.platformFeatures.salesCoach.items.${index}.description`}></span>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
@@ -321,9 +325,66 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
       margin-bottom: 1.25rem;
     }
 
+    .feature-ai-coach-wrap {
+      width: 100%;
+      position: relative;
+      transform: translateX(0) translateY(0) rotate(0) !important;
+      transition: all 0.5s;
+    }
+
+    .feature-ai-coach {
+      width: 100%;
+      position: relative;
+      transition: all 0.5s;
+      transform: translateX(-2000px) translateY(100%) rotate(45deg);
+    }
+
+    .feature-ai-coach-wrap.in-view .feature-ai-coach {
+      transform: translateX(0) translateY(0) rotate(0);
+    }
+
+    .feature-ai-sales-coach-wrap {
+      width: 100%;
+      position: relative;
+      transform: translateX(0) translateY(0) rotate(0) !important;
+      transition: all 0.5s;
+    }
+
     .feature-ai-sales-coach {
       width: 100%;
       max-width: 100%;
+      position: relative;
+      transition: all 0.5s;
+      transform: translateX(2000px) translateY(100%) rotate(-45deg);
+      opacity: 1;
+    }
+
+    .feature-ai-sales-coach-wrap.in-view .feature-ai-sales-coach {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    .feature-slide[data-index="0"] .feature-ai-coach-wrap,
+    .feature-slide[data-index="1"] .feature-ai-coach-wrap,
+    .feature-slide[data-index="2"] .feature-ai-coach-wrap,
+    .feature-slide[data-index="0"] .feature-ai-sales-coach-wrap,
+    .feature-slide[data-index="1"] .feature-ai-sales-coach-wrap,
+    .feature-slide[data-index="2"] .feature-ai-sales-coach-wrap {
+      display: block !important;
+    }
+
+    .feature-slide[data-index="0"] .feature-ai-coach,
+    .feature-slide[data-index="1"] .feature-ai-coach,
+    .feature-slide[data-index="2"] .feature-ai-coach {
+      display: block !important;
+      opacity: 1 !important;
+    }
+
+    .feature-slide[data-index="0"] .feature-ai-sales-coach,
+    .feature-slide[data-index="1"] .feature-ai-sales-coach,
+    .feature-slide[data-index="2"] .feature-ai-sales-coach {
+      display: flex !important;
+      opacity: 1 !important;
     }
 
     .sales-coach-title {
@@ -344,18 +405,6 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
       line-height: 150%;
     }
 
-
-    .feature-slide[data-index="0"] .feature-ai-coach,
-    .feature-slide[data-index="1"] .feature-ai-coach,
-    .feature-slide[data-index="2"] .feature-ai-coach,
-    .feature-slide[data-index="0"] .feature-ai-sales-coach,
-    .feature-slide[data-index="1"] .feature-ai-sales-coach,
-    .feature-slide[data-index="2"] .feature-ai-sales-coach {
-      display: block !important;
-      transform: translateX(0) rotate(0);
-      opacity: 1;
-    }
-
     .feature-slide[data-active="false"] {
       display: flex;
     }
@@ -364,6 +413,7 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
 
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
+  import { inView } from '../../utils/inView';
   import { createSectionScroll } from '../../utils/sectionScroll';
   import { createAutoScroll } from '../../utils/autoScroll';
   loadTranslations();
@@ -418,5 +468,11 @@ import cnAICoachUI from '../../assets/platform/AppliedAIAgents/cn/ai-coach.png';
         logPrefix: '[AppliedAIAgents]',
       });
     }
+  }
+
+  // Intersection Observer 监听移动端 in-view 动画
+  if (isMobile && typeof window !== 'undefined') {
+    inView({id: "feature-ai-coach-wrap", threshold: 0.2});
+    inView({id: "feature-ai-sales-coach-wrap", threshold: 0.2});
   }
 </script>
