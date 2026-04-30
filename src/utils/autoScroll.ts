@@ -85,10 +85,11 @@ export function createAutoScroll(config: AutoScrollConfig) {
       const current = scrollController.getCurrentIndex();
       console.log(`${logPrefix} 自动滚动中，当前索引:`, current);
 
-      if (direction === 'up' && current > 0) {
-        // 向上滚动到上一个 slide
-        scrollController.goToSlide(current - 1);
-      } else if (direction === 'down' && current < totalSlides - 1) {
+      // if (direction === 'up' && current > 0) {
+      //   // 向上滚动到上一个 slide
+      //   scrollController.goToSlide(current - 1);
+      // } else 
+      if (direction === 'down' && current < totalSlides - 1) {
         // 向下滚动到下一个 slide
         scrollController.goToSlide(current + 1);
       } else {
