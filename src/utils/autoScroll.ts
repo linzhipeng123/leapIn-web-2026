@@ -28,8 +28,8 @@ export function createAutoScroll(config: AutoScrollConfig) {
     sectionId,
     scrollController,
     totalSlides,
-    inactivityDelay = 3000,
-    autoScrollInterval = 3000,
+    inactivityDelay = 1000,
+    autoScrollInterval = 1000,
     logPrefix = '[AutoScroll]',
   } = config;
 

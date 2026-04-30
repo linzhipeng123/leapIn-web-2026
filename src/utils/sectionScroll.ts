@@ -89,6 +89,18 @@ export function createSectionScroll(config: SectionScrollConfig) {
               currentIndex = 0;
               lastSlideChangeTime = Date.now();
               updateSlide(0);
+              // 重置所有滚动相关状态，防止立即触发滚动
+              scrollAccumulator = 0;
+              lastScrollDirection = 0;
+              isAnimating = true;
+              if (animationTimeout) {
+                clearTimeout(animationTimeout);
+              }
+              animationTimeout = window.setTimeout(() => {
+                isAnimating = false;
+                scrollAccumulator = 0;
+                updateScrollState();
+              }, minStayDuration);
             }
           }
           // 如果区域从下方进入（向上滚动），重置到最后一个 slide
@@ -97,12 +109,27 @@ export function createSectionScroll(config: SectionScrollConfig) {
               currentIndex = totalSlides - 1;
               lastSlideChangeTime = Date.now();
               updateSlide(totalSlides - 1);
+              // 重置所有滚动相关状态，防止立即触发滚动
+              scrollAccumulator = 0;
+              lastScrollDirection = 0;
+              isAnimating = true;
+              if (animationTimeout) {
+                clearTimeout(animationTimeout);
+              }
+              animationTimeout = window.setTimeout(() => {
+                isAnimating = false;
+                scrollAccumulator = 0;
+                updateScrollState();
+              }, minStayDuration);
             }
           }
         }
 
         // 离开视口时重置状态
         if (!entry.isIntersecting) {
+          // 离开视口时也重置滚动累积器，防止下次进入时有残留
+          scrollAccumulator = 0;
+          lastScrollDirection = 0;
           if ((window as any).scrollState) {
             (window as any).scrollState.isInnerScrolling = false;
           }
@@ -148,7 +175,8 @@ export function createSectionScroll(config: SectionScrollConfig) {
 
     // 检查最小停留时间，防止快速滚动跳过 slide
     if (!hasStayedLongEnough) {
-      // 还未达到最小停留时间，忽略滚动
+      // 还未达到最小停留时间，完全忽略滚动（不累积）
+      scrollAccumulator = 0;
       return;
     }
 
