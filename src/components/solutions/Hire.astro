@@ -10,15 +10,19 @@ import Card from './Card.astro';
 
 <section class="hire-section">
   <div class="hire-container">
-    <div class="hire-left">
-      <div class="hire-visual">
-        <picture>
-          <source media="(max-width: 768px)" srcset={hireMobileImg.src} class="hire-img-mobile" data-en={hireMobileImg.src} data-cn={hireMobileImgCn.src} />
-          <img src={hireImg.src} alt="Predictive Hiring" class="visual-image hire-img" data-en={hireImg.src} data-cn={hireImgCn.src} />
-        </picture>
+    <div class="hire-left" id="hire-left">
+      <div class="hire-left-inner">
+        <div class="hire-visual">
+          <picture>
+            <source media="(max-width: 768px)" srcset={hireMobileImg.src} class="hire-img-mobile" data-en={hireMobileImg.src} data-cn={hireMobileImgCn.src} />
+            <img src={hireImg.src} alt="Predictive Hiring" class="visual-image hire-img" data-en={hireImg.src} data-cn={hireImgCn.src} />
+          </picture>
+        </div>
       </div>
     </div>
-    <Card index={1} itemLength={3} className="card-section1" cardName='hire'></Card>
+    <div class="card-section-wrap" id="card-section1">
+      <Card index={1} itemLength={3} className="card-section1" cardName='hire'></Card>
+    </div>
   </div>
 </section>
 
@@ -63,6 +67,37 @@ import Card from './Card.astro';
     position: relative;
     flex: 0 0 auto;
     width: calc(654 / 1134 * 100%);
+    transform: translateX(0) translateY(0) rotate(0) !important;
+    transition: all 0.8s ease;
+  }
+
+  .hire-left-inner {
+    position: relative;
+    transition: all 0.8s ease;
+    transform: translateX(-2000px) rotate(-15deg);
+    opacity: 0;
+  }
+
+  .hire-left.in-view .hire-left-inner {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+
+  .card-section-wrap {
+    position: relative;
+    transform: translateX(0) translateY(0) rotate(0) !important;
+    transition: all 0.8s ease;
+  }
+
+  :global(.card-section1) {
+    transition: all 0.8s ease;
+    transform: translateX(2000px) rotate(15deg);
+    opacity: 0;
+  }
+
+  .card-section-wrap.in-view :global(.card-section1) {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
   }
 
   .hire-visual {
@@ -94,12 +129,38 @@ import Card from './Card.astro';
 
     .hire-left {
       width: 100%;
+      transform: translateX(0) translateY(0) rotate(0) !important;
+    }
+
+    .hire-left-inner {
+      transform: translateX(-2000px) translateY(100%) rotate(-45deg);
+      opacity: 0;
+    }
+
+    .hire-left.in-view .hire-left-inner {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    .card-section-wrap {
+      transform: translateX(0) translateY(0) rotate(0) !important;
+    }
+
+    :global(.card-section1) {
+      transform: translateX(2000px) translateY(100%) rotate(45deg);
+      opacity: 0;
+    }
+
+    .card-section-wrap.in-view :global(.card-section1) {
+      transform: translateX(0) translateY(0) rotate(0);
+      opacity: 1;
     }
   }
 </style>
 
 <script>
   import { loadTranslations } from '../../scripts/i18n-loader';
+  import { inView } from '../../utils/inView';
   loadTranslations();
 
   // 切换图片语言
@@ -124,4 +185,10 @@ import Card from './Card.astro';
 
   // 监听语言切换事件
   window.addEventListener('languageChanged', switchImageLanguage);
+
+  // Intersection Observer 监听元素是否在可视区域内
+  if (typeof window !== 'undefined') {
+    inView({id: "hire-left", threshold: 0.2});
+    inView({id: "card-section1", threshold: 0.2});
+  }
 </script>
