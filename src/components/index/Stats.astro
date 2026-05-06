@@ -36,7 +36,7 @@ const stats = [
       {
         stats.map((item, index) => (
           <div class="stat-card">
-            <div class="stat-industry">{item.industry}</div>
+            <div class="stat-industry" data-i18n={`homepage.stats.items.${index}.label`}></div>
             <div class="stat-value-wrapper">
               <div class="stat-value">
                 <span class="value-text">
