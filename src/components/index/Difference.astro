@@ -4,6 +4,10 @@ import avatar1 from '../../assets/index/difference/1.png';
 import avatar2 from '../../assets/index/difference/2.png';
 import avatar3 from '../../assets/index/difference/3.png';
 import avatar4 from '../../assets/index/difference/4.png';
+import avatarCn1 from '../../assets/index/difference/cn/1.png';
+import avatarCn2 from '../../assets/index/difference/cn/2.png';
+import avatarCn3 from '../../assets/index/difference/cn/3.png';
+import avatarCn4 from '../../assets/index/difference/cn/4.png';
 import bgDot from '../../assets/bg_dot_dark.png';
 import AreaTitle from './AreaTitle.astro';
 import Button from '../Button.astro';
@@ -46,7 +50,7 @@ import Button from '../Button.astro';
             <!-- Candidate Profile Card -->
             <div class="demo-card profile-card">
               <div class="profile-header">
-                <img class="profile-avatar" src={avatar4.src} alt="Alex Rivera" />
+                <img class="profile-avatar difference-avatar" src={avatar4.src} alt="Alex Rivera" data-en-src={avatar4.src} data-cn-src={avatarCn4.src} />
                 <div class="profile-info">
                   <div class="profile-name" data-i18n="homepage.difference.demo.name">Alex Rivera</div>
                   <div class="profile-role" data-i18n="homepage.difference.demo.role">SOFTWARE ARCHITECT</div>
@@ -87,9 +91,9 @@ import Button from '../Button.astro';
             <div class="card-tag" data-i18n="homepage.difference.demo.actionTag">#Schedule_Interview</div>
             <div class="card-avatars">
               <div class="avatar-group">
-                <img class="avatar" src={avatar1.src} alt="Team member 1" />
-                <img class="avatar" src={avatar2.src} alt="Team member 2" />
-                <img class="avatar" src={avatar3.src} alt="Team member 3" />
+                <img class="avatar difference-avatar" src={avatar1.src} alt="Team member 1" data-en-src={avatar1.src} data-cn-src={avatarCn1.src} />
+                <img class="avatar difference-avatar" src={avatar2.src} alt="Team member 2" data-en-src={avatar2.src} data-cn-src={avatarCn2.src} />
+                <img class="avatar difference-avatar" src={avatar3.src} alt="Team member 3" data-en-src={avatar3.src} data-cn-src={avatarCn3.src} />
                 <div class="avatar-more">+3</div>
               </div>
             </div>
@@ -267,7 +271,7 @@ import Button from '../Button.astro';
     border-radius: 0.75rem;
     border: 1px solid var(--Neutrals-White-30, rgba(255, 255, 255, 0.30));
     background: rgba(255, 255, 255, 0.05);
-    /* backgroud blur */
+    /* background blur */
     backdrop-filter: blur(15px);
   }
 
@@ -609,6 +613,20 @@ import Button from '../Button.astro';
   import { loadTranslations } from '../../scripts/i18n-loader';
   import { inView } from '../../utils/inView';
   loadTranslations();
+
+  const currentLang = localStorage.getItem('language') || 'en';
+
+  // 切换图片语言
+  const avatars = document.querySelectorAll('.difference-avatar');
+  avatars.forEach((img) => {
+    const enSrc = img.getAttribute('data-en-src');
+    const cnSrc = img.getAttribute('data-cn-src');
+    if (currentLang === 'zh' && cnSrc) {
+      img.setAttribute('src', cnSrc);
+    } else if (enSrc) {
+      img.setAttribute('src', enSrc);
+    }
+  });
 
   // Intersection Observer 监听 difference-right 是否在可视区域内
   if (typeof window !== 'undefined') {
