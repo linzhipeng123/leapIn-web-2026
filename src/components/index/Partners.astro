@@ -29,9 +29,6 @@ const logos = [
   { src: logo9, width: 204, mobileWidth: 80, showInLang: ['en', 'zh'] },
 ];
 
-const currentLang = typeof localStorage !== 'undefined' ? (localStorage.getItem('language') || 'en') : 'en';
-const filteredLogos = logos.filter(logo => logo.showInLang.includes(currentLang));
-
 const avatars = [avatar1, avatar2, avatar3];
 const avatarsCn = [avatarCn1, avatarCn2, avatarCn3];
 ---
@@ -41,8 +38,8 @@ const avatarsCn = [avatarCn1, avatarCn2, avatarCn3];
     <p class="partners-description" data-i18n="homepage.partners.description">服务于全球 8 大主要行业的领先组织</p>
     <div class="partners-scroll">
       <div class="partners-track">
-        {filteredLogos.map(({ src, width, mobileWidth }, index) => (
-          <div class="partner-item">
+        {logos.map(({ src, width, mobileWidth, showInLang }, index) => (
+          <div class="partner-item" data-show-in-lang={showInLang.join(',')}>
             <img 
               src={src.src} 
               alt={`Partner ${index + 1}`}
@@ -51,8 +48,8 @@ const avatarsCn = [avatarCn1, avatarCn2, avatarCn3];
             />
           </div>
         ))}
-        {filteredLogos.map(({ src, width, mobileWidth }, index) => (
-          <div class="partner-item">
+        {logos.map(({ src, width, mobileWidth, showInLang }, index) => (
+          <div class="partner-item" data-show-in-lang={showInLang.join(',')}>
             <img 
               src={src.src} 
               alt={`Partner ${index + 1}`}
@@ -61,8 +58,8 @@ const avatarsCn = [avatarCn1, avatarCn2, avatarCn3];
             />
           </div>
         ))}
-        {filteredLogos.map(({ src, width, mobileWidth }, index) => (
-          <div class="partner-item">
+        {logos.map(({ src, width, mobileWidth, showInLang }, index) => (
+          <div class="partner-item" data-show-in-lang={showInLang.join(',')}>
             <img 
               src={src.src} 
               alt={`Partner ${index + 1}`}
@@ -468,6 +465,18 @@ const avatarsCn = [avatarCn1, avatarCn2, avatarCn3];
   loadTranslations();
 
   const currentLang = localStorage.getItem('language') || 'en';
+
+  // 根据语言显示/隐藏logos
+  const partnerItems = document.querySelectorAll('.partner-item');
+  partnerItems.forEach((item) => {
+    const showInLang = item.getAttribute('data-show-in-lang');
+    if (showInLang) {
+      const langs = showInLang.split(',');
+      if (!langs.includes(currentLang)) {
+        (item as HTMLElement).style.display = 'none';
+      }
+    }
+  });
 
   // 切换头像语言
   const partnerAvatars = document.querySelectorAll('.partner-avatar');
