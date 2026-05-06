@@ -136,7 +136,10 @@ export function createAutoScroll(config: AutoScrollConfig) {
         console.log(`${logPrefix} 区域可见性变化:`, isInSection);
 
         if (isInSection && !wasInSection) {
-          console.log(`${logPrefix} 进入滚动区域`);
+          console.log(`${logPrefix} 进入滚动区域，开始自动向下滚动`);
+          // 进入区域时，自动开始向下滚动
+          lastWheelDirection = 'down';
+          autoScrollToTarget('down');
         }
 
         if (!isInSection) {
