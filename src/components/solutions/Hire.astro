@@ -55,6 +55,7 @@ import Card from './Card.astro';
   }
 
   .hire-container {
+    width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 4rem;
@@ -66,7 +67,7 @@ import Card from './Card.astro';
   .hire-left {
     position: relative;
     flex: 0 0 auto;
-    width: calc(654 / 1134 * 100%);
+    width: fit-content;
     transform: translateX(0) translateY(0) rotate(0) !important;
     transition: all 0.8s ease;
   }
