@@ -1,0 +1,21 @@
+@Library(['leapin-pipeline']) _
+
+def build_command = "npm run deploy-ap"
+
+standardPipeline {
+    projectName = "website-global"
+    isMultiBranch = true
+    buildCommand = {
+        sh "${build_command}"
+    }
+    preBuildCommand = {
+        sh "npm install"
+    }
+    buildLocalPath = "dist"
+    nodeVersion = "25.9.0"
+    isWebService = false
+    isUploadToS3 = true
+    s3UploadPath = ""
+    s3BucketName = "leapin-official-website-v3"
+    deployBranch = []
+}
