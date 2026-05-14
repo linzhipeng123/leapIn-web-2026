@@ -1,6 +1,6 @@
 @Library(['leapin-pipeline']) _
 
-def build_command = "npm run deploy-ap"
+def build_command = "npm run build && npm run deploy-ap"
 
 standardPipeline {
     projectName = "website-global"
