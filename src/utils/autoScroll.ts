@@ -35,7 +35,6 @@ export function createAutoScroll(config: AutoScrollConfig) {
 
   const section = document.getElementById(sectionId);
   if (!section) {
-    console.warn(`${logPrefix} Section with id "${sectionId}" not found`);
     return null;
   }
 
@@ -67,23 +66,12 @@ export function createAutoScroll(config: AutoScrollConfig) {
 
     // 如果已经在目标位置，不需要自动滚动
     if (currentIndex === targetIndex) {
-      console.log(`${logPrefix} 已经在目标位置:`, targetIndex);
       return;
     }
-
-    console.log(
-      `${logPrefix} 开始自动滚动，方向:`,
-      direction,
-      '当前索引:',
-      currentIndex,
-      '目标索引:',
-      targetIndex
-    );
 
     // 每隔指定时间滚动一次
     autoScrollTimer = window.setInterval(() => {
       const current = scrollController.getCurrentIndex();
-      console.log(`${logPrefix} 自动滚动中，当前索引:`, current);
 
       // if (direction === 'up' && current > 0) {
       //   // 向上滚动到上一个 slide
@@ -94,7 +82,6 @@ export function createAutoScroll(config: AutoScrollConfig) {
         scrollController.goToSlide(current + 1);
       } else {
         // 到达目标，停止自动滚动
-        console.log(`${logPrefix} 到达目标位置，停止自动滚动`);
         clearTimers();
       }
     }, autoScrollInterval);
@@ -111,8 +98,6 @@ export function createAutoScroll(config: AutoScrollConfig) {
     const direction = e.deltaY > 0 ? 'down' : 'up';
     lastWheelDirection = direction;
 
-    console.log(`${logPrefix} 检测到滚动，方向:`, direction, 'deltaY:', e.deltaY);
-
     // 清除之前的定时器
     clearTimers();
 
@@ -120,7 +105,6 @@ export function createAutoScroll(config: AutoScrollConfig) {
     inactivityTimer = window.setTimeout(() => {
       const timeSinceLastWheel = Date.now() - lastWheelTime;
       if (timeSinceLastWheel >= inactivityDelay && lastWheelDirection) {
-        console.log(`${logPrefix} ${inactivityDelay / 1000}秒无活动，触发自动滚动，方向:`, lastWheelDirection);
         autoScrollToTarget(lastWheelDirection);
       }
     }, inactivityDelay);
@@ -133,10 +117,7 @@ export function createAutoScroll(config: AutoScrollConfig) {
         const wasInSection = isInSection;
         isInSection = entry.isIntersecting;
 
-        console.log(`${logPrefix} 区域可见性变化:`, isInSection);
-
         if (isInSection && !wasInSection) {
-          console.log(`${logPrefix} 进入滚动区域，开始自动向下滚动`);
           // 进入区域时，自动开始向下滚动
           lastWheelDirection = 'down';
           autoScrollToTarget('down');
@@ -144,7 +125,6 @@ export function createAutoScroll(config: AutoScrollConfig) {
 
         if (!isInSection) {
           // 离开区域时清除所有定时器
-          console.log(`${logPrefix} 离开滚动区域，清除定时器`);
           clearTimers();
           lastWheelDirection = null;
         }
