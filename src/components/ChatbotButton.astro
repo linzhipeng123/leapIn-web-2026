@@ -1,9 +1,10 @@
 ---
 // Chatbot 组件 - 使用 LeapIn AI Agent SDK
+// SDK 脚本在 Layout head 中加载
 ---
 
-<script is:inline src="https://cdn.leapin-ai.com/components/@kne-components/leapin-ai-agent-sdk/0.0.7/build/static/js/sdk-main.js"></script>
 <script is:inline>
+  // 初始化 SDK
   window.leapinAiAgentSDK({
     host: 'https://app.leapin-ai.com',
     tpl: '{{url}}/ai-agent',
@@ -20,4 +21,20 @@
       }
     }
   });
+
+  // SDK 加载后会动态注入样式，延迟一次性将 SDK 样式移到项目样式之前
+  // 这样项目样式在 DOM 中后出现，优先级更高
+  setTimeout(function() {
+    var projectStyles = document.querySelectorAll('style[data-astro], link[rel="stylesheet"]');
+    if (projectStyles.length === 0) return;
+
+    var firstProjectStyle = projectStyles[0];
+
+    // 查找 SDK 注入的样式（不含 data-astro 属性的 style 和 leapin CDN 的 link）
+    document.querySelectorAll('head style:not([data-astro]):not([data-vite-dev-id]), head link[href*="leapin-ai.com"]').forEach(function(sdkStyle) {
+      if (sdkStyle !== firstProjectStyle) {
+        firstProjectStyle.parentNode.insertBefore(sdkStyle, firstProjectStyle);
+      }
+    });
+  }, 2000);
 </script>
