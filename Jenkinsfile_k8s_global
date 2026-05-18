@@ -14,6 +14,7 @@ standardPipeline {
     buildLocalPath = "dist"
     nodeVersion = "25.9.0"
     isWebService = false
+    isSkipDeploy = true
     isUploadToS3 = true
     s3UploadPath = ""
     s3BucketName = "leapin-official-website-v3"
