@@ -14,6 +14,7 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>LeapIn - AI 人才智能决策平台</title>
+		<script is:inline src="https://cdn.leapin-ai.com/components/@kne-components/leapin-ai-agent-sdk/0.0.7/build/static/js/sdk-main.js"></script>
 		<script is:inline>
 			// 语言检测 - 只检测并保存到 localStorage，不进行路径跳转
 			(function() {
@@ -236,6 +237,7 @@ import bgBottom2 from '../assets/index/bg_linear_2.png';
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 4rem;
+	background: none !important;
   }
 
 	.scroll-section {

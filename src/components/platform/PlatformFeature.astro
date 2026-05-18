@@ -100,6 +100,13 @@ const features = [
     .feature-title.en {
         font-style: italic;
     }
+    .platform-feature-container {
+        overflow: hidden;
+    }
+
+    .platform-feature-container-pre[active-slider="0"] {
+        overflow: visible;
+    }
 
     .platform-feature-container-pre .feature-item[data-index="0"] .feature-title {
         transform: translateY(-85vh);
@@ -263,6 +270,7 @@ const features = [
       animationDuration: 800,
       onSlideUpdate: (index) => {
         section.setAttribute('active-slider', index.toString());
+        slider.setAttribute('active-slider', index.toString());
         slides.forEach((slide) => {
           slide.setAttribute('data-active', 'true');
           slide.setAttribute('data-index', index.toString());
