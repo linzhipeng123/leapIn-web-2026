@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy-ap": "cross-env INDEX_HTML_PATH=dist/index.html OUTPUT_HTML_PATH=dist/index-en.html DEPLOY_URL=/ RUNTIME_ENV='isAP:true;locale:en' npx @kne/npm-tools entryHtml"
+    "deploy-ap": "cross-env INDEX_HTML_PATH=dist/index.html OUTPUT_HTML_PATH=dist/index-en.html DEPLOY_URL=/ RUNTIME_ENV='isAP:true;locale:en' npx @kne/npm-tools entryHtml",
+    "deploy-ap-all": "node scripts/generate-en-html.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
